@@ -9,8 +9,8 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="sticky top-0 z-50 w-full bg-background/50 backdrop-blur-xl">
-            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <nav className="fixed top-0 left-0 right-0 z-50 w-full px-4 py-6 sm:px-6 lg:px-8">
+            <div className="mx-auto flex max-w-7xl items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
                     <div className="h-8 w-8 rounded-lg bg-foreground/10 flex items-center justify-center">
@@ -24,25 +24,27 @@ export default function Navbar() {
                     <span className="text-xl font-bold tracking-tight text-foreground">EnVaedha</span>
                 </Link>
 
-                {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-8">
-                    <NavLink href="#pricing">Pricing</NavLink>
-                    <NavLink href="#resources">Resources</NavLink>
-                    <NavLink href="#community">Community</NavLink>
-                    <NavLink href="#download">Download</NavLink>
+                {/* Desktop Nav - Floating Pill */}
+                <div className="hidden md:flex items-center gap-1 pl-8 pr-2 py-2 bg-background/10 backdrop-blur-md border border-white/10 rounded-full shadow-lg">
+                    <div className="flex items-center gap-6 mr-6">
+                        <NavLink href="#competences">COMPETENCES</NavLink>
+                        <NavLink href="#case-studies">CASE STUDIES</NavLink>
+                        <NavLink href="#about">ABOUT US</NavLink>
+                        <NavLink href="#career">CAREER</NavLink>
+                        <NavLink href="#blog">BLOG</NavLink>
+                    </div>
 
-                    <div className="flex items-center gap-4 ml-4">
-                        <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Star Us</Link>
-                        <Button className="bg-foreground border border-border text-background hover:opacity-90 rounded-full px-4 py-1.5 text-xs font-medium">
-                            SIGN IN
+                    <div className="flex items-center gap-4 border-l border-white/10 pl-6">
+                        <span className="text-xs font-medium text-muted-foreground cursor-pointer hover:text-foreground">PL</span>
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2.5 text-xs font-bold tracking-wide border-none">
+                            FREE CONSULTATION
                         </Button>
-
                     </div>
                 </div>
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+                    className="md:hidden p-2 text-foreground bg-background/10 backdrop-blur-md rounded-full border border-white/10"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -51,12 +53,16 @@ export default function Navbar() {
 
             {/* Mobile Nav */}
             {isOpen && (
-                <div className="md:hidden border-t border-border bg-background p-4">
+                <div className="absolute top-20 left-4 right-4 md:hidden rounded-2xl border border-white/10 bg-background/90 backdrop-blur-xl p-4 shadow-2xl">
                     <div className="flex flex-col gap-4">
-                        <MobileNavLink href="#pricing" onClick={() => setIsOpen(false)}>Pricing</MobileNavLink>
-                        <MobileNavLink href="#resources" onClick={() => setIsOpen(false)}>Resources</MobileNavLink>
-                        <MobileNavLink href="#community" onClick={() => setIsOpen(false)}>Community</MobileNavLink>
-
+                        <MobileNavLink href="#competences" onClick={() => setIsOpen(false)}>COMPETENCES</MobileNavLink>
+                        <MobileNavLink href="#case-studies" onClick={() => setIsOpen(false)}>CASE STUDIES</MobileNavLink>
+                        <MobileNavLink href="#about" onClick={() => setIsOpen(false)}>ABOUT US</MobileNavLink>
+                        <MobileNavLink href="#career" onClick={() => setIsOpen(false)}>CAREER</MobileNavLink>
+                        <MobileNavLink href="#blog" onClick={() => setIsOpen(false)}>BLOG</MobileNavLink>
+                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-full py-3 text-sm font-bold">
+                            FREE CONSULTATION
+                        </Button>
                     </div>
                 </div>
             )}
@@ -66,7 +72,7 @@ export default function Navbar() {
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
     return (
-        <Link href={href} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+        <Link href={href} className="text-[11px] font-bold tracking-wide text-muted-foreground hover:text-foreground transition-colors uppercase">
             {children}
         </Link>
     );
@@ -77,7 +83,7 @@ function MobileNavLink({ href, onClick, children }: { href: string; onClick: () 
         <Link
             href={href}
             onClick={onClick}
-            className="block text-base font-medium text-muted-foreground hover:text-foreground"
+            className="block text-sm font-bold tracking-wide text-foreground hover:text-primary py-2"
         >
             {children}
         </Link>
