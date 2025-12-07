@@ -47,7 +47,7 @@ export default function Services() {
 
                 <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:max-w-none lg:grid-cols-3">
                     {services.map((service) => (
-                        <Card key={service.title} className="bg-muted/50 border-border hover:border-primary/50 transition-colors cursor-default">
+                        <Card key={service.title} className="bg-card/50 dark:bg-card/20 border-border hover:border-primary/50 transition-colors cursor-default">
                             <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                                 {service.icon}
                             </div>

@@ -14,7 +14,7 @@ export default function Footer() {
                     <div className="flex flex-col items-center md:items-start gap-2">
                         <span className="text-xl font-bold tracking-tight text-foreground">EnVaedha</span>
                         <p className="text-sm text-muted-foreground">
-                            Everything App for your teams.
+                            Knowledge, Executed.
                         </p>
                     </div>
 
