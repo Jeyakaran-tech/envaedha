@@ -33,7 +33,25 @@ export default function Hero() {
                         <span className="animate-pulse text-primary">_</span>
                         <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-neutral-400">
-                            so you can build the business.
+                            so you can build the{" "}
+                            <span className="relative whitespace-nowrap">
+                                business
+                                <svg
+                                    className="absolute -bottom-2 left-0 w-full h-[6px] text-primary"
+                                    viewBox="0 0 100 10"
+                                    preserveAspectRatio="none"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M2 2 Q 50 12 98 2"
+                                        stroke="currentColor"
+                                        strokeWidth="3"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                    />
+                                </svg>
+                            </span>
+                            .
                         </span>
                     </h1>
                     <p className="mt-6 text-xl leading-8 text-muted-foreground max-w-3xl mx-auto">
