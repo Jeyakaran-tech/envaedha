@@ -9,19 +9,37 @@ export default function Hero() {
     const fullText = "We build the tech";
 
     useEffect(() => {
-        let i = 0;
-        const interval = setInterval(() => {
-            setText(fullText.slice(0, i + 1));
-            i++;
-            if (i > fullText.length) {
-                clearInterval(interval);
-            }
-        }, 100);
-        return () => clearInterval(interval);
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setText("");
+                        let i = 0;
+                        const interval = setInterval(() => {
+                            setText(fullText.slice(0, i + 1));
+                            i++;
+                            if (i > fullText.length) {
+                                clearInterval(interval);
+                            }
+                        }, 100);
+                        // Cleanup interval when element leaves view or component unmounts
+                        return () => clearInterval(interval);
+                    }
+                });
+            },
+            { threshold: 0.5 } // Trigger when 50% visible
+        );
+
+        const section = document.getElementById("hero-section");
+        if (section) {
+            observer.observe(section);
+        }
+
+        return () => observer.disconnect();
     }, []);
 
     return (
-        <section className="relative overflow-hidden bg-background pt-24 pb-32 md:pt-32 md:pb-48">
+        <section id="hero-section" className="relative overflow-hidden bg-background pt-24 pb-32 md:pt-32 md:pb-48">
 
             {/* Content */}
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -34,16 +52,16 @@ export default function Hero() {
                         <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-neutral-400">
                             so you can build the{" "}
-                            <span className="relative whitespace-nowrap text-foreground">
+                            <span className="relative whitespace-nowrap text-primary">
                                 business
                                 <svg
-                                    className="absolute -bottom-2 left-0 w-full h-[6px] text-primary"
+                                    className="absolute -bottom-2 left-0 w-full h-[6px] text-foreground"
                                     viewBox="0 0 100 10"
                                     preserveAspectRatio="none"
                                     aria-hidden="true"
                                 >
                                     <path
-                                        d="M2 2 Q 50 12 98 2"
+                                        d="M2 2 Q 90 12 98 2"
                                         stroke="currentColor"
                                         strokeWidth="3"
                                         fill="none"
