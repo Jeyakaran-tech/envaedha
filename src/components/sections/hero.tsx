@@ -34,7 +34,7 @@ export default function Hero() {
                         <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-neutral-400">
                             so you can build the{" "}
-                            <span className="relative whitespace-nowrap">
+                            <span className="relative whitespace-nowrap text-foreground">
                                 business
                                 <svg
                                     className="absolute -bottom-2 left-0 w-full h-[6px] text-primary"
