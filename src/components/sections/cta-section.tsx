@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Button from "../ui/button";
 
 export default function CTASection() {
@@ -12,9 +13,11 @@ export default function CTASection() {
                         Let's discuss your project and how we can help you achieve your goals.
                     </p>
                     <div className="mt-10 flex items-center justify-center gap-x-6">
-                        <Button variant="primary" className="px-8 py-3 text-base">
-                            Get in Touch
-                        </Button>
+                        <Link href="/schedule-a-meeting">
+                            <Button variant="primary" className="px-8 py-3 text-base cursor-pointer">
+                                Get in Touch
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

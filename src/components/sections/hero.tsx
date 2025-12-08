@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import Button from "../ui/button";
 
 
@@ -116,9 +117,11 @@ export default function Hero() {
                     </p>
 
                     <div className="mt-12 flex items-center justify-center gap-x-6">
-                        <Button className="rounded-full px-8 py-4 text-sm font-semibold transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                            Lets connect →
-                        </Button>
+                        <Link href="/schedule-a-meeting">
+                            <Button className="bg-blue-500 hover:bg-blue-600 rounded-full px-8 py-4 text-sm font-semibold transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] cursor-pointer">
+                                FREE CONSULTATION
+                            </Button>
+                        </Link>
                     </div>
                 </div>
 
