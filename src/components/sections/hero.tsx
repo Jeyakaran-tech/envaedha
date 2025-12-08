@@ -1,12 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Button from "../ui/button";
 
 
 export default function Hero() {
     const [text, setText] = useState("");
     const fullText = "We build the tech";
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.playbackRate = 0.7; // Slow down slightly for better effect
+            videoRef.current.play().catch(error => {
+                console.error("Video autoplay failed:", error);
+            });
+        }
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -40,38 +50,39 @@ export default function Hero() {
 
     return (
 
-        <section id="hero-section" className="relative overflow-hidden pt-24 pb-32 md:pt-32 md:pb-48">
+        <section id="hero-section" className="relative overflow-hidden pt-48 pb-32 md:pt-64 md:pb-48 isolate">
 
             {/* Background Video */}
             <video
+                ref={videoRef}
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="absolute inset-0 h-full w-full object-cover -z-20"
+                className="absolute inset-0 h-full w-full object-cover z-0"
             >
                 <source src="/hero-bg.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-background/80 -z-10 backdrop-blur-[2px]"></div>
+            <div className="absolute inset-0 bg-black/40 z-10"></div>
 
             {/* Content */}
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
 
                 <div className="mx-auto max-w-5xl">
-                    <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl mb-8 drop-shadow-sm min-h-[160px] sm:min-h-[200px]">
+                    <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl mb-8 drop-shadow-sm min-h-[160px] sm:min-h-[200px]">
                         <span className="font-mono text-primary mr-2">&gt;</span>
                         {text}
                         <span className="animate-blink text-primary">_</span>
                         <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-neutral-400">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-neutral-400">
                             so you can build the{" "}
                             <span className="relative whitespace-nowrap text-primary">
                                 business
                                 <svg
-                                    className="absolute -bottom-2 left-0 w-full h-[6px] text-foreground"
+                                    className="absolute -bottom-2 left-0 w-full h-[6px] text-white"
                                     viewBox="0 0 100 10"
                                     preserveAspectRatio="none"
                                     aria-hidden="true"
@@ -88,7 +99,7 @@ export default function Hero() {
                             .
                         </span>
                     </h1>
-                    <p className="mt-6 text-xl leading-8 text-muted-foreground max-w-3xl mx-auto">
+                    <p className="mt-6 text-xl leading-8 text-neutral-200 max-w-3xl mx-auto">
                         We combine deep technical expertise with strategic business insight to engineer scalable, high-impact software solutions for forward-thinking enterprises worldwide.
                     </p>
 

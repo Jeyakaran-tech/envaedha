@@ -11,7 +11,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "EnVaedha - Software Consulting",
+  title: "Envaedha",
   description: "We build the tech so you can build the business.",
 };
 
@@ -28,11 +28,10 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}
-          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>

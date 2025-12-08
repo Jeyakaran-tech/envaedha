@@ -12,7 +12,7 @@ export default function Footer() {
 
                     {/* Brand */}
                     <div className="flex flex-col items-center md:items-start gap-2">
-                        <span className="text-xl font-bold tracking-tight text-foreground">EnVaedha</span>
+                        <span className="text-xl font-bold tracking-tight text-foreground">Envaedha</span>
                         <p className="text-sm text-muted-foreground">
                             Knowledge, Executed.
                         </p>
@@ -36,7 +36,7 @@ export default function Footer() {
                 </div>
 
                 <div className="mt-8 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-                    &copy; {new Date().getFullYear()} EnVaedha. All rights reserved.
+                    &copy; {new Date().getFullYear()} Envaedha. All rights reserved.
                 </div>
             </div>
         </footer>
