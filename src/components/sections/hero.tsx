@@ -56,6 +56,8 @@ export default function Hero() {
                 loop
                 muted
                 playsInline
+                preload="auto"
+                data-webkit-playsinline="true"
                 className="absolute inset-0 h-full w-full object-cover z-0"
             >
                 <source src="/hero-bg.mp4" type="video/mp4" />
