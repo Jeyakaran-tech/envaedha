@@ -12,9 +12,6 @@ export default function Hero() {
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.playbackRate = 0.7; // Slow down slightly for better effect
-            videoRef.current.play().catch(error => {
-                console.error("Video autoplay failed:", error);
-            });
         }
     }, []);
 
@@ -50,7 +47,7 @@ export default function Hero() {
 
     return (
 
-        <section id="hero-section" className="relative overflow-hidden pt-48 pb-32 md:pt-64 md:pb-48 isolate">
+        <section id="hero-section" className="relative h-dvh flex items-center justify-center overflow-hidden isolate">
 
             {/* Background Video */}
             <video

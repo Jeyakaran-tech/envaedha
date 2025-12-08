@@ -40,7 +40,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="flex items-center gap-4 border-l border-white/10 pl-6">
-                        <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2.5 text-xs font-bold tracking-wide border-none">
+                        <Button className="text-[13px] bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2.5 text-xs font-bold tracking-wide border-none">
                             FREE CONSULTATION
                         </Button>
                     </div>
@@ -80,7 +80,7 @@ function NavLink({ href, isActive, onClick, children }: { href: string; isActive
             href={href}
             onClick={onClick}
             className={`
-                text-[11px] font-bold tracking-wide transition-all uppercase px-5 py-2.5 rounded-full
+                text-[13px] font-bold tracking-wide transition-all uppercase px-5 py-2.5 rounded-full
                 ${isActive
                     ? "bg-white/10 text-white shadow-sm"
                     : "text-white/70 hover:text-white hover:bg-white/5"
