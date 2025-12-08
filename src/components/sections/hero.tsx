@@ -10,8 +10,33 @@ export default function Hero() {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.playbackRate = 0.7; // Slow down slightly for better effect
+        const video = videoRef.current;
+        if (video) {
+            video.playbackRate = 0.7; // Slow down slightly for better effect
+
+            // Try to play the video
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        // Video is playing
+                        console.log("Video autoplay started");
+                    })
+                    .catch((error) => {
+                        console.log("Autoplay prevented, waiting for user interaction:", error);
+
+                        // Add event listeners to play on user interaction
+                        const playOnInteraction = () => {
+                            video.play().catch(e => console.log("Play failed:", e));
+                            document.removeEventListener('touchstart', playOnInteraction);
+                            document.removeEventListener('click', playOnInteraction);
+                        };
+
+                        document.addEventListener('touchstart', playOnInteraction, { once: true });
+                        document.addEventListener('click', playOnInteraction, { once: true });
+                    });
+            }
         }
     }, []);
 
