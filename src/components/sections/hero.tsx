@@ -66,7 +66,10 @@ export default function Hero() {
                 muted
                 playsInline
                 preload="auto"
-                className="absolute inset-0 h-full w-full object-cover z-0"
+                controls={false}
+                disablePictureInPicture
+                disableRemotePlayback
+                className="absolute inset-0 h-full w-full object-cover z-0 pointer-events-none"
             >
                 {/* Mobile-optimized version (smaller file) */}
                 <source src="/hero-bg-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
