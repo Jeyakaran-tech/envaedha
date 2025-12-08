@@ -98,6 +98,14 @@
   --color-sidebar: var(--sidebar-bg);
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-blink: blink 0.8s steps(2) infinite;
+
+  @keyframes blink {
+    0% {
+      opacity: 0;
+    }
+  }
 }
 
 body {

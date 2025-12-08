@@ -39,7 +39,23 @@ export default function Hero() {
     }, []);
 
     return (
-        <section id="hero-section" className="relative overflow-hidden bg-background pt-24 pb-32 md:pt-32 md:pb-48">
+
+        <section id="hero-section" className="relative overflow-hidden pt-24 pb-32 md:pt-32 md:pb-48">
+
+            {/* Background Video */}
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 h-full w-full object-cover -z-20"
+            >
+                <source src="/hero-bg.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-background/80 -z-10 backdrop-blur-[2px]"></div>
 
             {/* Content */}
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -48,7 +64,7 @@ export default function Hero() {
                     <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl mb-8 drop-shadow-sm min-h-[160px] sm:min-h-[200px]">
                         <span className="font-mono text-primary mr-2">&gt;</span>
                         {text}
-                        <span className="animate-pulse text-primary">_</span>
+                        <span className="animate-blink text-primary">_</span>
                         <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-neutral-400">
                             so you can build the{" "}
