@@ -14,28 +14,12 @@ export default function Hero() {
         if (video) {
             video.playbackRate = 0.7; // Slow down slightly for better effect
 
-            // Try to play the video
+            // Try to autoplay
             const playPromise = video.play();
-
             if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        // Video is playing
-                        console.log("Video autoplay started");
-                    })
-                    .catch((error) => {
-                        console.log("Autoplay prevented, waiting for user interaction:", error);
-
-                        // Add event listeners to play on user interaction
-                        const playOnInteraction = () => {
-                            video.play().catch(e => console.log("Play failed:", e));
-                            document.removeEventListener('touchstart', playOnInteraction);
-                            document.removeEventListener('click', playOnInteraction);
-                        };
-
-                        document.addEventListener('touchstart', playOnInteraction, { once: true });
-                        document.addEventListener('click', playOnInteraction, { once: true });
-                    });
+                playPromise.catch(() => {
+                    // Autoplay was prevented, that's okay
+                });
             }
         }
     }, []);
@@ -74,7 +58,7 @@ export default function Hero() {
 
         <section id="hero-section" className="relative h-dvh flex items-center justify-center overflow-hidden isolate">
 
-            {/* Background Video */}
+            {/* Background Video - Works on both mobile and desktop */}
             <video
                 ref={videoRef}
                 autoPlay
@@ -82,11 +66,12 @@ export default function Hero() {
                 muted
                 playsInline
                 preload="auto"
-                data-webkit-playsinline="true"
                 className="absolute inset-0 h-full w-full object-cover z-0"
             >
+                {/* Mobile-optimized version (smaller file) */}
+                <source src="/hero-bg-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+                {/* Desktop version */}
                 <source src="/hero-bg.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
             </video>
 
             {/* Overlay */}
