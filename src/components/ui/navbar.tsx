@@ -1,20 +1,53 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import Button from "./button";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeLink, setActiveLink] = useState("");
+    const [scrollY, setScrollY] = useState(0);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     const handleLinkClick = (href: string) => {
         setActiveLink(href);
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            // Calculate how much to translate the navbar
+            // When scrolling down, move navbar up gradually
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down - move up
+                const delta = currentScrollY - lastScrollY;
+                setScrollY(prev => Math.min(prev + delta, 100)); // Max 100px up
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up - move down
+                const delta = lastScrollY - currentScrollY;
+                setScrollY(prev => Math.max(prev - delta, 0)); // Min 0px (fully visible)
+            }
+
+            // Reset to visible when at top
+            if (currentScrollY < 10) {
+                setScrollY(0);
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScrollY]);
+
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 w-full px-4 py-6 sm:px-6 lg:px-8">
+        <nav
+            className="fixed left-0 right-0 z-50 w-full px-4 py-6 sm:px-6 lg:px-8 transition-transform duration-200 ease-out"
+            style={{ transform: `translateY(-${scrollY}px)` }}
+        >
             <div className="mx-auto flex max-w-7xl items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2" onClick={() => setActiveLink("")}>

@@ -29,7 +29,8 @@ export default function Footer() {
                     {/* Column 2: Main Links */}
                     <div className="md:col-span-3 flex flex-col gap-4">
                         {["Career", "Case studies", "About us", "Blog", "Contact"].map((item) => (
-                            <Link key={item} href="#" className="text-2xl md:text-3xl text-neutral-500 hover:text-black transition-colors font-medium">
+                            <Link key={item} href="#" className="text-2xl md:text-3xl text-neutral-500 hover:text-black transition-colors font-medium group flex items-center gap-2">
+                                <span className="group-hover:opacity-100 group-hover:w-6 opacity-0 w-0 transition-all duration-300">↗</span>
                                 {item}
                             </Link>
                         ))}
