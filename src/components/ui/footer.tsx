@@ -30,7 +30,17 @@ export default function Footer() {
                     <div className="md:col-span-3 flex flex-col gap-4">
                         {["Career", "Case studies", "About us", "Blog", "Contact"].map((item) => (
                             <Link key={item} href="#" className="text-2xl md:text-3xl text-neutral-500 hover:text-black transition-colors font-medium group flex items-center gap-2">
-                                <span className="group-hover:opacity-100 group-hover:w-6 opacity-0 w-0 transition-all duration-300">↗</span>
+                                <svg
+                                    className="group-hover:opacity-100 group-hover:w-5 opacity-0 w-0 transition-all duration-300 h-10"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="3"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                </svg>
                                 {item}
                             </Link>
                         ))}
