@@ -2,11 +2,13 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import Button from "./button";
 
 export default function Navbar() {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const [activeLink, setActiveLink] = useState("");
     const [scrollY, setScrollY] = useState(0);
@@ -137,11 +139,11 @@ export default function Navbar() {
                                 opacity: hoveredIndex !== null ? 1 : 0,
                             }}
                         />
-                        <NavLink ref={(el) => { navLinksRef.current[0] = el; }} href="#competences" isActive={activeLink === "#competences"} onClick={() => handleLinkClick("#competences")} isDark={isDark} onMouseEnter={() => setHoveredIndex(0)} onMouseLeave={() => setHoveredIndex(null)}>COMPETENCES</NavLink>
-                        <NavLink ref={(el) => { navLinksRef.current[1] = el; }} href="#case-studies" isActive={activeLink === "#case-studies"} onClick={() => handleLinkClick("#case-studies")} isDark={isDark} onMouseEnter={() => setHoveredIndex(1)} onMouseLeave={() => setHoveredIndex(null)}>CASE STUDIES</NavLink>
-                        <NavLink ref={(el) => { navLinksRef.current[2] = el; }} href="#about" isActive={activeLink === "#about"} onClick={() => handleLinkClick("#about")} isDark={isDark} onMouseEnter={() => setHoveredIndex(2)} onMouseLeave={() => setHoveredIndex(null)}>ABOUT US</NavLink>
-                        <NavLink ref={(el) => { navLinksRef.current[3] = el; }} href="#career" isActive={activeLink === "#career"} onClick={() => handleLinkClick("#career")} isDark={isDark} onMouseEnter={() => setHoveredIndex(3)} onMouseLeave={() => setHoveredIndex(null)}>CAREER</NavLink>
-                        <NavLink ref={(el) => { navLinksRef.current[4] = el; }} href="#blog" isActive={activeLink === "#blog"} onClick={() => handleLinkClick("#blog")} isDark={isDark} onMouseEnter={() => setHoveredIndex(4)} onMouseLeave={() => setHoveredIndex(null)}>BLOG</NavLink>
+                        <NavLink ref={(el) => { navLinksRef.current[0] = el; }} href="/#competences" isActive={activeLink === "#competences"} onClick={() => handleLinkClick("#competences")} isDark={isDark} onMouseEnter={() => setHoveredIndex(0)} onMouseLeave={() => setHoveredIndex(null)}>COMPETENCES</NavLink>
+                        <NavLink ref={(el) => { navLinksRef.current[1] = el; }} href="/#case-studies" isActive={activeLink === "#case-studies"} onClick={() => handleLinkClick("#case-studies")} isDark={isDark} onMouseEnter={() => setHoveredIndex(1)} onMouseLeave={() => setHoveredIndex(null)}>CASE STUDIES</NavLink>
+                        <NavLink ref={(el) => { navLinksRef.current[2] = el; }} href="/about" isActive={pathname === "/about"} onClick={() => handleLinkClick("/about")} isDark={isDark} onMouseEnter={() => setHoveredIndex(2)} onMouseLeave={() => setHoveredIndex(null)}>ABOUT US</NavLink>
+                        <NavLink ref={(el) => { navLinksRef.current[3] = el; }} href="/#career" isActive={activeLink === "#career"} onClick={() => handleLinkClick("#career")} isDark={isDark} onMouseEnter={() => setHoveredIndex(3)} onMouseLeave={() => setHoveredIndex(null)}>CAREER</NavLink>
+                        <NavLink ref={(el) => { navLinksRef.current[4] = el; }} href="/#blog" isActive={activeLink === "#blog"} onClick={() => handleLinkClick("#blog")} isDark={isDark} onMouseEnter={() => setHoveredIndex(4)} onMouseLeave={() => setHoveredIndex(null)}>BLOG</NavLink>
                     </div>
 
                     <div className={`flex items-center gap-4 pl-6 transition-colors ${isDark ? 'border-l border-white/10' : 'border-l border-black/10'}`}>
@@ -166,11 +168,11 @@ export default function Navbar() {
             {isOpen && (
                 <div className="absolute top-20 left-4 right-4 md:hidden rounded-2xl border border-white/10 bg-background/90 backdrop-blur-xl p-4 shadow-2xl">
                     <div className="flex flex-col gap-4">
-                        <MobileNavLink href="#competences" isActive={activeLink === "#competences"} onClick={() => { handleLinkClick("#competences"); setIsOpen(false); }}>COMPETENCES</MobileNavLink>
-                        <MobileNavLink href="#case-studies" isActive={activeLink === "#case-studies"} onClick={() => { handleLinkClick("#case-studies"); setIsOpen(false); }}>CASE STUDIES</MobileNavLink>
-                        <MobileNavLink href="#about" isActive={activeLink === "#about"} onClick={() => { handleLinkClick("#about"); setIsOpen(false); }}>ABOUT US</MobileNavLink>
-                        <MobileNavLink href="#career" isActive={activeLink === "#career"} onClick={() => { handleLinkClick("#career"); setIsOpen(false); }}>CAREER</MobileNavLink>
-                        <MobileNavLink href="#blog" isActive={activeLink === "#blog"} onClick={() => { handleLinkClick("#blog"); setIsOpen(false); }}>BLOG</MobileNavLink>
+                        <MobileNavLink href="/#competences" isActive={activeLink === "#competences"} onClick={() => { handleLinkClick("#competences"); setIsOpen(false); }}>COMPETENCES</MobileNavLink>
+                        <MobileNavLink href="/#case-studies" isActive={activeLink === "#case-studies"} onClick={() => { handleLinkClick("#case-studies"); setIsOpen(false); }}>CASE STUDIES</MobileNavLink>
+                        <MobileNavLink href="/about" isActive={pathname === "/about"} onClick={() => { handleLinkClick("/about"); setIsOpen(false); }}>ABOUT US</MobileNavLink>
+                        <MobileNavLink href="/#career" isActive={activeLink === "#career"} onClick={() => { handleLinkClick("#career"); setIsOpen(false); }}>CAREER</MobileNavLink>
+                        <MobileNavLink href="/#blog" isActive={activeLink === "#blog"} onClick={() => { handleLinkClick("#blog"); setIsOpen(false); }}>BLOG</MobileNavLink>
                         <Link href="/schedule-a-meeting">
                             <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white rounded-full py-3 text-sm font-bold cursor-pointer">
                                 FREE CONSULTATION

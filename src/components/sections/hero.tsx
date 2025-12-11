@@ -75,7 +75,7 @@ export default function Hero() {
                 {/* Mobile-optimized version (smaller file) */}
                 <source src="/hero-bg-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
                 {/* Desktop version */}
-                <source src="/hero-bg.mp4" type="video/mp4" />
+                <source src="/hero-bg1.mp4" type="video/mp4" />
             </video>
 
             {/* Overlay */}
