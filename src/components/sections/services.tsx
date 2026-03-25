@@ -1,65 +1,293 @@
-import { Card } from "../ui/card";
-import { FiCode, FiCloud, FiLayout, FiDatabase, FiSmartphone, FiShield } from "react-icons/fi";
+"use client";
 
-const services = [
+import { useEffect, useRef } from "react";
+
+/* ── tiny canvas visuals for each service ─────────────────────────── */
+
+function LLMVisual() {
+    const ref = useRef<HTMLCanvasElement>(null);
+    useEffect(() => {
+        const c = ref.current; if (!c) return;
+        const ctx = c.getContext("2d"); if (!ctx) return;
+        c.width = c.offsetWidth; c.height = c.offsetHeight;
+        let t = 0, id: number;
+        const draw = () => {
+            ctx.clearRect(0, 0, c.width, c.height);
+            const cx = c.width / 2, cy = c.height / 2;
+            for (let ring = 0; ring < 5; ring++) {
+                const count = 6 + ring * 4;
+                const r = 24 + ring * 28;
+                for (let i = 0; i < count; i++) {
+                    const angle = (i / count) * Math.PI * 2 + t * (ring % 2 === 0 ? 0.4 : -0.4);
+                    const x = cx + Math.cos(angle) * r;
+                    const y = cy + Math.sin(angle) * r;
+                    const alpha = 0.12 + (ring === 0 ? 0.5 : 0) * Math.abs(Math.sin(t + i));
+                    const size = ring === 0 ? 4 : 2.5 - ring * 0.25;
+                    ctx.beginPath();
+                    ctx.arc(x, y, Math.max(0.5, size), 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(147,197,253,${alpha})`;
+                    ctx.fill();
+                }
+            }
+            const pg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 20 + Math.sin(t * 2) * 5);
+            pg.addColorStop(0, "rgba(200,230,255,0.9)");
+            pg.addColorStop(1, "transparent");
+            ctx.beginPath(); ctx.arc(cx, cy, 20 + Math.sin(t * 2) * 5, 0, Math.PI * 2);
+            ctx.fillStyle = pg; ctx.fill();
+            t += 0.018; id = requestAnimationFrame(draw);
+        };
+        draw();
+        return () => cancelAnimationFrame(id);
+    }, []);
+    return <canvas ref={ref} className="w-full h-full" />;
+}
+
+function AgentVisual() {
+    const ref = useRef<HTMLCanvasElement>(null);
+    useEffect(() => {
+        const c = ref.current; if (!c) return;
+        const ctx = c.getContext("2d"); if (!ctx) return;
+        c.width = c.offsetWidth; c.height = c.offsetHeight;
+        let t = 0, id: number;
+        const nodes = Array.from({ length: 9 }, (_, i) => ({
+            x: 0.15 + Math.random() * 0.7,
+            y: 0.15 + Math.random() * 0.7,
+            r: 4 + Math.random() * 4,
+            phase: Math.random() * Math.PI * 2,
+        }));
+        const draw = () => {
+            ctx.clearRect(0, 0, c.width, c.height);
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const a = nodes[i], b = nodes[j];
+                    const dist = Math.hypot(a.x - b.x, a.y - b.y);
+                    if (dist > 0.4) continue;
+                    const alpha = (0.4 - dist) / 0.4 * 0.3;
+                    ctx.beginPath();
+                    ctx.moveTo(a.x * c.width, a.y * c.height);
+                    ctx.lineTo(b.x * c.width, b.y * c.height);
+                    ctx.strokeStyle = `rgba(96,165,250,${alpha})`;
+                    ctx.lineWidth = 1; ctx.stroke();
+                }
+            }
+            nodes.forEach((n, i) => {
+                const pulse = 0.7 + 0.3 * Math.sin(t * 1.5 + n.phase);
+                const g = ctx.createRadialGradient(n.x * c.width, n.y * c.height, 0, n.x * c.width, n.y * c.height, n.r * 3 * pulse);
+                g.addColorStop(0, "rgba(147,197,253,0.8)"); g.addColorStop(1, "transparent");
+                ctx.beginPath(); ctx.arc(n.x * c.width, n.y * c.height, n.r * 3 * pulse, 0, Math.PI * 2);
+                ctx.fillStyle = g; ctx.fill();
+                ctx.beginPath(); ctx.arc(n.x * c.width, n.y * c.height, n.r * 0.6 * pulse, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200,225,255,${0.6 * pulse})`; ctx.fill();
+            });
+            t += 0.014; id = requestAnimationFrame(draw);
+        };
+        draw();
+        return () => cancelAnimationFrame(id);
+    }, []);
+    return <canvas ref={ref} className="w-full h-full" />;
+}
+
+function SafetyVisual() {
+    const ref = useRef<HTMLCanvasElement>(null);
+    useEffect(() => {
+        const c = ref.current; if (!c) return;
+        const ctx = c.getContext("2d"); if (!ctx) return;
+        c.width = c.offsetWidth; c.height = c.offsetHeight;
+        let t = 0, id: number;
+        const draw = () => {
+            ctx.clearRect(0, 0, c.width, c.height);
+            const cx = c.width / 2, cy = c.height / 2;
+            for (let ring = 1; ring <= 4; ring++) {
+                const r = ring * 28 + Math.sin(t + ring) * 3;
+                ctx.beginPath();
+                for (let s = 0; s <= 6; s++) {
+                    const a = (s / 6) * Math.PI * 2 - Math.PI / 6 + t * (ring % 2 === 0 ? 0.2 : -0.2);
+                    s === 0 ? ctx.moveTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r)
+                        : ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = `rgba(96,165,250,${0.04 + ring * 0.06})`;
+                ctx.lineWidth = 1; ctx.stroke();
+            }
+            const scan = Math.sin(t) * 80;
+            const sg = ctx.createLinearGradient(0, cy + scan - 16, 0, cy + scan + 16);
+            sg.addColorStop(0, "transparent");
+            sg.addColorStop(0.5, "rgba(59,130,246,0.12)");
+            sg.addColorStop(1, "transparent");
+            ctx.fillStyle = sg; ctx.fillRect(0, cy + scan - 16, c.width, 32);
+            const sh = 48, sw = 42;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy - sh / 2);
+            ctx.lineTo(cx + sw / 2, cy - sh / 4);
+            ctx.lineTo(cx + sw / 2, cy + sh / 3);
+            ctx.quadraticCurveTo(cx, cy + sh / 2 + 6, cx, cy + sh / 2 + 6);
+            ctx.quadraticCurveTo(cx, cy + sh / 2 + 6, cx - sw / 2, cy + sh / 3);
+            ctx.lineTo(cx - sw / 2, cy - sh / 4);
+            ctx.closePath();
+            ctx.strokeStyle = `rgba(147,197,253,${0.25 + 0.1 * Math.sin(t * 2)})`;
+            ctx.lineWidth = 1.5; ctx.stroke();
+            t += 0.016; id = requestAnimationFrame(draw);
+        };
+        draw();
+        return () => cancelAnimationFrame(id);
+    }, []);
+    return <canvas ref={ref} className="w-full h-full" />;
+}
+
+/* ── Crosshair marker ────────────────────────────────────────────── */
+function Cross() {
+    return (
+        <div className="absolute w-4 h-4 flex items-center justify-center pointer-events-none" style={{ color: "rgba(59,130,246,0.25)" }}>
+            <span className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-px bg-current" />
+            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-px bg-current" />
+        </div>
+    );
+}
+
+/* ── Service rows data ───────────────────────────────────────────── */
+const SERVICES = [
     {
-        title: "Custom Development",
-        description: "Tailor-made software solutions built to address your specific business challenges.",
-        icon: <FiCode size={24} className="text-blue-500" />,
+        category: "FULL_STACK_AI",
+        title: "We engineer the full AI stack.",
+        desc: "Why bring multiple AI vendors into your pipeline when one deep-tech team can own your entire intelligence layer — from raw data to production inference?",
+        visual: (
+            <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full border border-blue-500/10 flex items-center justify-center animate-pulse">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500/40 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+                </div>
+            </div>
+        ),
+        items: [
+            "End-to-End Architectures",
+            "Multi-Vendor Strategy",
+            "Scalable Data Pipelines",
+            "Production GPU Serving",
+            "Performance Optimization",
+            "Security & Compliance",
+            "Continuous ML-Ops",
+        ],
     },
     {
-        title: "Cloud Architecture",
-        description: "Scalable, secure, and cost-effective cloud infrastructure design and management.",
-        icon: <FiCloud size={24} className="text-blue-500" />,
+        category: "LANGUAGE_MODELS",
+        title: "LLM systems that know your domain.",
+        desc: "We fine-tune foundation models on your proprietary corpus, handle RLHF alignment, and build evaluation pipelines that measure what actually matters for your use case.",
+        visual: <LLMVisual />,
+        items: [
+            "Domain Fine-Tuning",
+            "RLHF & Constitutional AI",
+            "Prompt Engineering",
+            "Evaluation Benchmarking",
+            "Model Quantisation",
+            "Embedding Pipelines",
+            "Multi-Modal LLMs",
+        ],
     },
     {
-        title: "UI/UX Design",
-        description: "Intuitive and engaging user interfaces that delight your customers.",
-        icon: <FiLayout size={24} className="text-blue-500" />,
+        category: "AGENTIC_SYSTEMS",
+        title: "Agents that plan, act, and reflect.",
+        desc: "Multi-agent orchestration systems built with LangGraph, AutoGen and custom tool-calling frameworks. Agents that don't just respond — they reason across steps and recover from failure.",
+        visual: <AgentVisual />,
+        items: [
+            "Autonomous Agents",
+            "Multi-Agent Orchestration",
+            "RAG Architectures",
+            "Semantic Search",
+            "Agentic Workflows",
+            "Tool-Calling Frameworks",
+            "Synthetic Data",
+        ],
     },
     {
-        title: "Database Optimization",
-        description: "High-performance database schema design and query optimization.",
-        icon: <FiDatabase size={24} className="text-blue-500" />,
-    },
-    {
-        title: "Mobile App Development",
-        description: "Native and cross-platform mobile applications for iOS and Android.",
-        icon: <FiSmartphone size={24} className="text-blue-500" />,
-    },
-    {
-        title: "Security Audits",
-        description: "Comprehensive security assessments to protect your data and users.",
-        icon: <FiShield size={24} className="text-blue-500" />,
+        category: "INFRASTRUCTURE_&_SAFETY",
+        title: "Infrastructure built to last at scale.",
+        desc: "GPU cluster design, inference serving with vLLM/TGI, vector databases, and constitutional safety frameworks — every layer hardened for enterprise reliability.",
+        visual: <SafetyVisual />,
+        items: [
+            "Neural Infrastructure",
+            "GPU Cluster Design",
+            "Inference Optimisation",
+            "Vector Database Setup",
+            "AI Governance",
+            "Red-Teaming",
+            "Compliance Guardrails",
+        ],
     },
 ];
 
+/* ── Main component ──────────────────────────────────────────────── */
 export default function Services() {
     return (
-        <section id="services" className="bg-white py-24 sm:py-32 rounded-t-[3rem]">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl">Our Expertise</h2>
-                    <p className="mt-6 text-lg leading-8 text-neutral-600">
-                        We bring a wealth of experience across the entire software development lifecycle.
-                    </p>
-                </div>
+        <section id="services" className="pt-24 lg:pt-32" style={{ background: "#020d1a" }}>
 
-                <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:max-w-none lg:grid-cols-3">
-                    {services.map((service) => (
-                        <Card key={service.title} className="bg-neutral-50 border-neutral-200 hover:border-blue-500 transition-colors cursor-default">
-                            <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
-                                {service.icon}
-                            </div>
-                            <h3 className="text-lg font-semibold leading-8 text-black">
-                                {service.title}
-                            </h3>
-                            <p className="mt-2 text-base leading-7 text-neutral-600">
-                                {service.description}
+            {/* ── Centered Eyebrow ────────────────────────── */}
+            <div className="mx-auto max-w-7xl px-6 lg:px-12 mb-20 text-center">
+                <p className="font-mono text-[20px] tracking-[0.25em]" style={{ color: "#3b82f6" }}>
+                    // CORE_CAPABILITIES
+                </p>
+            </div>
+
+            {/* ── Unified Service grid ────────────────────────────────── */}
+            <div className="relative border-t" style={{ borderColor: "rgba(59,130,246,0.1)" }}>
+                {SERVICES.map((s, si) => (
+                    <div
+                        key={s.category}
+                        className="relative grid grid-cols-1 lg:grid-cols-[260px_1fr_300px] border-b"
+                        style={{ borderColor: "rgba(59,130,246,0.1)" }}
+                    >
+                        {/* Crosshairs */}
+                        <Cross />
+                        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2"><Cross /></div>
+                        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2"><Cross /></div>
+                        <div className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2"><Cross /></div>
+
+                        {/* ── Visual column ───────────────────────── */}
+                        <div
+                            className="relative border-r hidden lg:block"
+                            style={{
+                                borderColor: "rgba(59,130,246,0.1)",
+                                background: "#010c18",
+                                minHeight: 280,
+                            }}
+                        >
+                            {s.visual}
+                        </div>
+
+                        {/* ── Title/Description column ────────────── */}
+                        <div className="px-8 lg:px-12 py-16 lg:py-20 flex flex-col justify-center gap-6">
+                            <p className="font-mono text-[10px] tracking-[0.2em]" style={{ color: "#3b82f6" }}>
+                                {s.category}
                             </p>
-                        </Card>
-                    ))}
-                </div>
+                            <h3 className={`font-bold tracking-tight leading-snug text-3xl sm:text-4xl`} style={{ color: '#c7dff7' }}>
+                                {s.title}
+                            </h3>
+                            <p className="text-base font-sans leading-relaxed max-w-lg" style={{ color: "#cbd5e1" }}>
+                                {s.desc}
+                            </p>
+                        </div>
+
+                        {/* ── Third column (Items Manifest) ──── */}
+                        <div
+                            className="border-t lg:border-t-0 lg:border-l px-8 py-16 lg:py-20 flex flex-col justify-center"
+                            style={{ borderColor: "rgba(59,130,246,0.1)" }}
+                        >
+                            <ul className="flex flex-col gap-3">
+                                {s.items.map((item) => (
+                                    <li key={item} className="flex items-center gap-3 group cursor-default">
+                                        <span className="w-1 h-1 rounded-full shrink-0" style={{ background: "#1e4a7a" }} />
+                                        <span
+                                            className="font-mono text-[14px] tracking-wide transition-colors duration-200"
+                                            style={{ color: "#94a3b8" }}
+                                            onMouseEnter={(e) => (e.currentTarget.style.color = "#93c5fd")}
+                                            onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
+                                        >
+                                            {item}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
             </div>
         </section>
     );

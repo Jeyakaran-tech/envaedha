@@ -1,23 +1,80 @@
+"use client";
+
 import Link from "next/link";
-import Button from "../ui/button";
 
 export default function CTASection() {
     return (
-        <section className="bg-background py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                        Ready to transform your business?
-                    </h2>
-                    <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-                        Let's discuss your project and how we can help you achieve your goals.
-                    </p>
-                    <div className="mt-10 flex items-center justify-center gap-x-6">
-                        <Link href="/schedule-a-meeting">
-                            <Button variant="primary" className="px-8 py-3 text-base cursor-pointer">
-                                Get in Touch
-                            </Button>
-                        </Link>
+        <section
+            className="py-28 sm:py-36 relative overflow-hidden"
+            style={{ background: "#020d1a" }}
+        >
+            {/* Background glows */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full"
+                    style={{ background: "radial-gradient(circle, rgba(59,130,246,0.08), transparent 70%)" }} />
+                <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-80 rounded-full"
+                    style={{ background: "radial-gradient(circle, rgba(99,102,241,0.05), transparent 70%)" }} />
+            </div>
+
+            {/* Horizontal top border line */}
+            <div className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: "linear-gradient(to right, transparent, rgba(59,130,246,0.2), transparent)" }} />
+
+            <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
+                <div
+                    className="rounded-3xl p-12 sm:p-20 relative overflow-hidden"
+                    style={{ background: "#04152b", border: "1px solid rgba(59,130,246,0.12)" }}
+                >
+                    {/* Inner glow */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
+                        style={{ background: "radial-gradient(ellipse at top, rgba(59,130,246,0.08), transparent 70%)" }} />
+
+                    <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
+                        <div className="max-w-xl">
+                            <div className="flex items-center gap-3">
+                                <span className="w-1 h-1 rounded-full bg-blue-500 animate-pulse" />
+                                {/* <p className="font-mono text-[12px] tracking-[0.2em]" style={{ color: "#93c5fd" }}>
+                                    AVAILABLE_FOR_Q2_2026
+                                </p> */}
+                            </div>
+                            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6" style={{ color: "#e2eeff" }}>
+                                Turn Your AI Strategy into Production Reality.
+                            </h2>
+                            <p className="text-base sm:text-lg mb-10 leading-relaxed font-mono" style={{ color: "#cbd5e1" }}>
+                                Book an engineering architecture review to map your model strategy, infrastructure requirements, and deployment timeline.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col gap-5 shrink-0">
+                            <Link href="/schedule-a-meeting">
+                                <button
+                                    className="w-full lg:w-auto px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all active:scale-95"
+                                    style={{ background: "#e2eeff", color: "#020d1a" }}
+                                    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#fff" }}
+                                    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#e2eeff" }}
+                                >
+                                    Book Architecture Review
+                                </button>
+                            </Link>
+                            <Link href="mailto:hello@envaedha.ai">
+                                <button
+                                    className="w-full lg:w-auto px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all font-mono"
+                                    style={{
+                                        background: "transparent",
+                                        color: "#93c5fd",
+                                        border: "1px solid rgba(147,197,253,0.15)",
+                                    }}
+                                    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(147,197,253,0.4)" }}
+                                    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(147,197,253,0.15)" }}
+                                >
+                                    ENQUIRE_VIA_EMAIL ↗
+                                </button>
+                            </Link>
+
+                            <p className="text-center font-mono text-[10px] tracking-widest" style={{ color: "#1e3a5f" }}>
+                                RESPONSE_WITHIN_24H
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

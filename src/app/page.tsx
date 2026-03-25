@@ -1,16 +1,24 @@
 import Navbar from "../components/ui/navbar";
 import Footer from "../components/ui/footer";
+import ClientTicker from "../components/ui/client-ticker";
 import Hero from "../components/sections/hero";
+import WhoWeAre from "../components/sections/who-we-are";
 import Services from "../components/sections/services";
+import CaseStudies from "../components/sections/case-studies";
+import Metrics from "../components/sections/metrics";
 import CTASection from "../components/sections/cta-section";
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-black">
+    <div className="flex min-h-screen flex-col" style={{ background: "#020d1a" }}>
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <ClientTicker />
+        <WhoWeAre />
         <Services />
+        <CaseStudies />
+        <Metrics />
         <CTASection />
       </main>
       <Footer />

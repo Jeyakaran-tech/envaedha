@@ -1,130 +1,116 @@
+"use client";
+
 import Link from "next/link";
-import { FaBehance, FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaLinkedinIn, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FiCpu } from "react-icons/fi";
 
 export default function Footer() {
     return (
-        <footer className="bg-white pt-20 pb-10" aria-labelledby="footer-heading">
-            <h2 id="footer-heading" className="sr-only">
-                Footer
-            </h2>
+        <footer className="pt-24 pb-12 text-white overflow-hidden" aria-labelledby="footer-heading"
+            style={{ background: "#020d1a", borderTop: "1px solid rgba(59,130,246,0.1)" }}>
+            <h2 id="footer-heading" className="sr-only">Footer</h2>
+
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                {/* Top Section: Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
 
-                {/* Top Section: Grid Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-24">
+                    {/* Products */}
+                    <div>
+                        <h3 className="text-[#93c5fd] text-lg font-medium mb-6">Solutions</h3>
+                        <ul className="flex flex-col gap-3 font-mono text-[13px] text-neutral-500">
+                            {["Neural Architectures", "LLM Fine-tuning", "Agentic Systems", "Cloud Infrastructure", "Model Alignment", "Data Engineering", "Synthetic Intelligence"].map((item) => (
+                                <li key={item} className="hover:text-neutral-300 transition-colors">
+                                    <Link href="#">{item}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
-                    {/* Column 1: Logo */}
-                    <div className="md:col-span-2">
-                        <Link href="/" className="flex items-center gap-2">
-                            <div className="h-8 w-8 rounded-lg bg-black/5 flex items-center justify-center">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" className="text-black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M2 17L12 22L22 17" stroke="currentColor" className="text-black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M2 12L12 17L22 12" stroke="currentColor" className="text-black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                    {/* Resources */}
+                    <div>
+                        <h3 className="text-[#93c5fd] text-lg font-medium mb-6">Resources</h3>
+                        <ul className="flex flex-col gap-3 font-mono text-[13px] text-neutral-500">
+                            {["Technical Blog", "Customer Stories", "Feasibility Guides", "AI Academy", "Research Papers", "Events", "Documentation"].map((item) => (
+                                <li key={item} className="hover:text-neutral-300 transition-colors">
+                                    <Link href="#">{item}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Company */}
+                    <div>
+                        <h3 className="text-[#93c5fd] text-lg font-medium mb-6">Company</h3>
+                        <ul className="flex flex-col gap-3 font-mono text-[13px] text-neutral-500">
+                            {["About EnVaedha", "Careers", "Partnerships", "Trust Center", "Research Lab", "Media Kit"].map((item) => (
+                                <li key={item} className="hover:text-neutral-300 transition-colors">
+                                    <Link href="#">{item}</Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Newsletter */}
+                    <div className="flex flex-col">
+                        <h3 className="text-[#93c5fd] text-lg font-medium mb-1">Stay updated with AI</h3>
+                        <p className="text-neutral-400 text-sm mb-6 font-sans">Latest research delivered to your inbox.</p>
+
+                        <div className="flex flex-col gap-4">
+                            <div className="relative group">
+                                <input
+                                    type="email"
+                                    placeholder="Your email"
+                                    className="w-full bg-[#000011] border border-neutral-700 rounded-lg px-4 py-3 text-sm font-mono focus:outline-none focus:border-primary transition-colors"
+                                />
                             </div>
-                            <span className="text-xl font-bold tracking-tight text-black">Envaedha</span>
-                        </Link>
-                    </div>
+                            <button className="w-fit bg-[#dbeafe] text-black px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-white transition-all self-end">
+                                Subscribe
+                            </button>
+                        </div>
 
-                    {/* Column 2: Main Links */}
-                    <div className="md:col-span-3 flex flex-col gap-4">
-                        {["Career", "Case studies", "About us", "Blog", "Contact"].map((item) => (
-                            <Link key={item} href="#" className="text-2xl md:text-3xl text-neutral-500 hover:text-black transition-colors font-medium group flex items-center gap-2">
-                                <svg
-                                    className="group-hover:opacity-100 group-hover:w-5 opacity-0 w-0 transition-all duration-300 h-10"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
-                                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                                </svg>
-                                {item}
-                            </Link>
-                        ))}
-                    </div>
-
-                    {/* Column 3: Development */}
-                    <div className="md:col-span-2 flex flex-col gap-4">
-                        <h3 className="text-[18px] font-bold tracking-wider text-black uppercase mb-2">DEVELOPMENT</h3>
-                        <ul className="flex flex-col gap-3">
-                            {["Websites", "WordPress development", "E-commerce", "Web applications", "Maintenance and development (SLA)"].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-[18px] text-neutral-500 hover:text-black transition-colors">
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Column 4: Performance */}
-                    <div className="md:col-span-3 flex flex-col gap-4">
-                        <h3 className="text-[18px] font-bold tracking-wider text-black uppercase mb-2">PERFORMANCE</h3>
-                        <ul className="flex flex-col gap-3">
-                            {["Marketing strategy", "Google Ads campaigns", "Social media management", "Social media campaigns", "SEO Performance & Ranking"].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-[18px] text-neutral-500 hover:text-black transition-colors">
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Column 5: Design */}
-                    <div className="md:col-span-2 flex flex-col gap-4">
-                        <h3 className="text-[18px] font-bold tracking-wider text-black uppercase mb-2">DESIGN</h3>
-                        <ul className="flex flex-col gap-3">
-                            {["Branding", "UI/UX Design"].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="text-[18px] text-neutral-500 hover:text-black transition-colors">
-                                        {item}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="mt-6 flex items-center justify-end gap-5 text-neutral-400">
+                            <Link href="#" className="hover:text-white transition-colors"><FaLinkedinIn size={18} /></Link>
+                            <Link href="#" className="hover:text-white transition-colors"><FaTwitter size={18} /></Link>
+                            <Link href="#" className="hover:text-white transition-colors"><FaYoutube size={20} /></Link>
+                        </div>
                     </div>
                 </div>
+            </div>
 
+            {/* Massive wordmark branding — Static Marquee with Separators — Edge to Edge */}
+            <div className="w-full select-none pointer-events-none overflow-hidden my-16 border-y border-blue-900/10 py-4">
+                <div className="flex w-max animate-marquee-full whitespace-nowrap items-center">
+                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                        <div key={i} className="flex items-center">
+                            <h1 className="text-[18vw] font-bold tracking-[-0.05em] text-[#93c5fd] leading-[1] opacity-90 filter drop-shadow-[0_0_40px_rgba(147,197,253,0.15)] mx-[4vw]">
+                                Envaedha
+                            </h1>
+                            <span className="text-[12vw] font-thin text-blue-400/20">|</span>
+                        </div>
+                    ))}
+                </div>
+                <style>{`
+                    @keyframes marquee-full {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(-50%); }
+                    }
+                    .animate-marquee-full {
+                        animation: marquee-full 60s linear infinite;
+                    }
+                `}</style>
+            </div>
+
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 {/* Bottom Section */}
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-black/5">
-
-                    {/* Social Icons */}
-                    <div className="flex items-center gap-6">
-                        <Link href="#" className="text-neutral-500 hover:text-black transition-colors">
-                            <FaBehance size={20} />
-                        </Link>
-                        <Link href="#" className="text-neutral-500 hover:text-black transition-colors">
-                            <FaBehance size={20} className="hidden" /> {/* Placeholder if needed, but using actual icons */}
-                            <span className="font-bold text-lg">Bē</span>
-                        </Link>
-                        <Link href="#" className="text-neutral-500 hover:text-black transition-colors">
-                            <FaFacebookF size={18} />
-                        </Link>
-                        <Link href="#" className="text-neutral-500 hover:text-black transition-colors">
-                            <FaInstagram size={20} />
-                        </Link>
-                        <Link href="#" className="text-neutral-500 hover:text-black transition-colors">
-                            <FaLinkedinIn size={20} />
-                        </Link>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 font-mono text-[11px] tracking-widest text-neutral-600">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-[#93c5fd] animate-pulse shadow-[0_0_8px_rgba(147,197,253,0.8)]"></div>
+                        <span>ALL SYSTEMS OPERATIONAL // V1.0.42</span>
                     </div>
 
-                    {/* Legal Links */}
                     <div className="flex items-center gap-8">
-                        <Link href="#" className="text-sm text-neutral-500 hover:text-black underline underline-offset-4">
-                            Privacy policy
-                        </Link>
-                        <Link href="#" className="text-sm text-neutral-500 hover:text-black underline underline-offset-4">
-                            Cookie consent
-                        </Link>
-                    </div>
-
-                    {/* Copyright */}
-                    <div className="text-sm text-neutral-500">
-                        &copy; Envaedha. All rights reserved.
+                        <Link href="#" className="hover:text-neutral-400">PRIVACY_POLICY</Link>
+                        <Link href="#" className="hover:text-neutral-400">TERMS_OF_SERVICE</Link>
                     </div>
                 </div>
             </div>

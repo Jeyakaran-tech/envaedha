@@ -1,134 +1,173 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import Button from "../ui/button";
+import DiamondMatrix from "../ui/diamond-matrix";
 
+const WORDS = ["Intelligence", "Autonomy", "Convergence", "Reasoning", "Perception"];
 
 export default function Hero() {
-    const [text, setText] = useState("");
-    const fullText = "We build the tech";
-    const videoRef = useRef<HTMLVideoElement>(null);
+  const [wordIdx, setWordIdx] = useState(0);
+  const [displayed, setDisplayed] = useState("Intelligence");
+  const [deleting, setDeleting] = useState(false);
+  const [tick, setTick] = useState(0);
 
-    useEffect(() => {
-        const video = videoRef.current;
-        if (video) {
-            video.playbackRate = 0.7; // Slow down slightly for better effect
-
-            // Try to autoplay
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(() => {
-                    // Autoplay was prevented, that's okay
-                });
-            }
+  useEffect(() => {
+    const target = WORDS[wordIdx];
+    const delay = deleting ? 38 : 68;
+    const timer = setTimeout(() => {
+      if (!deleting) {
+        const next = target.slice(0, displayed.length + 1);
+        setDisplayed(next);
+        if (next === target) setTimeout(() => setDeleting(true), 1800);
+      } else {
+        const next = displayed.slice(0, -1);
+        setDisplayed(next);
+        if (next === "") {
+          setDeleting(false);
+          setWordIdx((i) => (i + 1) % WORDS.length);
         }
-    }, []);
+      }
+      setTick((n) => n + 1);
+    }, delay);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tick, displayed, deleting]);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setText("");
-                        let i = 0;
-                        const interval = setInterval(() => {
-                            setText(fullText.slice(0, i + 1));
-                            i++;
-                            if (i > fullText.length) {
-                                clearInterval(interval);
-                            }
-                        }, 100);
-                        // Cleanup interval when element leaves view or component unmounts
-                        return () => clearInterval(interval);
-                    }
-                });
-            },
-            { threshold: 0.5 } // Trigger when 50% visible
-        );
+  return (
+    <section
+      id="hero-section"
+      className="relative h-dvh flex items-center overflow-hidden"
+      style={{ background: "#020d1a" }}
+    >
+      {/*
+        ─────────────────────────────────────────────────────────
+        LAYOUT: two halves
+          Left  half → the full-viewport diamond matrix canvas
+          Right half → text content (positioned via absolute)
+        ─────────────────────────────────────────────────────────
+      */}
 
-        const section = document.getElementById("hero-section");
-        if (section) {
-            observer.observe(section);
-        }
+      {/* Canvas fills the whole section — the diamond itself only
+          occupies the left ~55% by design of the animation */}
+      <div className="absolute inset-0 z-0">
+        <DiamondMatrix />
+      </div>
 
-        return () => observer.disconnect();
-    }, []);
+      {/* Right-side fade so text is always legible */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to left, #020d1a 0%, #020d1a 38%, transparent 62%)",
+        }}
+      />
 
-    return (
+      {/* Text content — right half */}
+      <div className="relative z-20 w-full">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 flex justify-end">
+          <div className="w-full max-w-lg">
 
-        <section id="hero-section" className="relative h-dvh flex items-center justify-center overflow-hidden isolate">
-
-            {/* Background Video - Works on both mobile and desktop */}
-            <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                controls={false}
-                disablePictureInPicture
-                disableRemotePlayback
-                className="absolute inset-0 h-full w-full object-cover z-0 pointer-events-none"
+            {/* Eyebrow */}
+            {/* <p
+              className="font-mono text-[13px] tracking-[0.25em] mb-8"
+              style={{ color: "#3b82f6" }}
             >
-                {/* Mobile-optimized version (smaller file) */}
-                <source src="/hero-bg-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-                {/* Desktop version */}
-                <source src="/hero-bg1.mp4" type="video/mp4" />
-            </video>
+              // ENVAEDHA.AI
+            </p> */}
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40 z-10"></div>
+            {/* Headline */}
+            <h1 className="mb-6 leading-[1.08]">
+              <span
+                className="block text-5xl sm:text-6xl lg:text-[4.25rem] font-bold tracking-tight"
+                style={{ color: "#e2eeff" }}
+              >
+                Engineering
+              </span>
+              <span
+                className="block text-5xl sm:text-6xl lg:text-[4.25rem] font-bold tracking-tight min-h-[1.15em]"
+                style={{
+                  color: "#93c5fd",
+                  filter: "drop-shadow(0 0 24px rgba(147,197,253,0.2))",
+                }}
+              >
+                {displayed}
+                <span
+                  style={{ color: "#3b82f6", opacity: 0.9 }}
+                  className="animate-blink"
+                >
+                  |
+                </span>
+              </span>
+            </h1>
 
-            {/* Content */}
-            <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            {/* Sub */}
+            <p
+              className="mb-10 text-lg leading-relaxed font-mono max-w-sm"
+              style={{ color: "#cbd5e1" }}
+            >
+              Use EnVaedha to architect, deploy, and scale
+              production-grade AI systems across your enterprise.
+            </p>
 
-                <div className="mx-auto max-w-5xl">
-                    <h1 className="text-5xl font-bold tracking-tight text-white sm:text-7xl mb-8 drop-shadow-sm min-h-[160px] sm:min-h-[200px]">
-                        <span className="font-mono text-primary mr-2">&gt;</span>
-                        {text}
-                        <span className="animate-blink text-primary">_</span>
-                        <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-neutral-400">
-                            so you can build the{" "}
-                            <span className="relative whitespace-nowrap text-primary">
-                                business
-                                <svg
-                                    className="absolute -bottom-2 left-0 w-full h-[6px] text-white"
-                                    viewBox="0 0 100 10"
-                                    preserveAspectRatio="none"
-                                    aria-hidden="true"
-                                >
-                                    <path
-                                        d="M2 2 Q 90 12 98 2"
-                                        stroke="currentColor"
-                                        strokeWidth="3"
-                                        fill="none"
-                                        strokeLinecap="round"
-                                    />
-                                </svg>
-                            </span>
-                            .
-                        </span>
-                    </h1>
-                    <p className="mt-6 text-xl leading-8 text-neutral-200 max-w-3xl mx-auto">
-                        We combine deep technical expertise with strategic business insight to engineer scalable, high-impact software solutions for forward-thinking enterprises worldwide.
-                    </p>
-
-                    <div className="mt-12 flex items-center justify-center gap-x-6">
-                        <Link href="/schedule-a-meeting">
-                            <Button className="bg-blue-500 hover:bg-blue-600 rounded-full px-8 py-4 text-sm font-semibold transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] cursor-pointer">
-                                FREE CONSULTATION
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
-
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-4 mb-14">
+              <Link href="/schedule-a-meeting">
+                <button
+                  className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-tight transition-all active:scale-95"
+                  style={{ background: "#e2eeff", color: "#020d1a" }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLButtonElement).style.background = "#fff")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLButtonElement).style.background = "#e2eeff")
+                  }
+                >
+                  Start Building
+                </button>
+              </Link>
+              <Link href="#services">
+                <button
+                  className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-tight transition-all active:scale-95"
+                  style={{
+                    background: "transparent",
+                    color: "#93c5fd",
+                    border: "1px solid rgba(147,197,253,0.2)",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(147,197,253,0.5)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.borderColor =
+                      "rgba(147,197,253,0.2)";
+                  }}
+                >
+                  Get a Demo
+                </button>
+              </Link>
             </div>
 
-            {/* Bottom Glow */}
-            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
-        </section>
-    );
+            {/* Descriptor */}
+            <p
+              className="max-w-xs text-base leading-relaxed font-mono"
+              style={{ color: "#94a3b8" }}
+            >
+              The pure-AI consulting platform to improve every phase
+              of your enterprise intelligence lifecycle.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom line */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, rgba(147,197,253,0.25), transparent)",
+        }}
+      />
+    </section>
+  );
 }

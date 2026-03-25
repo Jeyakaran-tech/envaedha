@@ -1,18 +1,37 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
-const dmSans = DM_Sans({
+const cothamSans = localFont({
+  src: "../../public/fonts/CothamSans.otf",
   variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"], // Including bold for headers, but base is 400
+});
+
+const officeCodePro = localFont({
+  src: [
+    {
+      path: "../../public/fonts/OfficeCodePro-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/OfficeCodePro-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/OfficeCodePro-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: "Envaedha",
-  description: "We build the tech so you can build the business.",
+  title: "Envaedha | AI Consulting",
+  description: "Accelerating enterprise intelligence with custom neural architectures and LLM solutions.",
 };
 
 export default function RootLayout({
@@ -21,9 +40,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <body
-        className={`${dmSans.variable} antialiased font-sans`}
+        className={`${cothamSans.variable} ${officeCodePro.variable} antialiased font-sans bg-black text-white`}
       >
         <ThemeProvider
           attribute="class"

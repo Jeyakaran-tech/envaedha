@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
+import { FiMail, FiUser, FiBriefcase, FiPhone, FiMessageSquare, FiPaperclip } from "react-icons/fi";
 
 export default function ScheduleMeeting() {
     const [formData, setFormData] = useState({
@@ -16,7 +17,6 @@ export default function ScheduleMeeting() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission
         console.log("Form submitted:", formData);
     };
 
@@ -29,173 +29,167 @@ export default function ScheduleMeeting() {
     };
 
     return (
-        <div className="min-h-screen bg-white">
-            {/* Navbar */}
+        <div className="min-h-screen" style={{ background: "#020d1a" }}>
             <Navbar />
 
-            {/* Main Content */}
-            <div className="pt-32 pb-24">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-                        {/* Left Column - Text Content */}
+            {/* Content Container */}
+            <div className="pt-40 pb-24 relative overflow-hidden">
+                {/* Background decorative elements */}
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+
+                <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                        
+                        {/* Left Column: Context */}
                         <div className="flex flex-col justify-center">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl text-black mb-6">
-                                How can we help you?
+                            <div className="mb-8 inline-flex items-center gap-3">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                                <span className="font-mono text-[13px] tracking-[0.3em] text-blue-400">// CONNECT.ENGINEER.SCALE</span>
+                            </div>
+                            
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.05]" style={{ color: "#e2eeff" }}>
+                                How can we <br /><span className="text-blue-400">help you?</span>
                             </h1>
 
-                            <p className="text-lg text-neutral-600 mb-6">
-                                Share the challenge you are facing and we will find effective solutions.
-                            </p>
+                            <div className="space-y-6 max-w-lg">
+                                <p className="text-lg leading-relaxed" style={{ color: "#cbd5e1" }}>
+                                    Share the technical challenges you're facing. Whether it's model fine-tuning, agentic orchestration, or infrastructure scaling, our engineering team is ready to assist.
+                                </p>
 
-                            <p className="text-lg text-neutral-600 mb-8">
-                                Leave your contact number in the form – we promise that we will call you back to discuss how we can achieve your goal together.
-                            </p>
+                                <p className="text-lg leading-relaxed" style={{ color: "#94a3b8" }}>
+                                    Leave your contact details and we'll reach out within 24 hours to discuss how we can achieve your objectives together.
+                                </p>
+                            </div>
 
-                            {/* Account Manager Card */}
-                            <div className="flex items-center gap-4 p-6 bg-neutral-50 rounded-2xl">
-                                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold">
-                                    JK
+                            {/* Personnel Card — Deep Tech Style */}
+                            <div className="mt-12 p-6 rounded-2xl border border-blue-900/20 bg-blue-950/10 backdrop-blur-sm flex items-center gap-5 group transition-all hover:border-blue-500/30">
+                                <div className="relative">
+                                    <div className="w-16 h-16 rounded-full bg-[#0a1a2f] border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl font-bold font-mono group-hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all">
+                                        JK
+                                    </div>
+                                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 border-4 border-[#020d1a] rounded-full" title="Online" />
                                 </div>
                                 <div>
-                                    <p className="font-semibold text-black text-lg">Jeyakaran Karnan</p>
-                                    <p className="text-neutral-600">Account Manager</p>
+                                    <p className="font-bold text-lg" style={{ color: "#e2eeff" }}>Jeyakaran Karnan</p>
+                                    <p className="text-sm font-mono tracking-wider" style={{ color: "#3b82f6" }}>FOUNDER & LEAD ARCHITECT</p>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Right Column - Form */}
-                        <div className="bg-neutral-50 rounded-3xl p-8 lg:p-12">
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                {/* Full Name & Company Name */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label htmlFor="fullName" className="block text-sm font-semibold text-black mb-2">
-                                            FULL NAME <span className="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="fullName"
-                                            name="fullName"
-                                            required
-                                            value={formData.fullName}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                                        />
+                        {/* Right Column: Premium Form */}
+                        <div className="relative group">
+                            {/* Form decorative border glow */}
+                            <div className="absolute -inset-[1px] bg-gradient-to-b from-blue-500/20 to-transparent rounded-3xl blur-[2px] opacity-75" />
+                            
+                            <div className="relative bg-[#000a18] border border-blue-900/30 rounded-3xl p-8 lg:p-12 shadow-2xl transition-all group-hover:border-blue-500/20">
+                                <form onSubmit={handleSubmit} className="space-y-8">
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {/* Full Name */}
+                                        <div className="space-y-2">
+                                            <label htmlFor="fullName" className="flex items-center gap-2 text-[11px] font-mono tracking-[0.2em] text-blue-400/70">
+                                                <FiUser /> FULL_NAME*
+                                            </label>
+                                            <input
+                                                type="text" id="fullName" name="fullName" required
+                                                value={formData.fullName} onChange={handleChange}
+                                                className="w-full bg-[#020d1a] border border-blue-900/40 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/20 transition-all font-sans"
+                                                placeholder="John Doe"
+                                            />
+                                        </div>
+                                        {/* Company Name */}
+                                        <div className="space-y-2">
+                                            <label htmlFor="companyName" className="flex items-center gap-2 text-[11px] font-mono tracking-[0.2em] text-blue-400/70">
+                                                <FiBriefcase /> COMPANY_NAME
+                                            </label>
+                                            <input
+                                                type="text" id="companyName" name="companyName"
+                                                value={formData.companyName} onChange={handleChange}
+                                                className="w-full bg-[#020d1a] border border-blue-900/40 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/20 transition-all font-sans"
+                                                placeholder="Acme AI Corp"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label htmlFor="companyName" className="block text-sm font-semibold text-black mb-2">
-                                            COMPANY NAME
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="companyName"
-                                            name="companyName"
-                                            value={formData.companyName}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                                        />
-                                    </div>
-                                </div>
 
-                                {/* Email & Phone */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-semibold text-black mb-2">
-                                            E-MAIL ADDRESS <span className="text-red-500">*</span>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {/* Email */}
+                                        <div className="space-y-2">
+                                            <label htmlFor="email" className="flex items-center gap-2 text-[11px] font-mono tracking-[0.2em] text-blue-400/70">
+                                                <FiMail /> EMAIL_ADDRESS*
+                                            </label>
+                                            <input
+                                                type="email" id="email" name="email" required
+                                                value={formData.email} onChange={handleChange}
+                                                className="w-full bg-[#020d1a] border border-blue-900/40 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/20 transition-all font-sans"
+                                                placeholder="john@example.com"
+                                            />
+                                        </div>
+                                        {/* Phone */}
+                                        <div className="space-y-2">
+                                            <label htmlFor="phone" className="flex items-center gap-2 text-[11px] font-mono tracking-[0.2em] text-blue-400/70">
+                                                <FiPhone /> PHONE_NUMBER*
+                                            </label>
+                                            <input
+                                                type="tel" id="phone" name="phone" required
+                                                value={formData.phone} onChange={handleChange}
+                                                className="w-full bg-[#020d1a] border border-blue-900/40 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/20 transition-all font-sans"
+                                                placeholder="+61 400 000 000"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Message */}
+                                    <div className="space-y-2">
+                                        <label htmlFor="message" className="flex items-center gap-2 text-[11px] font-mono tracking-[0.2em] text-blue-400/70">
+                                            <FiMessageSquare /> PROMPT_OR_MESSAGE*
                                         </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            required
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                                        <textarea
+                                            id="message" name="message" required rows={5}
+                                            value={formData.message} onChange={handleChange}
+                                            className="w-full bg-[#020d1a] border border-blue-900/40 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/20 transition-all font-sans resize-none"
+                                            placeholder="Tell us about your AI goals..."
                                         />
                                     </div>
-                                    <div>
-                                        <label htmlFor="phone" className="block text-sm font-semibold text-black mb-2">
-                                            PHONE NUMBER <span className="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            id="phone"
-                                            name="phone"
-                                            required
-                                            value={formData.phone}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-                                        />
-                                    </div>
-                                </div>
 
-                                {/* Message */}
-                                <div>
-                                    <label htmlFor="message" className="block text-sm font-semibold text-black mb-2">
-                                        MESSAGE <span className="text-red-500">*</span>
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        required
-                                        rows={6}
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-3 rounded-lg border border-neutral-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-black"
-                                    />
-                                </div>
-
-                                {/* File Upload */}
-                                <div>
-                                    <button
-                                        type="button"
-                                        className="flex items-center gap-2 text-neutral-600 hover:text-black transition-colors"
-                                    >
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                                        </svg>
-                                        SELECT FILES
+                                    {/* File Attachment */}
+                                    <button type="button" className="group/file flex items-center gap-2 text-[11px] font-mono tracking-widest text-neutral-500 hover:text-blue-400 transition-colors uppercase">
+                                        <FiPaperclip size={14} className="group-hover/file:rotate-45 transition-transform" />
+                                        ATTACH_SPECIFICATIONS_OR_NDA
                                     </button>
-                                </div>
 
-                                {/* Consent Checkbox */}
-                                <div className="flex items-start gap-3">
-                                    <input
-                                        type="checkbox"
-                                        id="consent"
-                                        name="consent"
-                                        required
-                                        checked={formData.consent}
-                                        onChange={handleChange}
-                                        className="mt-1 w-4 h-4 rounded border-neutral-300 text-blue-600 focus:ring-blue-500"
-                                    />
-                                    <label htmlFor="consent" className="text-sm text-neutral-600">
-                                        *I consent to the processing of my personal data by EnVaedha. I declare that I have read the information clause available in the{" "}
-                                        <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>.
-                                    </label>
-                                </div>
+                                    {/* Consent */}
+                                    <div className="flex items-start gap-4 p-4 rounded-xl bg-blue-500/5 border border-blue-900/10">
+                                        <input
+                                            type="checkbox" id="consent" name="consent" required
+                                            checked={formData.consent} onChange={handleChange}
+                                            className="mt-1 w-4 h-4 rounded-md bg-[#020d1a] border border-blue-900 text-blue-500 focus:ring-blue-500 transition-all cursor-pointer"
+                                        />
+                                        <label htmlFor="consent" className="text-[12px] leading-relaxed text-neutral-500 select-none cursor-pointer">
+                                            By submitting this form, I acknowledge that my data will be processed according to the 
+                                            <a href="#" className="text-blue-400 hover:text-blue-300 ml-1 underline decoration-blue-900/40 underline-offset-4">Privacy Policy</a>.
+                                        </label>
+                                    </div>
 
-                                {/* reCAPTCHA Notice */}
-                                <p className="text-xs text-neutral-500">
-                                    The website uses reCAPTCHA.{" "}
-                                    <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a> Google's{" "}
-                                    <a href="#" className="text-blue-600 hover:underline">Terms of Service</a>.
-                                </p>
-
-                                {/* Submit Button */}
-                                <button
-                                    type="submit"
-                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full transition-colors text-lg"
-                                >
-                                    SEND MESSAGE
-                                </button>
-                            </form>
+                                    {/* Submit Button */}
+                                    <button
+                                        type="submit"
+                                        className="group relative w-full overflow-hidden rounded-full p-[1px] transition-all hover:scale-[1.01] active:scale-[0.98]"
+                                    >
+                                        <div className="absolute inset-x-0 h-px w-full bg-gradient-to-r from-transparent via-blue-500 to-transparent top-0" />
+                                        <div className="absolute inset-x-0 h-px w-full bg-gradient-to-r from-transparent via-blue-500 to-transparent bottom-0" />
+                                        
+                                        <div className="bg-white text-black py-4 px-8 rounded-full font-bold text-center tracking-tight transition-all group-hover:bg-blue-50">
+                                            INITIALIZE CONNECTION
+                                        </div>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Footer */}
             <Footer />
         </div>
     );
