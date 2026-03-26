@@ -105,7 +105,7 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 font-mono text-[11px] tracking-widest text-neutral-600">
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-[#93c5fd] animate-pulse shadow-[0_0_8px_rgba(147,197,253,0.8)]"></div>
-                        <span>ALL SYSTEMS OPERATIONAL // V1.0.42</span>
+                        <span>ALL SYSTEMS OPERATIONAL </span>
                     </div>
 
                     <div className="flex items-center gap-8">

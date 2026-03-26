@@ -1,13 +1,7 @@
 "use client";
 
-/**
- * WHO WE ARE
- * Design: Full-width manifesto statement in huge type, centred.
- * Below: 3 operating principles separated by vertical rules.
- * Background: Subtle animated scan-line texture.
- */
-
 import { useEffect, useRef } from "react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const principles = [
     {
@@ -55,22 +49,25 @@ function ScanLinesBg() {
 }
 
 export default function WhoWeAre() {
+    const eyebrowRef = useScrollReveal();
+    const manifestoRef = useScrollReveal({ threshold: 0.1 });
+    const principlesRef = useScrollReveal<HTMLDivElement>({ threshold: 0.05 });
+
     return (
         <section className="relative overflow-hidden py-28 sm:py-36" style={{ background: "#020d1a" }}>
             <ScanLinesBg />
 
-            {/* Top rule */}
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(59,130,246,0.15), transparent)" }} />
 
             <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
 
                 {/* Eyebrow */}
-                <p className="font-mono text-[20px] tracking-[0.25em] mb-16 text-center" style={{ color: "#3b82f6" }}>
+                <p ref={eyebrowRef} className="reveal font-mono text-[20px] tracking-[0.25em] mb-16 text-center" style={{ color: "#3b82f6" }}>
                     // WHO_WE_ARE
                 </p>
 
                 {/* Manifesto statement */}
-                <div className="text-center mb-24 max-w-5xl mx-auto">
+                <div ref={manifestoRef} className="reveal text-center mb-24 max-w-5xl mx-auto">
                     <h2
                         className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]"
                         style={{ color: "#c7dff7" }}
@@ -86,18 +83,22 @@ export default function WhoWeAre() {
                         — not just responds.
                     </h2>
                     <p className="mt-8 text-lg font-sans leading-relaxed max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
-                        EnVaedha is a pure-AI consultancy. We sit inside your engineering team, own the hard technical problems,
-                        and ship neural systems that ordinary consultants can't build.
+                        We sit inside your engineering team, own the hard technical problems,
+                        and ship systems that ordinary consultants can't build.
                     </p>
                 </div>
 
                 {/* Principles */}
-                <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x" style={{ borderColor: "rgba(59,130,246,0.1)" }}>
+                <div
+                    ref={principlesRef}
+                    className="reveal-stagger grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x"
+                    style={{ borderColor: "rgba(59,130,246,0.1)" }}
+                >
                     {principles.map((p) => (
                         <div key={p.num} className="px-0 md:px-10 py-10 first:pl-0 last:pr-0">
                             <div className="flex items-start gap-5 mb-5">
                                 <span className="font-mono text-[11px] mt-1" style={{ color: "#1e4a7a" }}>{p.num}</span>
-                                <span className="font-mono text-[11px] tracking-[0.2em] font-bold" style={{ color: "#3b82f6" }}>{p.label}</span>
+                                <span className="font-mono text-[14px] tracking-[0.2em] font-bold" style={{ color: "#3b82f6" }}>{p.label}</span>
                             </div>
                             <p className="text-base font-sans leading-relaxed" style={{ color: "#cbd5e1" }}>{p.body}</p>
                         </div>

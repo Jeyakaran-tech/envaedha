@@ -134,7 +134,176 @@ function SafetyVisual() {
     return <canvas ref={ref} className="w-full h-full" />;
 }
 
-/* ── Crosshair marker ────────────────────────────────────────────── */
+/* ── CPU Chip Visual (Full-Stack AI row) ──────────────────── */
+function FullStackVisual() {
+    const ref = useRef<HTMLCanvasElement>(null);
+    useEffect(() => {
+        const c = ref.current; if (!c) return;
+        const ctx = c.getContext("2d"); if (!ctx) return;
+        c.width = c.offsetWidth; c.height = c.offsetHeight;
+        let t = 0, id: number;
+
+        const draw = () => {
+            ctx.clearRect(0, 0, c.width, c.height);
+            const cx = c.width / 2, cy = c.height / 2;
+            const chipW = 70, chipH = 70, r = 10;
+            const pulse = 0.7 + 0.3 * Math.sin(t * 1.5);
+
+            // Chip body (rounded rect)
+            ctx.beginPath();
+            ctx.roundRect(cx - chipW / 2, cy - chipH / 2, chipW, chipH, r);
+            ctx.fillStyle = `rgba(59,130,246,${0.12 * pulse})`;
+            ctx.fill();
+            ctx.strokeStyle = `rgba(147,197,253,${0.5 * pulse})`;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // "AI" label inside chip
+            ctx.fillStyle = `rgba(147,197,253,${0.9 * pulse})`;
+            ctx.font = `bold ${14}px monospace`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("AI", cx, cy);
+
+            // Pins: 3 on each side (top, bottom, left, right)
+            const pins = [
+                // top (x offset, y offset from chip edge)
+                { x: cx - 20, y: cy - chipH / 2, dir: "top" },
+                { x: cx,      y: cy - chipH / 2, dir: "top" },
+                { x: cx + 20, y: cy - chipH / 2, dir: "top" },
+                // bottom
+                { x: cx - 20, y: cy + chipH / 2, dir: "bottom" },
+                { x: cx,      y: cy + chipH / 2, dir: "bottom" },
+                { x: cx + 20, y: cy + chipH / 2, dir: "bottom" },
+                // left
+                { x: cx - chipW / 2, y: cy - 20, dir: "left" },
+                { x: cx - chipW / 2, y: cy,      dir: "left" },
+                { x: cx - chipW / 2, y: cy + 20, dir: "left" },
+                // right
+                { x: cx + chipW / 2, y: cy - 20, dir: "right" },
+                { x: cx + chipW / 2, y: cy,      dir: "right" },
+                { x: cx + chipW / 2, y: cy + 20, dir: "right" },
+            ];
+
+            pins.forEach((pin, i) => {
+                const tracePulse = 0.4 + 0.3 * Math.sin(t * 2 + i * 0.6);
+                const traceLen = 28;
+                let ex = pin.x, ey = pin.y;
+
+                // Draw L-shaped trace
+                ctx.beginPath();
+                ctx.moveTo(pin.x, pin.y);
+                if (pin.dir === "top")   { ey = pin.y - traceLen; }
+                if (pin.dir === "bottom") { ey = pin.y + traceLen; }
+                if (pin.dir === "left")  { ex = pin.x - traceLen; }
+                if (pin.dir === "right") { ex = pin.x + traceLen; }
+                ctx.lineTo(ex, ey);
+                ctx.strokeStyle = `rgba(96,165,250,${tracePulse * 0.6})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Endpoint dot (the "node" circles from the reference image)
+                ctx.beginPath();
+                ctx.arc(ex, ey, 3.5, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(147,197,253,${tracePulse})`;
+                ctx.fill();
+            });
+
+            // Outer glow ring pulsing
+            const grd = ctx.createRadialGradient(cx, cy, 30, cx, cy, 80 + Math.sin(t) * 8);
+            grd.addColorStop(0, "transparent");
+            grd.addColorStop(1, `rgba(59,130,246,${0.04 + 0.02 * Math.sin(t)})`);
+            ctx.beginPath();
+            ctx.arc(cx, cy, 80, 0, Math.PI * 2);
+            ctx.fillStyle = grd;
+            ctx.fill();
+
+            t += 0.025;
+            id = requestAnimationFrame(draw);
+        };
+        draw();
+        return () => cancelAnimationFrame(id);
+    }, []);
+    return <canvas ref={ref} className="w-full h-full" />;
+}
+
+/* ── Cloud Visual ────────────────────────────────────────────── */
+function CloudVisual() {
+    const ref = useRef<HTMLCanvasElement>(null);
+    useEffect(() => {
+        const c = ref.current; if (!c) return;
+        const ctx = c.getContext("2d"); if (!ctx) return;
+        c.width = c.offsetWidth; c.height = c.offsetHeight;
+        let t = 0, id: number;
+
+        // Floating data packets
+        const packets = Array.from({ length: 6 }, (_, i) => ({
+            x: 0.1 + (i % 3) * 0.35,
+            y: 0.2 + Math.floor(i / 3) * 0.5,
+            phase: i * 1.1,
+            speed: 0.4 + Math.random() * 0.4,
+        }));
+
+        const draw = () => {
+            ctx.clearRect(0, 0, c.width, c.height);
+            const cx = c.width / 2, cy = c.height / 2;
+
+            // Cloud shape (3 overlapping circles)
+            const cloudPulse = 0.8 + 0.2 * Math.sin(t * 0.8);
+            const cloudParts = [
+                { x: cx, y: cy - 10, r: 28 },
+                { x: cx - 22, y: cy + 6, r: 20 },
+                { x: cx + 22, y: cy + 6, r: 20 },
+                { x: cx - 8, y: cy + 2, r: 18 },
+                { x: cx + 8, y: cy + 2, r: 18 },
+            ];
+            cloudParts.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r * cloudPulse, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(59,130,246,${0.08})`;
+                ctx.fill();
+                ctx.strokeStyle = `rgba(147,197,253,${0.25 * cloudPulse})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            });
+
+            // Ascending data packets
+            packets.forEach((p, i) => {
+                const yOff = Math.sin(t * p.speed + p.phase) * 12;
+                const px = p.x * c.width;
+                const py = (p.y + 0.1) * c.height + yOff;
+                const alpha = 0.4 + 0.4 * Math.abs(Math.sin(t * p.speed + p.phase));
+
+                // Upward arrow dashes
+                ctx.beginPath();
+                ctx.moveTo(px, py + 6);
+                ctx.lineTo(px, py - 6);
+                ctx.strokeStyle = `rgba(96,165,250,${alpha * 0.5})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(px, py, 3, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(147,197,253,${alpha})`;
+                ctx.fill();
+            });
+
+            // Central glow
+            const grd = ctx.createRadialGradient(cx, cy - 5, 0, cx, cy - 5, 50);
+            grd.addColorStop(0, `rgba(59,130,246,${0.06 * cloudPulse})`);
+            grd.addColorStop(1, "transparent");
+            ctx.fillStyle = grd;
+            ctx.fillRect(0, 0, c.width, c.height);
+
+            t += 0.02;
+            id = requestAnimationFrame(draw);
+        };
+        draw();
+        return () => cancelAnimationFrame(id);
+    }, []);
+    return <canvas ref={ref} className="w-full h-full" />;
+}
+
 function Cross() {
     return (
         <div className="absolute w-4 h-4 flex items-center justify-center pointer-events-none" style={{ color: "rgba(59,130,246,0.25)" }}>
@@ -150,13 +319,7 @@ const SERVICES = [
         category: "FULL_STACK_AI",
         title: "We engineer the full AI stack.",
         desc: "Why bring multiple AI vendors into your pipeline when one deep-tech team can own your entire intelligence layer — from raw data to production inference?",
-        visual: (
-            <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full border border-blue-500/10 flex items-center justify-center animate-pulse">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500/40 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-                </div>
-            </div>
-        ),
+        visual: <FullStackVisual />,
         items: [
             "End-to-End Architectures",
             "Multi-Vendor Strategy",
@@ -210,6 +373,21 @@ const SERVICES = [
             "AI Governance",
             "Red-Teaming",
             "Compliance Guardrails",
+        ],
+    },
+    {
+        category: "CLOUD_SOLUTIONS",
+        title: "Cloud-native AI, built to scale globally.",
+        desc: "We design and deploy AI workloads on AWS, GCP, and Azure — serverless inference, auto-scaling pipelines, and multi-region architectures that grow with your product.",
+        visual: <CloudVisual />,
+        items: [
+            "AWS / GCP / Azure",
+            "Serverless Inference",
+            "Auto-Scaling Pipelines",
+            "Multi-Region Deployments",
+            "Cost Optimisation",
+            "Cloud Security Posture",
+            "DevOps & CI/CD for AI",
         ],
     },
 ];

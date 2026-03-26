@@ -1,36 +1,59 @@
 "use client";
 
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 /**
- * METRICS / WHY US
- * Design: Asymmetric bento grid with glowing stat blocks, a testimonial,
- * and a "deployment velocity" bar. Zero cards — pure data architecture feel.
+ * WHY ENVAEDHA
+ * Reframed: not fake metrics, not fabricated testimonials.
+ * Instead: a set of clear, honest engineering principles and differentiators
+ * that a new deep-tech AI firm can credibly stand behind.
  */
 
-const STATS = [
-    { value: "200B+", label: "Parameters fine-tuned in production", wide: false },
-    { value: "8 wks", label: "Average time from kickoff to live deployment", wide: false },
-    { value: "40ms", label: "Median p99 inference latency across client systems", wide: false },
-    { value: "99.94%", label: "Production uptime SLA across all deployments", wide: false },
-];
-
-const TESTIMONIALS = [
+const PRINCIPLES = [
     {
-        quote: "EnVaedha shipped what our internal team estimated would take a year — in eleven weeks. The RAG pipeline they built handles 4 million documents and our analysts trust it completely.",
-        name: "Sarah Chen",
-        role: "Chief Data Officer",
-        company: "Apex Capital",
+        id: "01",
+        title: "We don't sell tools. We own outcomes.",
+        body: "Most AI vendors offer APIs and dashboards. We build the full intelligence layer — fine-tuning, pipelines, evaluation, deployment — and stay accountable to the result, not the deliverable.",
     },
     {
-        quote: "They read our research papers, challenged our assumptions, and built something better than what we asked for. That's rare in a consultancy.",
-        name: "Dr. Marcus Webb",
-        role: "Head of AI",
-        company: "MedCore Diagnostics",
+        id: "02",
+        title: "Engineering-first, not prompt-wrapper.",
+        body: "We go beneath the surface of foundation models. Our team works at the level of fine-tuning, RLHF, retrieval architecture, and inference infrastructure — not just prompt templates.",
+    },
+    {
+        id: "03",
+        title: "Speed without sacrificing reliability.",
+        body: "We move fast because we have strong opinions about architecture developed through research and hands-on experimentation. We don't reinvent the wheel — we know which wheel to use.",
+    },
+    {
+        id: "04",
+        title: "We read the papers. We write the code.",
+        body: "EnVaedha sits at the intersection of applied AI research and production engineering. When a new technique ships on arXiv, we evaluate it against real workloads within days — not quarters.",
     },
 ];
 
-const CLIENTS = ["Goldman-tier Finance", "Top-5 Law Firms", "Series B MedTech", "Global Logistics", "Gov. Defense Labs", "Fortune 500 Retail"];
+const DIFFERENTIATORS = [
+    { label: "Every system we design is production-grade from day one", icon: "⬡" },
+    { label: "Deep expertise in LLMs, agents, RAG, and inference infra", icon: "⬡" },
+    { label: "Full-stack capability — from models to user interfaces", icon: "⬡" },
+    { label: "Built-in evaluation: we benchmark before we ship", icon: "⬡" },
+    { label: "Transparent on what AI can and can't do for your use case", icon: "⬡" },
+];
+
+const SECTORS = [
+    "Financial Services",
+    "Healthcare & MedTech",
+    "Legal & Compliance",
+    "Retail & E-Commerce",
+    "Enterprise SaaS",
+    "Manufacturing & IoT",
+];
 
 export default function Metrics() {
+    const headerRef = useScrollReveal({ threshold: 0.1 });
+    const principlesRef = useScrollReveal<HTMLDivElement>({ threshold: 0.05 });
+    const bottomRef = useScrollReveal<HTMLDivElement>({ threshold: 0.05 });
+
     return (
         <section className="py-28 sm:py-36 relative overflow-hidden" style={{ background: "#020d1a" }}>
             <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(59,130,246,0.12), transparent)" }} />
@@ -38,116 +61,84 @@ export default function Metrics() {
             {/* Ambient glow */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(59,130,246,0.05), transparent 70%)" }} />
+                    style={{ background: "radial-gradient(circle, rgba(59,130,246,0.04), transparent 70%)" }} />
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
 
                 {/* Header */}
-                <div className="mb-20">
-                    <p className="font-mono text-[11px] tracking-[0.25em] mb-5" style={{ color: "#3b82f6" }}>// WHY_ENVAEDHA</p>
-                    <h2 className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ color: "#e2eeff" }}>
-                        Numbers don't<br /> need commentary.
+                <div ref={headerRef} className="reveal mb-20 text-center">
+                    <p className="font-mono text-[20px] tracking-[0.25em] mb-12" style={{ color: "#3b82f6" }}>// WHY_ENVAEDHA</p>
+                    <h2 className="text-4xl sm:text-5xl font-bold tracking-tight max-w-3xl mx-auto leading-[1.1]" style={{ color: "#e2eeff" }}>
+                        The gap between AI demos<br />and production systems is where we live.
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-                    {/* Left: stat column */}
-                    <div className="flex flex-col gap-3">
-                        {STATS.map((s, i) => (
-                            <div
-                                key={i}
-                                className="flex flex-col gap-1 px-6 py-5 rounded-2xl"
-                                style={{ background: "#04152b", border: "1px solid rgba(59,130,246,0.08)" }}
-                            >
-                                <div
-                                    className="text-4xl font-bold font-mono"
-                                    style={{ color: "#93c5fd", filter: "drop-shadow(0 0 12px rgba(147,197,253,0.2))" }}
-                                >
-                                    {s.value}
-                                </div>
-                                <div className="text-sm font-sans leading-snug" style={{ color: "#94a3b8" }}>{s.label}</div>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Centre: testimonials */}
-                    <div className="flex flex-col gap-4">
-                        {TESTIMONIALS.map((t, i) => (
-                            <div
-                                key={i}
-                                className="flex-1 flex flex-col justify-between p-7 rounded-2xl"
-                                style={{ background: "#04152b", border: "1px solid rgba(59,130,246,0.08)" }}
-                            >
-                                <div className="mb-6">
-                                    <div className="flex gap-1 mb-4">
-                                        {[0, 1, 2].map(j => (
-                                            <div key={j} className="w-1.5 h-1.5 rounded-full" style={{ background: "#1e4a7a" }} />
-                                        ))}
-                                    </div>
-                                    <p className="text-base font-sans leading-relaxed" style={{ color: "#cbd5e1" }}>
-                                         "{t.quote}"
-                                     </p>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div
-                                        className="w-9 h-9 rounded-full flex items-center justify-center font-mono text-xs font-bold"
-                                        style={{ background: "rgba(59,130,246,0.12)", color: "#93c5fd", border: "1px solid rgba(59,130,246,0.2)" }}
-                                    >
-                                        {t.name.charAt(0)}
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-sm" style={{ color: "#c7dff7" }}>{t.name}</p>
-                                        <p className="font-mono text-[10px] tracking-wide" style={{ color: "#334155" }}>{t.role} · {t.company}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Right: sectors + velocity */}
-                    <div className="flex flex-col gap-4">
-
-                        {/* Sectors we serve */}
+                {/* Principles Grid */}
+                <div ref={principlesRef} className="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+                    {PRINCIPLES.map((p) => (
                         <div
-                            className="p-7 rounded-2xl"
+                            key={p.id}
+                            className="p-8 rounded-2xl flex flex-col gap-4 group hover:border-blue-500/20 transition-all"
                             style={{ background: "#04152b", border: "1px solid rgba(59,130,246,0.08)" }}
                         >
-                            <p className="font-mono text-[10px] tracking-[0.2em] mb-5" style={{ color: "#3b82f6" }}>SECTORS_SERVED</p>
+                            <div className="flex items-start gap-4">
+                                <span className="font-mono text-[11px] tracking-[0.2em] mt-1 shrink-0" style={{ color: "#1e4a7a" }}>{p.id}</span>
+                                <h3 className="text-xl font-bold tracking-tight leading-snug" style={{ color: "#c7dff7" }}>{p.title}</h3>
+                            </div>
+                            <p className="text-base font-sans leading-relaxed pl-8" style={{ color: "#94a3b8" }}>{p.body}</p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Bottom Row: Differentiators + Sectors */}
+                <div ref={bottomRef} className="reveal grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    {/* What we bring */}
+                    <div
+                        className="p-8 rounded-2xl"
+                        style={{ background: "#04152b", border: "1px solid rgba(59,130,246,0.08)" }}
+                    >
+                        <p className="font-mono text-[11px] tracking-[0.2em] mb-6" style={{ color: "#3b82f6" }}>WHAT_WE_BRING</p>
+                        <div className="flex flex-col gap-4">
+                            {DIFFERENTIATORS.map((d, i) => (
+                                <div key={i} className="flex items-center gap-4">
+                                    <span className="text-[8px] shrink-0" style={{ color: "#1e4a7a" }}>⬡</span>
+                                    <span className="text-base font-sans" style={{ color: "#cbd5e1" }}>{d.label}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Sectors we're focused on */}
+                    <div className="flex flex-col gap-4">
+                        <div
+                            className="p-8 rounded-2xl"
+                            style={{ background: "#04152b", border: "1px solid rgba(59,130,246,0.08)" }}
+                        >
+                            <p className="font-mono text-[11px] tracking-[0.2em] mb-6" style={{ color: "#3b82f6" }}>SECTORS_WE_FOCUS_ON</p>
                             <div className="flex flex-col gap-3">
-                                {CLIENTS.map((c, i) => (
+                                {SECTORS.map((c, i) => (
                                     <div key={i} className="flex items-center gap-3">
                                         <div
                                             className="w-1.5 h-1.5 rounded-full shrink-0"
-                                            style={{ background: i < 3 ? "#3b82f6" : "#1e4a7a" }}
+                                            style={{ background: "rgba(59,130,246,0.4)" }}
                                         />
-                                        <span className="font-mono text-sm" style={{ color: i < 3 ? "#93c5fd" : "#475569" }}>{c}</span>
+                                        <span className="font-mono text-sm" style={{ color: "#94a3b8" }}>{c}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Deployment velocity bar */}
+                        {/* Honest positioning */}
                         <div
-                            className="flex-1 p-7 rounded-2xl flex flex-col justify-between"
-                            style={{ background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.15)" }}
+                            className="flex-1 p-8 rounded-2xl flex flex-col justify-center"
+                            style={{ background: "rgba(59,130,246,0.04)", border: "1px solid rgba(59,130,246,0.12)" }}
                         >
-                            <p className="font-mono text-[10px] tracking-[0.2em] mb-4" style={{ color: "#3b82f6" }}>DEPLOYMENT_VELOCITY</p>
-                            <div>
-                                <div className="text-6xl font-bold font-mono mb-2"
-                                    style={{ color: "#93c5fd", filter: "drop-shadow(0 0 24px rgba(147,197,253,0.3))" }}>
-                                    2×
-                                </div>
-                                <p className="text-sm font-sans leading-relaxed" style={{ color: "#94a3b8" }}>
-                                     Faster than comparable in-house AI team builds. Measured across 12 client engagements.
-                                 </p>
-                            </div>
-                            {/* Progress-style bar */}
-                            <div className="mt-6 h-1 rounded-full overflow-hidden" style={{ background: "rgba(59,130,246,0.1)" }}>
-                                <div className="h-full rounded-full" style={{ width: "72%", background: "linear-gradient(to right, #1d4ed8, #93c5fd)" }} />
-                            </div>
-                            <p className="font-mono text-[10px] mt-2" style={{ color: "#1e4a7a" }}>avg. speed-to-prod vs industry baseline</p>
+                            <p className="font-mono text-[11px] tracking-[0.2em] mb-4" style={{ color: "#3b82f6" }}>OUR_POSITIONING</p>
+                            <p className="text-lg font-sans leading-relaxed" style={{ color: "#cbd5e1" }}>
+                                We're a small, focused team that cares deeply about doing the work right. We take fewer projects so we can go deeper on each one.
+                            </p>
                         </div>
                     </div>
                 </div>

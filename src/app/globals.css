@@ -129,6 +129,12 @@ body {
   overflow-x: hidden;
 }
 
+button,
+a,
+[role="button"] {
+  cursor: pointer;
+}
+
 .glass {
   background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(12px);
@@ -138,4 +144,91 @@ body {
 
 .glow-text {
   text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+/* ── Scroll-Reveal Animations ─────────────────────────────── */
+
+/* Base: hidden state */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Triggered: visible state */
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for child elements */
+.reveal-stagger>* {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-stagger.in-view>*:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0ms;
+}
+
+.reveal-stagger.in-view>*:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 80ms;
+}
+
+.reveal-stagger.in-view>*:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 160ms;
+}
+
+.reveal-stagger.in-view>*:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 240ms;
+}
+
+.reveal-stagger.in-view>*:nth-child(5) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 320ms;
+}
+
+.reveal-stagger.in-view>*:nth-child(6) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 400ms;
+}
+
+/* Delay variants for independent elements */
+.reveal-delay-1 {
+  transition-delay: 100ms;
+}
+
+.reveal-delay-2 {
+  transition-delay: 200ms;
+}
+
+.reveal-delay-3 {
+  transition-delay: 300ms;
+}
+
+.reveal-delay-4 {
+  transition-delay: 400ms;
+}
+
+/* Fade-only (no translate) */
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.reveal-fade.in-view {
+  opacity: 1;
 }

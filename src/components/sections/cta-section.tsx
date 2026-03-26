@@ -1,8 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export default function CTASection() {
+    const cardRef = useScrollReveal({ threshold: 0.1 });
+    const leftRef = useScrollReveal({ threshold: 0.1 });
+    const rightRef = useScrollReveal({ threshold: 0.1 });
+
     return (
         <section
             className="py-28 sm:py-36 relative overflow-hidden"
@@ -16,26 +21,22 @@ export default function CTASection() {
                     style={{ background: "radial-gradient(circle, rgba(99,102,241,0.05), transparent 70%)" }} />
             </div>
 
-            {/* Horizontal top border line */}
             <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(to right, transparent, rgba(59,130,246,0.2), transparent)" }} />
 
             <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
                 <div
-                    className="rounded-3xl p-12 sm:p-20 relative overflow-hidden"
+                    ref={cardRef}
+                    className="reveal rounded-3xl p-12 sm:p-20 relative overflow-hidden"
                     style={{ background: "#04152b", border: "1px solid rgba(59,130,246,0.12)" }}
                 >
-                    {/* Inner glow */}
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
                         style={{ background: "radial-gradient(ellipse at top, rgba(59,130,246,0.08), transparent 70%)" }} />
 
                     <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
-                        <div className="max-w-xl">
+                        <div ref={leftRef} className="reveal max-w-xl">
                             <div className="flex items-center gap-3">
                                 <span className="w-1 h-1 rounded-full bg-blue-500 animate-pulse" />
-                                {/* <p className="font-mono text-[12px] tracking-[0.2em]" style={{ color: "#93c5fd" }}>
-                                    AVAILABLE_FOR_Q2_2026
-                                </p> */}
                             </div>
                             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6" style={{ color: "#e2eeff" }}>
                                 Turn Your AI Strategy into Production Reality.
@@ -45,7 +46,7 @@ export default function CTASection() {
                             </p>
                         </div>
 
-                        <div className="flex flex-col gap-5 shrink-0">
+                        <div ref={rightRef} className="reveal reveal-delay-2 flex flex-col gap-5 shrink-0">
                             <Link href="/schedule-a-meeting">
                                 <button
                                     className="w-full lg:w-auto px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all active:scale-95"

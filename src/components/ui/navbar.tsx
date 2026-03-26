@@ -43,11 +43,11 @@ export default function Navbar() {
 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-2">
-                    <div className="flex items-center gap-1 font-mono text-[11px] tracking-widest text-neutral-400">
-                        <NavLink href="/#services" isActive={activeLink === "#services"} onClick={() => handleLinkClick("#services")}>SOLUTIONS</NavLink>
-                        <NavLink href="/#models" isActive={activeLink === "#models"} onClick={() => handleLinkClick("#models")}>MODELS</NavLink>
-                        <NavLink href="/#agents" isActive={activeLink === "#agents"} onClick={() => handleLinkClick("#agents")}>AGENTS</NavLink>
-                        <NavLink href="/#research" isActive={activeLink === "#research"} onClick={() => handleLinkClick("#research")}>RESEARCH</NavLink>
+                    <div className="flex items-center gap-1 font-mono text-[14px] tracking-widest text-neutral-400">
+                        <NavLink href="/#services" isActive={activeLink === "#services"} onClick={() => handleLinkClick("#services")}>SERVICES</NavLink>
+                        <NavLink href="/#case-studies" isActive={activeLink === "#case-studies"} onClick={() => handleLinkClick("#case-studies")}>CASE STUDIES</NavLink>
+                        <NavLink href="/#why-us" isActive={activeLink === "#why-us"} onClick={() => handleLinkClick("#why-us")}>WHY US</NavLink>
+                        <NavLink href="/#who-we-are" isActive={activeLink === "#who-we-are"} onClick={() => handleLinkClick("#who-we-are")}>ABOUT</NavLink>
                     </div>
 
                     <div className="flex items-center gap-4 pl-6 border-l border-white/10 ml-4">
@@ -72,10 +72,10 @@ export default function Navbar() {
             {isOpen && (
                 <div className="absolute top-24 left-4 right-4 md:hidden rounded-3xl border border-white/10 bg-black/90 backdrop-blur-2xl p-6 shadow-2xl animate-slow-fade">
                     <div className="flex flex-col gap-6">
-                        <MobileNavLink href="/#services" isActive={activeLink === "#services"} onClick={() => handleLinkClick("#services")}>SOLUTIONS</MobileNavLink>
-                        <MobileNavLink href="/#models" isActive={activeLink === "#models"} onClick={() => handleLinkClick("#models")}>MODELS</MobileNavLink>
-                        <MobileNavLink href="/#agents" isActive={activeLink === "#agents"} onClick={() => handleLinkClick("#agents")}>AGENTS</MobileNavLink>
-                        <MobileNavLink href="/#research" isActive={activeLink === "#research"} onClick={() => handleLinkClick("#research")}>RESEARCH</MobileNavLink>
+                        <MobileNavLink href="/#services" isActive={activeLink === "#services"} onClick={() => handleLinkClick("#services")}>SERVICES</MobileNavLink>
+                        <MobileNavLink href="/#case-studies" isActive={activeLink === "#case-studies"} onClick={() => handleLinkClick("#case-studies")}>CASE STUDIES</MobileNavLink>
+                        <MobileNavLink href="/#why-us" isActive={activeLink === "#why-us"} onClick={() => handleLinkClick("#why-us")}>WHY US</MobileNavLink>
+                        <MobileNavLink href="/#who-we-are" isActive={activeLink === "#who-we-are"} onClick={() => handleLinkClick("#who-we-are")}>ABOUT</MobileNavLink>
                         <Link href="/schedule-a-meeting" className="pt-4">
                             <Button className="w-full bg-primary text-white rounded-full py-4 text-sm font-extrabold font-sans shadow-[0_0_20px_rgba(99,102,241,0.3)]">
                                 Get Started

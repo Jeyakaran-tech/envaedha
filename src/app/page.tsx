@@ -1,6 +1,5 @@
 import Navbar from "../components/ui/navbar";
 import Footer from "../components/ui/footer";
-import ClientTicker from "../components/ui/client-ticker";
 import Hero from "../components/sections/hero";
 import WhoWeAre from "../components/sections/who-we-are";
 import Services from "../components/sections/services";
@@ -14,11 +13,10 @@ export default function HomePage() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <ClientTicker />
-        <WhoWeAre />
-        <Services />
-        <CaseStudies />
-        <Metrics />
+        <div id="who-we-are"><WhoWeAre /></div>
+        <div id="services"><Services /></div>
+        <div id="case-studies"><CaseStudies /></div>
+        <div id="why-us"><Metrics /></div>
         <CTASection />
       </main>
       <Footer />

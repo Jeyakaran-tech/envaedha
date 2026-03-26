@@ -2,54 +2,93 @@
 
 /**
  * CASE STUDIES
- * Design: "Deployment log" aesthetic. Each case study looks like a CLI
- * execution record — client sector, problem, and a giant glowing result metric.
- * Clicking a study expands it to reveal the technical approach.
+ * Reframed as "Problems We're Built to Solve" — generic, credible archetypes
+ * across industries that AI + full-stack development can genuinely address.
+ * Expandable cards with a technical approach, potential outcome, and stack.
  */
 
 import { useState } from "react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const studies = [
     {
         id: "CS-001",
-        sector: "FINTECH",
-        client: "Global Trading Platform",
-        challenge: "Analysts spending 6+ hours/day reading unstructured market reports. Needed instant, reliable extraction of structured signals.",
-        result: "94%",
-        resultLabel: "extraction accuracy",
-        delta: "↓ 6hrs → 18min per analyst per day",
-        stack: ["GPT-4 Fine-tune", "LangGraph", "Pinecone", "FastAPI"],
-        approach: "Built a multi-step RAG pipeline with custom entity extraction fine-tuned on 2.4M financial documents. Integrated with Bloomberg terminals via a streaming API. Deployed on AWS with auto-scaling inference.",
-        duration: "11 weeks",
+        sector: "SMB / SMALL BUSINESS",
+        problem: "Operational Scaling for SMBs",
+        challenge: "Small businesses often hit a growth ceiling where manual operations—from lead qualification to customer follow-ups—block expansion and erode profit margins.",
+        potentialResult: "2.5×",
+        resultLabel: "increase in operational capacity",
+        delta: "100% lead follow-up rate with 0% extra staff time",
+        stack: ["Agentic Workflows", "LangGraph", "CRM Integration", "Twilio API"],
+        approach: "We deploy intelligent agents that handle repetitive high-touch tasks: qualifying inbound leads, scheduling meetings, and performing personalized follow-ups. By automating the middle-office, SMBs can 3x their throughput without increasing headcount, directly boosting net profitability.",
+        type: "Agentic Automation",
     },
     {
         id: "CS-002",
-        sector: "HEALTHCARE",
-        client: "MedTech Diagnostics Scale-up",
-        challenge: "Clinical notes written in free text by 300+ doctors. Needed ICD-10 coding automation with zero tolerance for hallucination.",
-        result: "4.2×",
-        resultLabel: "coding throughput",
-        delta: "↓ 0 hallucinated codes across 50k records",
-        stack: ["Llama 3 Fine-tune", "Constitutional AI", "FHIR API", "Kubernetes"],
-        approach: "Fine-tuned Llama 3 on a curated dataset of 180k verified clinical note → ICD-10 pairs. Red-teamed the model with adversarial prompts and implemented a constitutional guard layer that verified every code against official WHO ontologies.",
-        duration: "14 weeks",
+        sector: "FINTECH",
+        problem: "Unstructured Market Intelligence",
+        challenge: "Analysts spending 6+ hours/day manually parsing hundreds of unstructured market reports, earnings calls, and news feeds — missing signals that move portfolios.",
+        potentialResult: "~90%",
+        resultLabel: "reduction in manual review time",
+        delta: "6hrs → under 20min per analyst per day",
+        stack: ["LLM Fine-Tuning", "LangGraph", "Vector DB", "FastAPI", "Next.js"],
+        approach: "We design multi-step RAG pipelines with custom entity extraction fine-tuned on financial corpora. A streaming API surfaces structured signals (sentiment, risk flags, entity changes) directly into trader dashboards in near real-time. The stack scales horizontally on cloud inference infrastructure.",
+        type: "AI + Full Stack",
     },
     {
         id: "CS-003",
+        sector: "HEALTHCARE",
+        problem: "Clinical Documentation Automation",
+        challenge: "Clinical teams produce thousands of free-text notes daily. Manual ICD coding is slow, error-prone, and pulls doctors away from patient care.",
+        potentialResult: "4–5×",
+        resultLabel: "throughput improvement",
+        delta: "Zero hallucinated codes with constitutional guard layers",
+        stack: ["Fine-Tuned LLM", "Constitutional AI", "FHIR Integration", "Kubernetes"],
+        approach: "We fine-tune an open-source language model on verified clinical note → ICD-10 pairs, then layer on a constitutional guard that cross-references every output against WHO ontologies before writing to the EHR. Red-teaming is built into the evaluation pipeline from day one.",
+        type: "AI + Compliance",
+    },
+    {
+        id: "CS-004",
         sector: "LEGAL",
-        client: "Top-5 US Law Firm",
-        challenge: "500-page contract reviews taking paralegal teams 3 days per deal. M&A velocity was bottlenecked by legal due diligence.",
-        result: "$2.4M",
-        resultLabel: "saved per quarter",
-        delta: "↓ 3 days → 4 hours per deal",
-        stack: ["Claude 3 Opus", "Semantic Search", "React", "Weaviate"],
-        approach: "Deployed a RAG system over a 2M-document corpus using Weaviate with hybrid BM25 + dense retrieval. Built a custom re-ranking layer trained on firm-specific precedents. Integrated directly into their existing document management workflow.",
-        duration: "9 weeks",
+        problem: "Contract Review & Due Diligence",
+        challenge: "Legal and M&A teams spend 3+ days reviewing complex contracts. Bottlenecks in due diligence slow deals and inflate costs.",
+        potentialResult: "~85%",
+        resultLabel: "faster per-deal turnaround",
+        delta: "3 days → 4 hours for a 500-page contract review",
+        stack: ["Claude / GPT-4", "Semantic Search", "Weaviate", "React", "Node.js"],
+        approach: "A RAG system over a client's document corpus using hybrid BM25 + dense retrieval, with a custom re-ranking layer trained on firm-specific precedents. The web interface surfaces clause comparisons, risk flags, and missing provisions with source citations, directly integrated into document workflows.",
+        type: "AI + Full Stack",
+    },
+    {
+        id: "CS-005",
+        sector: "RETAIL & E-COMM",
+        problem: "Personalisation at Scale",
+        challenge: "Generic product recommendations and one-size-fits-all email campaigns leaving significant revenue on the table for mid-to-large e-commerce operators.",
+        potentialResult: "30–50%",
+        resultLabel: "lift in conversion rate",
+        delta: "Real-time personalisation across 1M+ SKUs",
+        stack: ["Embedding Models", "LangChain", "Redis", "Postgres", "Next.js"],
+        approach: "We build real-time user embedding pipelines that capture browse, purchase, and explicit feedback signals. A retrieval layer blends collaborative filtering with semantic product similarity to serve hyper-relevant recommendations. LLM-driven copy generation personalises email subject lines and product descriptions at the individual level.",
+        type: "AI + Full Stack",
+    },
+    {
+        id: "CS-006",
+        sector: "SaaS / ENTERPRISE",
+        problem: "Internal Knowledge & Support Automation",
+        challenge: "Large organisations losing hours daily to repetitive internal queries — employee onboarding, IT support, HR policies — overwhelming support teams.",
+        potentialResult: "60–70%",
+        resultLabel: "deflection of tier-1 support tickets",
+        delta: "Mean resolution time under 45 seconds",
+        stack: ["RAG Pipeline", "Agentic Routing", "Slack / Teams API", "Pinecone", "TypeScript"],
+        approach: "An agentic system connected to internal knowledge bases, ticketing systems, and policy documents. The agent classifies queries, retrieves grounded answers with citations, and escalates to humans only when confidence falls below threshold. Full audit trails ensure compliance and continuous model improvement.",
+        type: "Agentic AI",
     },
 ];
 
 export default function CaseStudies() {
     const [expanded, setExpanded] = useState<string | null>(null);
+    const headerRef = useScrollReveal({ threshold: 0.1 });
+    const listRef = useScrollReveal<HTMLDivElement>({ threshold: 0.04 });
 
     return (
         <section className="py-28 sm:py-36 relative" style={{ background: "#010c18" }}>
@@ -58,23 +97,23 @@ export default function CaseStudies() {
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
 
                 {/* Header */}
-                <div className="mb-20">
-                    <p className="font-mono text-[11px] tracking-[0.25em] mb-5" style={{ color: "#3b82f6" }}>
-                        // DEPLOYMENT_LOGS
+                <div ref={headerRef} className="reveal mb-20">
+                    <p className="font-mono text-[20px] tracking-[0.25em] mb-5 text-center" style={{ color: "#3b82f6" }}>
+                        // CASE_STUDIES
                     </p>
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mt-12">
                         <h2 className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ color: "#e2eeff" }}>
-                            AI that ships to production.<br />
-                            <span style={{ color: "#3b82f6" }}>Results that compound.</span>
+                            Problems we&apos;re built<br />
+                            <span style={{ color: "#3b82f6" }}>to solve.</span>
                         </h2>
-                        <p className="text-sm font-sans max-w-xs leading-relaxed" style={{ color: "#334155" }}>
-                            Every engagement below went from problem statement to live production system.
+                        <p className="text-base font-sans max-w-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+                            Pattern-matched across industries. Each archetype represents a class of real-world engineering challenges we design AI and full-stack systems to tackle.
                         </p>
                     </div>
                 </div>
 
                 {/* Studies */}
-                <div className="flex flex-col gap-4">
+                <div ref={listRef} className="reveal-stagger flex flex-col gap-4">
                     {studies.map((s) => {
                         const isOpen = expanded === s.id;
                         return (
@@ -99,11 +138,17 @@ export default function CaseStudies() {
                                         >
                                             {s.sector}
                                         </span>
+                                        <span
+                                            className="font-mono text-[10px] tracking-[0.15em] px-2 py-1 rounded-full hidden sm:inline-flex"
+                                            style={{ background: "rgba(99,102,241,0.06)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.12)" }}
+                                        >
+                                            {s.type}
+                                        </span>
                                     </div>
 
-                                    {/* Client + challenge */}
+                                    {/* Problem + challenge */}
                                     <div className="flex-1 min-w-0">
-                                        <p className="font-bold mb-1 truncate text-lg" style={{ color: "#c7dff7" }}>{s.client}</p>
+                                        <p className="font-bold mb-1 truncate text-lg" style={{ color: "#c7dff7" }}>{s.problem}</p>
                                         <p className="text-base font-sans line-clamp-1" style={{ color: "#94a3b8" }}>{s.challenge}</p>
                                     </div>
 
@@ -113,16 +158,15 @@ export default function CaseStudies() {
                                             className="text-4xl font-bold font-mono"
                                             style={{ color: "#93c5fd", filter: "drop-shadow(0 0 16px rgba(147,197,253,0.35))" }}
                                         >
-                                            {s.result}
+                                            {s.potentialResult}
                                         </div>
                                         <div className="font-mono text-[10px] tracking-widest mt-1" style={{ color: "#334155" }}>{s.resultLabel}</div>
                                     </div>
 
-                                    {/* Duration */}
+                                    {/* Expand toggle */}
                                     <div className="shrink-0 font-mono text-[11px] text-right" style={{ color: "#1e4a7a" }}>
-                                        {s.duration}
                                         <div className="mt-1" style={{ color: isOpen ? "#3b82f6" : "#1e3a5f" }}>
-                                            {isOpen ? "▲ collapse" : "▼ view log"}
+                                            {isOpen ? "▲ collapse" : "▼ explore"}
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +190,7 @@ export default function CaseStudies() {
                                                 className="rounded-xl px-5 py-4"
                                                 style={{ background: "rgba(59,130,246,0.05)", border: "1px solid rgba(59,130,246,0.1)" }}
                                             >
-                                                <p className="font-mono text-[10px] tracking-widest mb-1" style={{ color: "#1e4a7a" }}>KEY_RESULT</p>
+                                                <p className="font-mono text-[10px] tracking-widest mb-1" style={{ color: "#1e4a7a" }}>PROJECTED_OUTCOME</p>
                                                 <p className="font-mono text-sm" style={{ color: "#93c5fd" }}>{s.delta}</p>
                                             </div>
 

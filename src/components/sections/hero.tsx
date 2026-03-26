@@ -149,13 +149,13 @@ export default function Hero() {
             </div>
 
             {/* Descriptor */}
-            <p
+            {/* <p
               className="max-w-xs text-base leading-relaxed font-mono"
               style={{ color: "#94a3b8" }}
             >
               The pure-AI consulting platform to improve every phase
               of your enterprise intelligence lifecycle.
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
