@@ -1,8 +1,28 @@
 "use client";
 
+/**
+ * FOOTER
+ * Refined to remove "filler" links and focus on the actual navigation and brand.
+ * Includes edge-to-edge marquee branding for high-impact visual finish.
+ */
+
 import Link from "next/link";
-import { FaLinkedinIn, FaYoutube, FaTwitter } from "react-icons/fa";
-import { FiCpu } from "react-icons/fi";
+import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
+
+const SOLUTIONS = [
+    { label: "LLM Systems", href: "/#services" },
+    { label: "Agentic Workflows", href: "/#services" },
+    { label: "Full-Stack AI", href: "/#services" },
+    { label: "Neural Infrastructure", href: "/#services" },
+    { label: "Cloud Solutions", href: "/#services" },
+];
+
+const RESOURCES = [
+    { label: "Technical Blog", href: "/blog" },
+    { label: "Case Studies", href: "/#case-studies" },
+    { label: "Architecture Review", href: "/schedule-a-meeting" },
+    { label: "Why Envaedha", href: "/#why-us" },
+];
 
 export default function Footer() {
     return (
@@ -11,16 +31,15 @@ export default function Footer() {
             <h2 id="footer-heading" className="sr-only">Footer</h2>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                {/* Top Section: Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
 
-                    {/* Products */}
+                    {/* Solutions */}
                     <div>
-                        <h3 className="text-[#93c5fd] text-lg font-medium mb-6">Solutions</h3>
-                        <ul className="flex flex-col gap-3 font-mono text-[13px] text-neutral-500">
-                            {["Neural Architectures", "LLM Fine-tuning", "Agentic Systems", "Cloud Infrastructure", "Model Alignment", "Data Engineering", "Synthetic Intelligence"].map((item) => (
-                                <li key={item} className="hover:text-neutral-300 transition-colors">
-                                    <Link href="#">{item}</Link>
+                        <h3 className="text-[#93c5fd] text-[13px] font-mono tracking-[0.2em] mb-8 uppercase">Solutions</h3>
+                        <ul className="flex flex-col gap-4 font-sans text-base text-neutral-400">
+                            {SOLUTIONS.map((item) => (
+                                <li key={item.label} className="hover:text-white transition-colors">
+                                    <Link href={item.href}>{item.label}</Link>
                                 </li>
                             ))}
                         </ul>
@@ -28,11 +47,11 @@ export default function Footer() {
 
                     {/* Resources */}
                     <div>
-                        <h3 className="text-[#93c5fd] text-lg font-medium mb-6">Resources</h3>
-                        <ul className="flex flex-col gap-3 font-mono text-[13px] text-neutral-500">
-                            {["Technical Blog", "Customer Stories", "Feasibility Guides", "AI Academy", "Research Papers", "Events", "Documentation"].map((item) => (
-                                <li key={item} className="hover:text-neutral-300 transition-colors">
-                                    <Link href="#">{item}</Link>
+                        <h3 className="text-[#93c5fd] text-[13px] font-mono tracking-[0.2em] mb-8 uppercase">Resources</h3>
+                        <ul className="flex flex-col gap-4 font-sans text-base text-neutral-400">
+                            {RESOURCES.map((item) => (
+                                <li key={item.label} className="hover:text-white transition-colors">
+                                    <Link href={item.href}>{item.label}</Link>
                                 </li>
                             ))}
                         </ul>
@@ -40,44 +59,36 @@ export default function Footer() {
 
                     {/* Company */}
                     <div>
-                        <h3 className="text-[#93c5fd] text-lg font-medium mb-6">Company</h3>
-                        <ul className="flex flex-col gap-3 font-mono text-[13px] text-neutral-500">
-                            {["About EnVaedha", "Careers", "Partnerships", "Trust Center", "Research Lab", "Media Kit"].map((item) => (
-                                <li key={item} className="hover:text-neutral-300 transition-colors">
-                                    <Link href="#">{item}</Link>
-                                </li>
-                            ))}
+                        <h3 className="text-[#93c5fd] text-[13px] font-mono tracking-[0.2em] mb-8 uppercase">Envaedha</h3>
+                        <ul className="flex flex-col gap-4 font-sans text-base text-neutral-400">
+                            <li className="hover:text-white transition-colors"><Link href="/#who-we-are">About Us</Link></li>
+                            <li className="hover:text-white transition-colors"><Link href="mailto:hello@envaedha.ai">Email Inquiry</Link></li>
+                            <li className="hover:text-white transition-colors"><Link href="/schedule-a-meeting">Book Architecture Review</Link></li>
                         </ul>
                     </div>
 
-                    {/* Newsletter */}
+                    {/* Connection */}
                     <div className="flex flex-col">
-                        <h3 className="text-[#93c5fd] text-lg font-medium mb-1">Stay updated with AI</h3>
-                        <p className="text-neutral-400 text-sm mb-6 font-sans">Latest research delivered to your inbox.</p>
-
-                        <div className="flex flex-col gap-4">
-                            <div className="relative group">
-                                <input
-                                    type="email"
-                                    placeholder="Your email"
-                                    className="w-full bg-[#000011] border border-neutral-700 rounded-lg px-4 py-3 text-sm font-mono focus:outline-none focus:border-primary transition-colors"
-                                />
-                            </div>
-                            <button className="w-fit bg-[#dbeafe] text-black px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-white transition-all self-end">
-                                Subscribe
-                            </button>
+                        <h3 className="text-[#93c5fd] text-[13px] font-mono tracking-[0.2em] mb-8 uppercase">Connect</h3>
+                        <div className="flex items-center gap-6 text-neutral-400">
+                            <Link href="#" className="hover:text-white transition-colors flex items-center gap-2">
+                                <FaLinkedinIn size={20} />
+                                <span className="font-mono text-xs tracking-widest pt-0.5">LINKEDIN</span>
+                            </Link>
+                            <Link href="#" className="hover:text-white transition-colors flex items-center gap-2">
+                                <FaTwitter size={20} />
+                                <span className="font-mono text-xs tracking-widest pt-0.5">TWITTER</span>
+                            </Link>
                         </div>
-
-                        <div className="mt-6 flex items-center justify-end gap-5 text-neutral-400">
-                            <Link href="#" className="hover:text-white transition-colors"><FaLinkedinIn size={18} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors"><FaTwitter size={18} /></Link>
-                            <Link href="#" className="hover:text-white transition-colors"><FaYoutube size={20} /></Link>
-                        </div>
+                        {/* <div className="mt-10 p-6 rounded-2xl border border-blue-900/40 bg-blue-950/20">
+                            <p className="text-[11px] font-mono tracking-widest text-blue-300/60 mb-2">AVAILABILITY</p>
+                            <p className="text-sm font-sans text-neutral-300">Currently accepting strategic partnerships for Q3 2026.</p>
+                        </div> */}
                     </div>
                 </div>
             </div>
 
-            {/* Massive wordmark branding — Static Marquee with Separators — Edge to Edge */}
+            {/* Edge to Edge Marquee branding */}
             <div className="w-full select-none pointer-events-none overflow-hidden my-16 border-y border-blue-900/10 py-4">
                 <div className="flex w-max animate-marquee-full whitespace-nowrap items-center">
                     {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -101,16 +112,16 @@ export default function Footer() {
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                {/* Bottom Section */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 font-mono text-[11px] tracking-widest text-neutral-600">
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-[#93c5fd] animate-pulse shadow-[0_0_8px_rgba(147,197,253,0.8)]"></div>
-                        <span>ALL SYSTEMS OPERATIONAL </span>
+                        <span>ALL SYSTEMS OPERATIONAL</span>
                     </div>
 
                     <div className="flex items-center gap-8">
                         <Link href="#" className="hover:text-neutral-400">PRIVACY_POLICY</Link>
                         <Link href="#" className="hover:text-neutral-400">TERMS_OF_SERVICE</Link>
+                        <span className="opacity-40">© 2026 ENVAEDHA AI</span>
                     </div>
                 </div>
             </div>
