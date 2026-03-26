@@ -79,16 +79,16 @@ function TimelineLine() {
 
         const handleScroll = () => {
             if (!containerRef.current || !lineRef.current || !dotRef.current) return;
-            
+
             const rect = containerRef.current.getBoundingClientRect();
             const viewportH = window.innerHeight;
-            
+
             const start = viewportH * 0.4;
             const total = rect.height;
             const current = -rect.top + start;
-            
+
             const p = Math.min(Math.max((current / total) * 100, 0), 100);
-            
+
             // Direct DOM updates are much smoother for 60fps scroll tracking
             lineRef.current.style.height = `${p}%`;
             dotRef.current.style.top = `${p}%`;
@@ -110,18 +110,18 @@ function TimelineLine() {
     return (
         <div ref={containerRef} className="absolute left-1/2 -translate-x-1/2 top-0 bottom-32 w-px bg-blue-900/20 hidden md:block">
             {/* The "Glow" progress line */}
-            <div 
+            <div
                 ref={lineRef}
                 className="absolute top-0 left-0 w-full bg-gradient-to-bottom will-change-[height]"
-                style={{ 
+                style={{
                     height: `0%`,
                     background: "linear-gradient(to bottom, #3b82f6 0%, #3b82f6 90%, transparent 100%)",
                     boxShadow: "0 0 15px rgba(59,130,246,0.3)"
                 }}
             />
-            
+
             {/* Moving light point at the tip */}
-            <div 
+            <div
                 ref={dotRef}
                 className="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.8)] border-2 border-[#020d1a] z-20 will-change-[top] -translate-y-[8px]"
                 style={{ top: `0%` }}
@@ -135,18 +135,18 @@ function BlogPostCard({ post, index }: { post: typeof BLOG_POSTS[0], index: numb
     const isEven = index % 2 === 0;
 
     return (
-        <div 
+        <div
             ref={revealRef}
             className={`reveal flex flex-col md:flex-row items-center w-full mb-24 md:mb-36 relative ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}
         >
             {/* Card half */}
             <div className={`w-full md:w-[45%] ${isEven ? "text-left md:text-right md:pr-12" : "text-left md:pl-12"}`}>
-                <div 
+                <div
                     className="p-8 rounded-3xl relative overflow-hidden group transition-all duration-500 hover:scale-[1.02]"
-                    style={{ 
-                        background: "#04152b", 
+                    style={{
+                        background: "#04152b",
                         border: "1px solid rgba(59,130,246,0.08)",
-                        boxShadow: "0 0 40px rgba(0,0,0,0.2)" 
+                        boxShadow: "0 0 40px rgba(0,0,0,0.2)"
                     }}
                 >
                     <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
@@ -154,7 +154,7 @@ function BlogPostCard({ post, index }: { post: typeof BLOG_POSTS[0], index: numb
 
                     <div className="relative z-10">
                         <div className={`flex items-center gap-3 mb-4 ${isEven ? "md:justify-end" : "justify-start"}`}>
-                            <span className="font-mono text-[11px] tracking-widest px-3 py-1 rounded-full" 
+                            <span className="font-mono text-[11px] tracking-widest px-3 py-1 rounded-full"
                                 style={{ background: "rgba(59,130,246,0.08)", color: "#3b82f6", border: "1px solid rgba(59,130,246,0.15)" }}>
                                 {post.category}
                             </span>
@@ -170,9 +170,9 @@ function BlogPostCard({ post, index }: { post: typeof BLOG_POSTS[0], index: numb
 
                         <div className={`flex items-center justify-between pt-6 border-t border-blue-500/5 ${isEven ? "md:flex-row-reverse" : "flex-row"}`}>
                             <span className="font-mono text-[10px] uppercase" style={{ color: "#1e4a7a" }}>SOURCE: {post.source}</span>
-                            <a 
-                                href={post.url} 
-                                target="_blank" 
+                            <a
+                                href={post.url}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="font-mono text-[11px] tracking-widest transition-colors flex items-center gap-2 group/btn"
                                 style={{ color: "#3b82f6" }}
@@ -206,16 +206,13 @@ export default function BlogPage() {
     return (
         <div className="flex min-h-screen flex-col" style={{ background: "#020d1a" }}>
             <Navbar />
-            
+
             <main className="flex-1 pt-32 pb-40">
                 <div className="mx-auto max-w-7xl px-6 lg:px-12">
-                    
+
                     {/* Header */}
                     <header ref={revealRef} className="reveal mb-32 border-b border-blue-500/10 pb-16 text-center">
-                        <div className="flex items-center justify-center gap-3 mb-6">
-                            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-                            <p className="font-mono text-[14px] tracking-[0.25em]" style={{ color: "#3b82f6" }}>// INTEL_TIMELINE_V1.1</p>
-                        </div>
+
                         <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-[1.05]" style={{ color: "#e2eeff" }}>
                             Signals from the<br />
                             <span style={{ color: "#3b82f6" }}>frontier.</span>
@@ -225,7 +222,7 @@ export default function BlogPage() {
                     {/* Timeline Container */}
                     <div className="relative mt-24">
                         <TimelineLine />
-                        
+
                         <div className="relative flex flex-col items-center">
                             {BLOG_POSTS.map((post, idx) => (
                                 <BlogPostCard key={post.id} post={post} index={idx} />
@@ -234,7 +231,7 @@ export default function BlogPage() {
                     </div>
 
                     {/* Bottom CTA */}
-                    <div className="mt-32 text-center p-16 rounded-[40px] relative overflow-hidden" 
+                    <div className="mt-32 text-center p-16 rounded-[40px] relative overflow-hidden"
                         style={{ background: "rgba(59,130,246,0.02)", border: "1px dashed rgba(59,130,246,0.15)" }}>
                         <h3 className="text-2xl font-bold mb-4" style={{ color: "#e2eeff" }}>Stay in the loop.</h3>
                         <p className="text-base font-sans max-w-lg mx-auto mb-8" style={{ color: "#94a3b8" }}>
