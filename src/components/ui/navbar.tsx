@@ -47,6 +47,7 @@ export default function Navbar() {
                         <NavLink href="/#services" isActive={activeLink === "#services"} onClick={() => handleLinkClick("#services")}>SERVICES</NavLink>
                         <NavLink href="/#case-studies" isActive={activeLink === "#case-studies"} onClick={() => handleLinkClick("#case-studies")}>CASE STUDIES</NavLink>
                         <NavLink href="/#why-us" isActive={activeLink === "#why-us"} onClick={() => handleLinkClick("#why-us")}>WHY US</NavLink>
+                        <NavLink href="/blog" isActive={activeLink === "/blog"} onClick={() => handleLinkClick("/blog")}>BLOG</NavLink>
                         <NavLink href="/#who-we-are" isActive={activeLink === "#who-we-are"} onClick={() => handleLinkClick("#who-we-are")}>ABOUT</NavLink>
                     </div>
 
@@ -75,6 +76,7 @@ export default function Navbar() {
                         <MobileNavLink href="/#services" isActive={activeLink === "#services"} onClick={() => handleLinkClick("#services")}>SERVICES</MobileNavLink>
                         <MobileNavLink href="/#case-studies" isActive={activeLink === "#case-studies"} onClick={() => handleLinkClick("#case-studies")}>CASE STUDIES</MobileNavLink>
                         <MobileNavLink href="/#why-us" isActive={activeLink === "#why-us"} onClick={() => handleLinkClick("#why-us")}>WHY US</MobileNavLink>
+                        <MobileNavLink href="/blog" isActive={activeLink === "/blog"} onClick={() => handleLinkClick("/blog")}>BLOG</MobileNavLink>
                         <MobileNavLink href="/#who-we-are" isActive={activeLink === "#who-we-are"} onClick={() => handleLinkClick("#who-we-are")}>ABOUT</MobileNavLink>
                         <Link href="/schedule-a-meeting" className="pt-4">
                             <Button className="w-full bg-primary text-white rounded-full py-4 text-sm font-extrabold font-sans shadow-[0_0_20px_rgba(99,102,241,0.3)]">
