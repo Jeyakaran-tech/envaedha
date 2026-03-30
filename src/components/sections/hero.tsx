@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import DiamondMatrix from "../ui/diamond-matrix";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Hero3D from "../ui/hero-3d";
 
 const WORDS = ["Intelligence", "Autonomy", "Convergence", "Reasoning", "Perception"];
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [wordIdx, setWordIdx] = useState(0);
   const [displayed, setDisplayed] = useState("Intelligence");
   const [deleting, setDeleting] = useState(false);
@@ -36,138 +39,46 @@ export default function Hero() {
 
   return (
     <section
+      ref={containerRef}
       id="hero-section"
-      className="relative h-dvh flex items-center overflow-hidden"
-      style={{ background: "#020d1a" }}
+      className="relative h-screen w-full overflow-hidden"
     >
       {/*
         ─────────────────────────────────────────────────────────
-        LAYOUT: two halves
-          Left  half → the full-viewport diamond matrix canvas
-          Right half → text content (positioned via absolute)
+        LAYOUT: 3D HEADLINE ZOOM (ONE-SCREEN JOURNEY)
         ─────────────────────────────────────────────────────────
       */}
 
-      {/* Canvas fills the whole section — the diamond itself only
-          occupies the left ~55% by design of the animation */}
-      <div className="absolute inset-0 z-0">
-        <DiamondMatrix />
-      </div>
+      <Hero3D displayed={displayed} scrollTarget={containerRef} />
 
-      {/* Right-side fade so text is always legible */}
+      {/* Fade overlay as we approach Who We Are */}
       <div
-        className="absolute inset-0 z-10 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-[50vh] pointer-events-none z-10"
         style={{
           background:
-            "linear-gradient(to left, #020d1a 0%, #020d1a 38%, transparent 62%)",
+            "linear-gradient(to bottom, transparent, #020d1a)",
         }}
       />
 
-      {/* Text content — right half */}
-      <div className="relative z-20 w-full">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 flex justify-end">
-          <div className="w-full max-w-lg">
-
-            {/* Eyebrow */}
-            {/* <p
-              className="font-mono text-[13px] tracking-[0.25em] mb-8"
-              style={{ color: "#3b82f6" }}
-            >
-              // ENVAEDHA.AI
-            </p> */}
-
-            {/* Headline */}
-            <h1 className="mb-6 leading-[1.08]">
-              <span
-                className="block text-5xl sm:text-6xl lg:text-[4.25rem] font-bold tracking-tight"
-                style={{ color: "#e2eeff" }}
-              >
-                Engineering
-              </span>
-              <span
-                className="block text-5xl sm:text-6xl lg:text-[4.25rem] font-bold tracking-tight min-h-[1.15em]"
-                style={{
-                  color: "#93c5fd",
-                  filter: "drop-shadow(0 0 24px rgba(147,197,253,0.2))",
-                }}
-              >
-                {displayed}
-                <span
-                  style={{ color: "#3b82f6", opacity: 0.9 }}
-                  className="animate-blink"
-                >
-                  |
-                </span>
-              </span>
-            </h1>
-
-            {/* Sub */}
-            <p
-              className="mb-10 text-lg leading-relaxed font-mono max-w-sm"
-              style={{ color: "#cbd5e1" }}
-            >
-              Use EnVaedha to architect, deploy, and scale
-              production-grade AI systems across your enterprise.
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 mb-14">
-              <Link href="/schedule-a-meeting">
-                <button
-                  className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-tight transition-all active:scale-95"
-                  style={{ background: "#e2eeff", color: "#020d1a" }}
-                  onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLButtonElement).style.background = "#fff")
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLButtonElement).style.background = "#e2eeff")
-                  }
-                >
-                  Start Building
-                </button>
-              </Link>
-              <Link href="#services">
-                <button
-                  className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-tight transition-all active:scale-95"
-                  style={{
-                    background: "transparent",
-                    color: "#93c5fd",
-                    border: "1px solid rgba(147,197,253,0.2)",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(147,197,253,0.5)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor =
-                      "rgba(147,197,253,0.2)";
-                  }}
-                >
-                  Get a Demo
-                </button>
-              </Link>
-            </div>
-
-            {/* Descriptor */}
-            {/* <p
-              className="max-w-xs text-base leading-relaxed font-mono"
-              style={{ color: "#94a3b8" }}
-            >
-              The pure-AI consulting platform to improve every phase
-              of your enterprise intelligence lifecycle.
-            </p> */}
-          </div>
+      {/* Scroll Indicator */}
+      <motion.div
+        className="fixed bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
+        style={{
+          opacity: useTransform(useScroll().scrollYProgress, [0, 0.05], [1, 0])
+        }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 1 }}
+      >
+        <span className="text-[10px] font-mono tracking-[0.3em] text-blue-400/60 uppercase">Zoom In</span>
+        <div className="w-[1px] h-12 bg-gradient-to-b from-blue-400/60 to-transparent relative overflow-hidden">
+          <motion.div
+            className="absolute top-0 left-0 w-full h-1/2 bg-blue-300"
+            animate={{ top: ["0%", "100%"] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          />
         </div>
-      </div>
-
-      {/* Bottom line */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(147,197,253,0.25), transparent)",
-        }}
-      />
+      </motion.div>
     </section>
   );
 }
