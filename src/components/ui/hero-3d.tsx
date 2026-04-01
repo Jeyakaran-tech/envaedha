@@ -20,9 +20,9 @@ function Saturn() {
             {/* The Planet */}
             <mesh ref={planetRef}>
                 <sphereGeometry args={[6, 32, 32]} />
-                <meshStandardMaterial 
-                    color="#e5e7eb" 
-                    emissive="#d1d5db" 
+                <meshStandardMaterial
+                    color="#e5e7eb"
+                    emissive="#d1d5db"
                     emissiveIntensity={0.1}
                     metalness={0.4}
                     roughness={0.6}
@@ -32,22 +32,22 @@ function Saturn() {
             <group ref={ringRef}>
                 <mesh rotation={[Math.PI / 2, 0, 0]}>
                     <ringGeometry args={[8, 12, 64]} />
-                    <meshStandardMaterial 
-                        color="#94a3b8" 
-                        transparent 
-                        opacity={0.4} 
-                        side={THREE.DoubleSide} 
+                    <meshStandardMaterial
+                        color="#94a3b8"
+                        transparent
+                        opacity={0.4}
+                        side={THREE.DoubleSide}
                         emissive="#64748b"
                         emissiveIntensity={0.5}
                     />
                 </mesh>
                 <mesh rotation={[Math.PI / 2, 0, 0]}>
                     <ringGeometry args={[8.5, 11, 64]} />
-                    <meshStandardMaterial 
-                        color="#ffffff" 
-                        transparent 
-                        opacity={0.2} 
-                        side={THREE.DoubleSide} 
+                    <meshStandardMaterial
+                        color="#ffffff"
+                        transparent
+                        opacity={0.2}
+                        side={THREE.DoubleSide}
                         wireframe
                     />
                 </mesh>
@@ -61,19 +61,19 @@ function GalacticGlow() {
         <group position={[0, 0, -150]}>
             <mesh scale={[500, 300, 1]}>
                 <planeGeometry />
-                <meshBasicMaterial 
-                    color="#1e3a8a" 
-                    transparent 
-                    opacity={0.05} 
+                <meshBasicMaterial
+                    color="#1e3a8a"
+                    transparent
+                    opacity={0.05}
                     depthWrite={false}
                 />
             </mesh>
             <mesh position={[50, 0, 0]} scale={[300, 200, 1]}>
                 <planeGeometry />
-                <meshBasicMaterial 
-                    color="#312e81" 
-                    transparent 
-                    opacity={0.03} 
+                <meshBasicMaterial
+                    color="#312e81"
+                    transparent
+                    opacity={0.03}
                     depthWrite={false}
                 />
             </mesh>
@@ -116,11 +116,11 @@ function SpaceshipCorridor() {
                 <group key={i} position={[0, 0, ring.z]} rotation={[0, 0, ring.rotation]}>
                     <mesh>
                         <ringGeometry args={[8, 9, 8]} />
-                        <meshStandardMaterial 
-                            color="#1e293b" 
-                            emissive="#3b82f6" 
-                            emissiveIntensity={0.5} 
-                            side={THREE.DoubleSide} 
+                        <meshStandardMaterial
+                            color="#1e293b"
+                            emissive="#3b82f6"
+                            emissiveIntensity={0.5}
+                            side={THREE.DoubleSide}
                         />
                     </mesh>
                     <mesh position={[0, 8.5, 0]}>
@@ -138,7 +138,7 @@ function JourneyManager({ displayed, scrollTarget }: { displayed: string, scroll
         target: scrollTarget,
         offset: ["start start", "end start"]
     });
-    
+
     const springScroll = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
     const zPos = useTransform(springScroll, [0, 1], [15, -110]);
     const camRef = useRef<THREE.PerspectiveCamera>(null);
@@ -153,34 +153,37 @@ function JourneyManager({ displayed, scrollTarget }: { displayed: string, scroll
     return (
         <>
             <PerspectiveCamera ref={camRef} makeDefault fov={75} />
-            
+
             <MovingStars />
             <GalacticGlow />
             <Saturn />
             <SpaceshipCorridor />
-            
+
             <group position={[0, 0, -20]}>
                 <Html
                     transform
-                    style={{ 
-                        width: "100vw", 
+                    style={{
+                        width: "100vw",
                         pointerEvents: "none",
                         background: "transparent"
                     }}
                 >
-                    <motion.div 
+                    <motion.div
                         style={{ opacity: contentOpacity }}
                         className="flex flex-col items-center text-center px-6"
                     >
                         <h1 className="leading-[1.08] select-none">
-                            <span className="block text-5xl sm:text-7xl font-bold tracking-tight text-[#e2eeff]">
-                                Engineering
+                            <span className="block text-5xl sm:text-8xl font-extrabold tracking-tight text-[#e2eeff]">
+                                AI Consulting for
                             </span>
-                            <span className="block text-5xl sm:text-7xl font-bold tracking-tight text-[#93c5fd]">
-                                {displayed}
-                                <span className="animate-blink text-[#3b82f6]">|</span>
+                            <span className="block text-5xl sm:text-8xl font-extrabold tracking-tight text-[#3b82f6]">
+                                Melbourne SMBs
                             </span>
                         </h1>
+                        <p className="mt-12 text-2xl sm:text-4xl font-mono text-[#93c5fd] tracking-[0.25em] uppercase">
+                            Engineering {displayed}
+                            <span className="animate-blink text-[#3b82f6]">|</span>
+                        </p>
                     </motion.div>
                 </Html>
             </group>
@@ -189,28 +192,28 @@ function JourneyManager({ displayed, scrollTarget }: { displayed: string, scroll
 }
 
 export default function Hero3D({ displayed, scrollTarget }: { displayed: string, scrollTarget: React.RefObject<any> }) {
-  const { scrollYProgress } = useScroll({
-      target: scrollTarget,
-      offset: ["start start", "end start"]
-  });
-  
-  const overallOpacity = useTransform(scrollYProgress, [0.85, 1], [1, 0]);
+    const { scrollYProgress } = useScroll({
+        target: scrollTarget,
+        offset: ["start start", "end start"]
+    });
 
-  return (
-    <motion.div 
-        style={{ opacity: overallOpacity }}
-        className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
-    >
-      <div className="sticky top-0 w-full h-screen font-sans">
-        <Canvas gl={{ antialias: true, alpha: true }} camera={{ position: [0, 0, 20], fov: 75 }}>
-          <color attach="background" args={["#020d1a"]} />
-          <fog attach="fog" args={["#020d1a", 10, 150]} />
-          <ambientLight intensity={0.4} />
-          <pointLight position={[20, 20, -50]} intensity={2} color="#3b82f6" />
-          <JourneyManager displayed={displayed} scrollTarget={scrollTarget} />
-          <Environment preset="night" />
-        </Canvas>
-      </div>
-    </motion.div>
-  );
+    const overallOpacity = useTransform(scrollYProgress, [0.85, 1], [1, 0]);
+
+    return (
+        <motion.div
+            style={{ opacity: overallOpacity }}
+            className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
+        >
+            <div className="sticky top-0 w-full h-screen font-sans">
+                <Canvas gl={{ antialias: true, alpha: true }} camera={{ position: [0, 0, 20], fov: 75 }}>
+                    <color attach="background" args={["#020d1a"]} />
+                    <fog attach="fog" args={["#020d1a", 10, 150]} />
+                    <ambientLight intensity={0.4} />
+                    <pointLight position={[20, 20, -50]} intensity={2} color="#3b82f6" />
+                    <JourneyManager displayed={displayed} scrollTarget={scrollTarget} />
+                    <Environment preset="night" />
+                </Canvas>
+            </div>
+        </motion.div>
+    );
 }

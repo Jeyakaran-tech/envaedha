@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Navbar from "../components/ui/navbar";
 import Footer from "../components/ui/footer";
 import Hero from "../components/sections/hero";
@@ -6,6 +7,11 @@ import Services from "../components/sections/services";
 import CaseStudies from "../components/sections/case-studies";
 import Metrics from "../components/sections/metrics";
 import CTASection from "../components/sections/cta-section";
+
+export const metadata: Metadata = {
+  title: "AI Consulting Melbourne | Automation & AI Agents for SMBs | Envaedha",
+  description: "Envaedha helps Melbourne small and medium businesses automate workflows, build AI agents, and unlock data insights. Book a free consultation.",
+};
 
 export default function HomePage() {
   return (

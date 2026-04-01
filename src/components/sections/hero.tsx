@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Hero3D from "../ui/hero-3d";
 
-const WORDS = ["Intelligence", "Autonomy", "Convergence", "Reasoning", "Perception"];
+const WORDS = ["Automation", "AI Agents", "Efficiency", "Growth", "Insights"];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);

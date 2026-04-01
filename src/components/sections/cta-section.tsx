@@ -54,7 +54,7 @@ export default function CTASection() {
                                     onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#fff" }}
                                     onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#e2eeff" }}
                                 >
-                                    Book Architecture Review
+                                    Book Free Consultation
                                 </button>
                             </Link>
                             <Link href="mailto:hello@envaedha.ai">

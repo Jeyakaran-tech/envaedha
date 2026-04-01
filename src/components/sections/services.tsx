@@ -169,19 +169,19 @@ function FullStackVisual() {
             const pins = [
                 // top (x offset, y offset from chip edge)
                 { x: cx - 20, y: cy - chipH / 2, dir: "top" },
-                { x: cx,      y: cy - chipH / 2, dir: "top" },
+                { x: cx, y: cy - chipH / 2, dir: "top" },
                 { x: cx + 20, y: cy - chipH / 2, dir: "top" },
                 // bottom
                 { x: cx - 20, y: cy + chipH / 2, dir: "bottom" },
-                { x: cx,      y: cy + chipH / 2, dir: "bottom" },
+                { x: cx, y: cy + chipH / 2, dir: "bottom" },
                 { x: cx + 20, y: cy + chipH / 2, dir: "bottom" },
                 // left
                 { x: cx - chipW / 2, y: cy - 20, dir: "left" },
-                { x: cx - chipW / 2, y: cy,      dir: "left" },
+                { x: cx - chipW / 2, y: cy, dir: "left" },
                 { x: cx - chipW / 2, y: cy + 20, dir: "left" },
                 // right
                 { x: cx + chipW / 2, y: cy - 20, dir: "right" },
-                { x: cx + chipW / 2, y: cy,      dir: "right" },
+                { x: cx + chipW / 2, y: cy, dir: "right" },
                 { x: cx + chipW / 2, y: cy + 20, dir: "right" },
             ];
 
@@ -193,9 +193,9 @@ function FullStackVisual() {
                 // Draw L-shaped trace
                 ctx.beginPath();
                 ctx.moveTo(pin.x, pin.y);
-                if (pin.dir === "top")   { ey = pin.y - traceLen; }
+                if (pin.dir === "top") { ey = pin.y - traceLen; }
                 if (pin.dir === "bottom") { ey = pin.y + traceLen; }
-                if (pin.dir === "left")  { ex = pin.x - traceLen; }
+                if (pin.dir === "left") { ex = pin.x - traceLen; }
                 if (pin.dir === "right") { ex = pin.x + traceLen; }
                 ctx.lineTo(ex, ey);
                 ctx.strokeStyle = `rgba(96,165,250,${tracePulse * 0.6})`;
@@ -348,16 +348,16 @@ const SERVICES = [
     {
         category: "AGENTIC_SYSTEMS",
         title: "Agents that plan, act, and reflect.",
-        desc: "Multi-agent orchestration systems built with LangGraph, AutoGen and custom tool-calling frameworks. Agents that don't just respond — they reason across steps and recover from failure.",
+        desc: "We build and deploy autonomous AI agents in Melbourne to handle complex tasks. From custom tool-calling frameworks to full workflow automation in Melbourne, our agents are designed to recover from failure and reason across steps.",
         visual: <AgentVisual />,
         items: [
-            "Autonomous Agents",
+            "AI agents Melbourne",
             "Multi-Agent Orchestration",
+            "Workflow Automation Melbourne",
+            "Autonomous Planning",
             "RAG Architectures",
-            "Semantic Search",
-            "Agentic Workflows",
-            "Tool-Calling Frameworks",
-            "Synthetic Data",
+            "Custom Tool-Calling",
+            "Agent Performance Evaluation",
         ],
     },
     {
