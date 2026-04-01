@@ -8,6 +8,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -15,57 +16,93 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 const BLOG_POSTS = [
     {
         id: "01",
-        date: "MARCH 26, 2026",
-        category: "HARDWARE",
-        title: "NVIDIA Rubin: The Trillion-Parameter Epoch",
-        excerpt: "NVIDIA's Vera Rubin platform launches, promising a 10x reduction in training costs for massive models and redefining the efficiency of AI factories.",
-        source: "NVIDIA Newsroom",
-        url: "https://nvidianews.nvidia.com/news/nvidia-vera-rubin-platform",
+        date: "APRIL 01, 2026",
+        category: "AUTOMATION",
+        title: "How Melbourne Small Businesses Are Using AI to Save 10+ Hours a Week",
+        excerpt: "Learn how Melbourne-based SMBs are leveraging custom AI automation to reclaim their workweek and focus on strategic growth.",
+        source: "Envaedha Intelligence",
+        url: "/blog/ai-automation-melbourne-small-business",
+        isInternal: true,
     },
     {
         id: "02",
-        date: "MARCH 25, 2026",
-        category: "RESEARCH",
-        title: "TurboQuant: Google's 3-bit Breakthrough",
-        excerpt: "Google Research unveils TurboQuant—a suite of advanced quantization algorithms including PolarQuant that compress LLMs without performance loss.",
-        source: "Google Research",
-        url: "https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/",
+        date: "MARCH 29, 2026",
+        category: "AGENTS",
+        title: "AI Chatbots for Melbourne SMBs: What to Know Before You Build",
+        excerpt: "Don't build a basic chatbot. Learn what Melbourne small businesses need to know to build truly intelligent AI support systems.",
+        source: "Envaedha Intelligence",
+        url: "/blog/ai-chatbot-melbourne-smb",
+        isInternal: true,
     },
     {
         id: "03",
-        date: "MARCH 24, 2026",
-        category: "AGENTS",
-        title: "The Agentic Shift: Gemini 3 & Claude 4.6",
-        excerpt: "A deep dive into how Gemini 3 and Claude 4.6 are transitioning from static chat interfaces to autonomous agents capable of complex multi-step reasoning.",
-        source: "Google Developers",
-        url: "https://developers.googleblog.com/closing-the-knowledge-gap-with-agent-skills/",
+        date: "MARCH 20, 2026",
+        category: "RESEARCH",
+        title: "The Beginner's Guide to AI Agents for Australian Businesses",
+        excerpt: "A comprehensive guide to understanding AI agents and how they are revolutionizing the Australian business landscape.",
+        source: "Envaedha Intelligence",
+        url: "/blog/ai-agents-australia-guide",
+        isInternal: true,
     },
     {
         id: "04",
-        date: "MARCH 17, 2026",
-        category: "MODELS",
-        title: "OpenAI Deploys GPT-5.4 and GPT-5.4 Pro",
-        excerpt: "The latest iteration of GPT-5 focuses on advanced tool-use and autonomous software engineering, directly integrated into the OpenAI API and ChatGPT.",
-        source: "OpenAI Blog",
-        url: "https://openai.com/index/introducing-gpt-5-4/",
+        date: "MARCH 26, 2026",
+        category: "HARDWARE",
+        title: "NVIDIA Rubin: The Trillion-Parameter Epoch",
+        excerpt: "NVIDIA's Vera Rubin platform launches, promising a 10x reduction in training costs for massive models and redefining compute efficiency.",
+        source: "Envaedha Intelligence",
+        url: "/blog/nvidia-rubin-trillion-parameter",
+        isInternal: true,
     },
     {
         id: "05",
-        date: "MARCH 12, 2026",
-        category: "INFRASTRUCTURE",
-        title: "Lyria 3 Pro: DeepMind's Creative Core",
-        excerpt: "Google DeepMind launches Lyria 3 Pro, a multimodal model that unified vision, audio, and reasoning benchmarks across creative industries.",
-        source: "DeepMind Blog",
-        url: "https://deepmind.google/blog/lyria-3-pro-multimodal-creative-intelligence/",
+        date: "MARCH 25, 2026",
+        category: "RESEARCH",
+        title: "TurboQuant: Google's 3-bit Breakthrough",
+        excerpt: "Google Research unveils TurboQuant—a suite of advanced quantization algorithms including PolarQuant that compress LLMs without loss.",
+        source: "Envaedha Intelligence",
+        url: "/blog/google-research-turboquant",
+        isInternal: true,
     },
     {
         id: "06",
+        date: "MARCH 24, 2026",
+        category: "AGENTS",
+        title: "The Agentic Shift: Gemini 3 & Claude 4.6",
+        excerpt: "A deep dive into how Gemini 3 and Claude 4.6 are transitioning from static chat interfaces to autonomous agents with reasoning loops.",
+        source: "Envaedha Intelligence",
+        url: "/blog/the-agentic-shift-gemini-3-claude-4",
+        isInternal: true,
+    },
+    {
+        id: "07",
+        date: "MARCH 17, 2026",
+        category: "MODELS",
+        title: "OpenAI Deploys GPT-5.4 and GPT-5.4 Pro",
+        excerpt: "The latest GPT iteration focuses on advanced tool-use and autonomous software engineering, featuring a new Verification Layer for reliability.",
+        source: "Envaedha Intelligence",
+        url: "/blog/openai-gpt-5-4-deployment",
+        isInternal: true,
+    },
+    {
+        id: "08",
+        date: "MARCH 12, 2026",
+        category: "INFRASTRUCTURE",
+        title: "Lyria 3 Pro: DeepMind's Creative Core",
+        excerpt: "Google DeepMind launches Lyria 3 Pro, a multimodal model that unifies vision, audio, and reasoning in a single latent space for creative scale.",
+        source: "Envaedha Intelligence",
+        url: "/blog/deepmind-lyria-3-pro",
+        isInternal: true,
+    },
+    {
+        id: "09",
         date: "MARCH 05, 2026",
         category: "SECURITY",
         title: "Agentic SIEM: Databricks Lakewatch",
-        excerpt: "Databricks introduces the first agentic security information and event management system, leveraging autonomous agents for real-time threat response.",
-        source: "Databricks Blog",
-        url: "https://www.databricks.com/blog/databricks-announces-lakewatch-new-open-agentic-siem",
+        excerpt: "Databricks introduces the first agentic security management system, leveraging autonomous agents for real-time investigation and response.",
+        source: "Envaedha Intelligence",
+        url: "/blog/databricks-agentic-siem",
+        isInternal: true,
     },
 ];
 
@@ -170,15 +207,25 @@ function BlogPostCard({ post, index }: { post: typeof BLOG_POSTS[0], index: numb
 
                         <div className={`flex items-center justify-between pt-6 border-t border-blue-500/5 ${isEven ? "md:flex-row-reverse" : "flex-row"}`}>
                             <span className="font-mono text-[10px] uppercase" style={{ color: "#1e4a7a" }}>SOURCE: {post.source}</span>
-                            <a
-                                href={post.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="font-mono text-[11px] tracking-widest transition-colors flex items-center gap-2 group/btn"
-                                style={{ color: "#3b82f6" }}
-                            >
-                                READ_INTEL <span className="group-hover/btn:translate-x-1 transition-transform">↗</span>
-                            </a>
+                            {post.isInternal ? (
+                                <Link
+                                    href={post.url}
+                                    className="font-mono text-[11px] tracking-widest transition-colors flex items-center gap-2 group/btn"
+                                    style={{ color: "#3b82f6" }}
+                                >
+                                    READ_INTEL <span className="group-hover/btn:translate-x-1 transition-transform">↗</span>
+                                </Link>
+                            ) : (
+                                <a
+                                    href={post.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-mono text-[11px] tracking-widest transition-colors flex items-center gap-2 group/btn"
+                                    style={{ color: "#3b82f6" }}
+                                >
+                                    READ_INTEL <span className="group-hover/btn:translate-x-1 transition-transform">↗</span>
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>
