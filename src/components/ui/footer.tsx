@@ -62,7 +62,7 @@ export default function Footer() {
                         <h3 className="text-[#93c5fd] text-[13px] font-mono tracking-[0.2em] mb-8 uppercase">Envaedha</h3>
                         <ul className="flex flex-col gap-4 font-sans text-base text-neutral-400">
                             <li className="hover:text-white transition-colors"><Link href="/#who-we-are">About Us</Link></li>
-                            <li className="hover:text-white transition-colors"><Link href="mailto:hello@envaedha.ai">Email Inquiry</Link></li>
+                            <li className="hover:text-white transition-colors"><Link href="mailto:admin@envaedha.com.au">Email Inquiry</Link></li>
                             <li className="hover:text-white transition-colors"><Link href="/schedule-a-meeting">Book Architecture Review</Link></li>
                         </ul>
                     </div>

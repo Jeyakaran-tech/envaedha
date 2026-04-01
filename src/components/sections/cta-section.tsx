@@ -57,7 +57,7 @@ export default function CTASection() {
                                     Book Free Consultation
                                 </button>
                             </Link>
-                            <Link href="mailto:hello@envaedha.ai">
+                            <Link href="mailto:admin@envaedha.com.au">
                                 <button
                                     className="w-full lg:w-auto px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all font-mono"
                                     style={{
