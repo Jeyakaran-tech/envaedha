@@ -30,6 +30,7 @@ const officeCodePro = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://envaedha.com.au"),
   title: "Envaedha | AI Consulting",
   description: "Accelerating enterprise intelligence with custom neural architectures and LLM solutions.",
 };
