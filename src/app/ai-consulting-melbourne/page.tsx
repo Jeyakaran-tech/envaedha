@@ -5,7 +5,7 @@ import CTASection from "@/components/sections/cta-section";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Consulting Melbourne | Expert AI Agents & Automation | Envaedha",
+  title: "AI Consulting Melbourne | Envaedha",
   description: "Specialized AI consulting for Melbourne small and medium businesses. We build autonomous AI agents, intelligent workflow automation, and predictive data solutions.",
 };
 
@@ -26,7 +26,7 @@ export default function MelbourneLandingPage() {
               // FRONTIER.TECHNOLOGY.MELBOURNE
             </p>
             <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-[#e2eeff] leading-tight mb-8">
-              AI Consulting <span className="text-blue-500">Melbourne</span>
+              AI Consulting for <span className="text-blue-500">Melbourne SMBs</span>
             </h1>
             <p className="max-w-2xl mx-auto text-lg sm:text-xl text-[#94a3b8] leading-relaxed mb-12">
               Transforming Melbourne SMBs through custom neural architectures, autonomous agents, and intelligent workflow automation. Engineering local growth with global-scale technology.

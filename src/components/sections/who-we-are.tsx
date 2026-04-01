@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const principles = [
@@ -83,8 +84,8 @@ export default function WhoWeAre() {
                         — not just responds.
                     </h2>
                     <p className="mt-8 text-lg font-sans leading-relaxed max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
-                        We provide <span style={{ color: "#93c5fd" }}>AI consulting in Melbourne</span> specifically tailored for 
-                        small business growth. We help you implement <span style={{ color: "#93c5fd" }}>AI automation for small business</span> efficiency, 
+                        We provide <Link href="/ai-consulting-melbourne" className="text-[#93c5fd] hover:underline underline-offset-4 decoration-blue-500/30">AI consulting in Melbourne</Link> specifically tailored for
+                        small business growth. We help you implement <span style={{ color: "#93c5fd" }}>AI automation for small business</span> efficiency,
                         owning the technical complexity so you can focus on scale.
                     </p>
                 </div>
