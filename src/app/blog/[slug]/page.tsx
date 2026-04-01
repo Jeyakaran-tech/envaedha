@@ -16,79 +16,79 @@ const POSTS_CONTENT: Record<string, {
 }> = {
     "ai-automation-melbourne-small-business": {
         title: "How Melbourne Small Businesses Are Using AI to Save 10+ Hours a Week",
-        subtitle: "A practical guide to tactical automation.",
+        subtitle: "A practical guide to tactical automation and operational leverage.",
         date: "APRIL 01, 2026",
         category: "AUTOMATION",
         description: "Learn how Melbourne-based SMBs are leveraging custom AI automation to reclaim their workweek and focus on strategic growth.",
         content: `
-            <p>In the competitive landscape of Melbourne’s small business sector, time is the most expensive commodity. From boutique agencies in South Yarra to manufacturing firms in Dandenong, the pressure to "do more with less" has never been higher. However, a new wave of <strong>AI automation in Melbourne</strong> is changing the math of productivity.</p>
+            <p>In the competitive landscape of Melbourne’s small business sector, <strong>time is the most expensive commodity.</strong> From boutique agencies in South Yarra to manufacturing firms in Dandenong, the pressure to "do more with less" has never been higher. However, a <em>new wave of AI automation in Melbourne</em> is changing the math of productivity.</p>
             
             <h2>The Hidden Cost of Manual Labor</h2>
-            <p>Every small business owner knows the feeling of being bogged down by "administrative drag." This includes everything from manual data entry and invoice processing to responding to repetitive customer inquiries. Our research indicates that most Melbourne SMB owners lose approximately 15 hours a week to tasks that are now fully automatable.</p>
+            <p>Every small business owner knows the feeling of being bogged down by "administrative drag." This includes everything from manual data entry and invoice processing to responding to repetitive customer inquiries. Our research indicates that <strong>most Melbourne SMB owners lose approximately 15 hours a week</strong> to tasks that are now <em>fully automatable.</em></p>
 
             <h2>Three Ways to Reclaim Your 10 Hours</h2>
             <h3>1. Intelligent Email Triage</h3>
-            <p>Most service businesses spend 3-4 hours daily just managing their inbox. By deploying custom neural triage systems, businesses can automatically categorize incoming leads, draft initial responses based on historical data, and flag high-priority issues for human review. This alone can save up to 5 hours per week.</p>
+            <p>Most service businesses spend 3-4 hours daily just managing their inbox. By deploying <strong>custom neural triage systems</strong>, businesses can automatically categorize incoming leads, draft initial responses based on historical data, and flag high-priority issues for human review. This alone can save up to <em>5 hours per week.</em></p>
 
             <h3>2. Predictive Inventory & Scheduling</h3>
-            <p>For Melbourne’s retail and logistics sectors, AI-driven demand forecasting prevents the costly mistakes of overstocking or missed opportunities. Automation systems can now predict seasonal shifts (like the Moomba festival or AFL Grand Final rush) and adjust orders automatically.</p>
+            <p>For Melbourne’s retail and logistics sectors, <strong>AI-driven demand forecasting</strong> prevents the costly mistakes of overstocking or missed opportunities. Automation systems can now <em>predict seasonal shifts</em> (like the Moomba festival or AFL Grand Final rush) and adjust orders automatically.</p>
 
             <h3>3. Automated Reporting Convergence</h3>
-            <p>Instead of manually pulling data from Xero, Shopify, and Google Ads every Friday, SMBs are using integrated data pipelines to generate real-time performance dashboards. What used to take a human 2 hours now happens in 2 seconds.</p>
+            <p>Instead of manually pulling data from Xero, Shopify, and Google Ads every Friday, SMBs are using <strong>integrated data pipelines</strong> to generate real-time performance dashboards. What used to take a human 2 hours now happens in <em>under 2 seconds.</em></p>
 
             <h2>Getting Started Locally</h2>
-            <p>The key to successful <strong>AI automation for small business</strong> is starting small. You don't need a million-dollar budget to begin. By targeting just one repetitive workflow, you can prove the ROI in weeks, not years. At Envaedha, we specialize in mapping these workflows and implementing the surgical automation required to scale.</p>
+            <p>The key to successful <strong>AI automation for small business</strong> is starting small. You don't need a million-dollar budget to begin. By targeting just <em>one repetitive workflow</em>, you can prove the ROI in weeks, not years. At Envaedha, we specialize in mapping these workflows and implementing the surgical automation required to scale.</p>
         `
     },
     "ai-chatbot-melbourne-smb": {
         title: "AI Chatbots for Melbourne SMBs: What to Know Before You Build",
-        subtitle: "Moving beyond basic templates to intelligent agents.",
+        subtitle: "Moving beyond basic templates to intelligent agents that actually solve problems.",
         date: "MARCH 29, 2026",
         category: "AGENTS",
         description: "Don't build a basic chatbot. Learn what Melbourne small businesses need to know to build truly intelligent AI support systems.",
         content: `
-            <p>The era of the "dumb" chatbot—the one that only gives scripted answers and leaves customers frustrated—is officially over. For <strong>Melbourne SMBs</strong>, the new standard is the Intelligent Agent. These systems don't just chat; they understand context, reference your specific documentation, and solve actual problems.</p>
+            <p>The era of the "dumb" chatbot—the one that only gives scripted answers and leaves customers frustrated—is <strong>officially over.</strong> For <strong>Melbourne SMBs</strong>, the new standard is the <em>Intelligent Agent.</em> These systems don't just chat; they understand context, reference your specific documentation, and solve actual problems.</p>
 
             <h2>Why Traditional Chatbots Fail</h2>
-            <p>Most businesses make the mistake of using rigid, button-based templates. They are essentially just interactive FAQs. In a market as sophisticated as Melbourne, customers expect a more conversational and efficient experience. If your chatbot can't handle a follow-up question or understand a nuanced request, it’s hurting your brand.</p>
+            <p>Most businesses make the mistake of using rigid, button-based templates. They are essentially just interactive FAQs. In a market as sophisticated as Melbourne, <strong>customers expect a more conversational and efficient experience.</strong> If your chatbot can't handle a follow-up question or understand a nuanced request, it’s <em>hurting your brand.</em></p>
 
             <h2>The 3 Pillars of a Successful SMB Chatbot</h2>
             <h3>1. Proprietary Knowledge Base (RAG)</h3>
-            <p>Your chatbot should be "grounded" in your business data. Using Retrieval-Augmented Generation (RAG), we ensure your AI only answers based on your actual product sheets, pricing guides, and service terms. This eliminates "hallucinations" and ensures accuracy.</p>
+            <p>Your chatbot should be <strong>"grounded" in your business data.</strong> Using Retrieval-Augmented Generation (RAG), we ensure your AI only answers based on your actual product sheets, pricing guides, and service terms. This <em>eliminates "hallucinations"</em> and ensures accuracy.</p>
 
             <h3>2. Seamless Escalation</h3>
-            <p>Knowledge is knowing the limit of your own understanding. A great <strong>AI chatbot for Melbourne SMBs</strong> knows exactly when a problem requires a human touch and hands it off to your staff with a full summary of the conversation, so the customer never has to repeat themselves.</p>
+            <p>Knowledge is knowing the limit of your own understanding. A great <strong>AI chatbot for Melbourne SMBs</strong> knows exactly when a problem requires a human touch and hands it off to your staff with a <em>full summary of the conversation</em>, so the customer never has to repeat themselves.</p>
 
             <h3>3. Integration with Local Tools</h3>
-            <p>To be truly useful, your bot needs to talk to your existing stack. Whether it's checking your stock in Shopify or booking a session in Calendly, an integrated bot is an employee, not just a widget.</p>
+            <p>To be truly useful, your bot needs to talk to your existing stack. Whether it's checking your stock in Shopify or booking a session in Calendly, an <strong>integrated bot is an employee</strong>, not just a widget.</p>
 
             <h2>The Melbourne Advantage</h2>
-            <p>Building local means understanding local nuance. A chatbot built by Envaedha understands the Melbourne customer—from local slang to specific Victorian business hours and holidays. We build tailored experiences that feel like a local extension of your team.</p>
+            <p>Building local means understanding local nuance. A chatbot built by Envaedha understands the Melbourne customer—from local slang to specific Victorian business hours and holidays. We build <em>tailored experiences</em> that feel like a local extension of your team.</p>
         `
     },
     "ai-agents-australia-guide": {
         title: "The Beginner's Guide to AI Agents for Australian Businesses",
-        subtitle: "From automation to autonomy.",
+        subtitle: "From automation to true operational autonomy.",
         date: "MARCH 20, 2026",
         category: "RESEARCH",
         description: "A comprehensive guide to understanding AI agents and how they are revolutionizing the Australian business landscape.",
         content: `
-            <p>While "AI" has been a buzzword for years, the real revolution for <strong>Australian businesses</strong> is just beginning with the rise of AI Agents. Unlike traditional software, which waits for a command, an AI Agent can be given a goal and then autonomously plans and executes the steps required to achieve it.</p>
+            <p>While "AI" has been a buzzword for years, the real revolution for <strong>Australian businesses</strong> is just beginning with the rise of <em>AI Agents.</em> Unlike traditional software, which waits for a command, an AI Agent can be given a goal and then <strong>autonomously plans and executes</strong> the steps required to achieve it.</p>
 
             <h2>What is an AI Agent?</h2>
-            <p>Think of an AI Agent as a digital worker that has been "hired" to perform a specific function—like Lead Generation, Customer Support, or Market Research. They have "tools" (the ability to search the web, use apps, and write code) and "memory" (the ability to learn from previous interactions).</p>
+            <p>Think of an AI Agent as a <strong>digital worker</strong> that has been "hired" to perform a specific function—like Lead Generation, Customer Support, or Market Research. They have "tools" (the ability to search the web, use apps, and write code) and "memory" (the ability to learn from previous interactions).</p>
 
             <h2>Why Australia is Prone for an Agent Revolution</h2>
-            <p>Australia has some of the highest labor costs in the world. For many Australian SMEs, scaling up often means a massive increase in headcount risk. <strong>AI agents in Australia</strong> provide a way to scale operationally without purely relying on finding and training traditional staff for repetitive high-cognitive tasks.</p>
+            <p>Australia has some of the <strong>highest labor costs in the world.</strong> For many Australian SMEs, scaling up often means a massive increase in headcount risk. <strong>AI agents in Australia</strong> provide a way to <em>scale operationally</em> without purely relying on finding and training traditional staff for repetitive high-cognitive tasks.</p>
 
             <h2>Where to Start Your Agent Journey</h2>
             <ol>
                 <li><strong>Identify the 'Cognitive Mundane':</strong> Tasks that require thinking but are repetitive (e.g., checking NDAs, drafting proposal responses).</li>
-                <li><strong>Define the Guardrails:</strong> Determine what the agent is allowed to do and when it must stop to ask for permission.</li>
-                <li><strong>Continuous Evaluation:</strong> Unlike static software, an agent's performance improves with feedback. Set up a regular "performance review" for your digital workforce.</li>
+                <li><strong>Define the Guardrails:</strong> Determine what the agent is allowed to do and when it <em>must stop to ask for permission.</em></li>
+                <li><strong>Continuous Evaluation:</strong> Unlike static software, an agent's performance improves with feedback. Set up a regular <strong>"performance review"</strong> for your digital workforce.</li>
             </ol>
 
-            <p>The transition from a business that "uses AI" to a business that is "AI-native" is the single greatest competitive advantage available to Australian companies in 2026. At Envaedha, we help you navigate this transition safely and effectively.</p>
+            <p>The transition from a business that "uses AI" to a business that is <strong>AI-native</strong> is the single greatest competitive advantage available to Australian companies in 2026. At Envaedha, we help you navigate this transition <em>safely and effectively.</em></p>
         `
     },
     "nvidia-rubin-trillion-parameter": {
@@ -209,47 +209,49 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
             <Navbar />
 
             <main className="flex-1 pt-40 pb-32">
-                <div className="mx-auto max-w-4xl px-6 lg:px-8">
+                <div className="mx-auto max-w-3xl px-6 lg:px-8">
 
                     {/* Header */}
-                    <div className="mb-16 border-b border-blue-900/10 pb-12">
-                        <div className="flex items-center gap-4 mb-6">
-                            <span className="font-mono text-[11px] tracking-widest px-3 py-1 rounded-full"
-                                style={{ background: "rgba(59,130,246,0.08)", color: "#3b82f6", border: "1px solid rgba(59,130,246,0.15)" }}>
+                    <div className="mb-20 border-b border-blue-900/10 pb-16">
+                        <div className="flex items-center gap-4 mb-8">
+                            <span className="font-mono text-[11px] tracking-[0.2em] px-3 py-1 rounded-md"
+                                style={{ background: "rgba(59,130,246,0.06)", color: "#93c5fd", border: "1px solid rgba(59,130,246,0.1)" }}>
                                 {post.category}
                             </span>
                             <span className="font-mono text-[11px] text-neutral-500 uppercase tracking-widest">{post.date}</span>
                         </div>
-                        <h1 className="text-4xl sm:text-6xl font-bold text-[#e2eeff] mb-6 leading-tight">
+                        <h1 className="text-4xl sm:text-7xl font-bold text-[#e2eeff] mb-10 leading-[1.1] tracking-tight">
                             {post.title}
                         </h1>
-                        <p className="text-xl text-blue-300 opacity-80 italic">
+                        <p className="text-xl sm:text-2xl text-blue-300 opacity-60 italic font-serif leading-relaxed">
                             {post.subtitle}
                         </p>
                     </div>
 
                     {/* Content */}
                     <article
-                        className="prose prose-invert prose-lg max-w-none 
-                        prose-headings:text-[#e2eeff] prose-headings:font-bold 
-                        prose-p:text-[#cbd5e1] prose-p:leading-relaxed
-                        prose-strong:text-blue-400 prose-a:text-blue-500
-                        prose-li:text-[#cbd5e1]"
+                        className="font-serif prose prose-invert prose-2xl max-w-none 
+                        prose-headings:text-[#e2eeff] prose-headings:font-bold prose-headings:tracking-tight prose-headings:mt-24 prose-headings:mb-12
+                        prose-p:text-[#cbd5e1] prose-p:leading-[2] prose-p:mb-16 prose-p:text-xl
+                        prose-strong:text-[#e2eeff] prose-strong:font-bold
+                        prose-em:text-[#93c5fd] prose-em:italic
+                        prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+                        prose-li:text-[#cbd5e1] prose-li:leading-[2] prose-li:mb-8"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
 
                     {/* Footer / CTA */}
-                    <div className="mt-24 p-12 rounded-3xl border border-blue-900/10 bg-blue-950/10 text-center">
+                    <div className="mt-32 p-12 rounded-3xl border border-blue-900/10 bg-blue-950/10 text-center">
                         <h3 className="text-2xl font-bold text-[#e2eeff] mb-4">Interested in implementing these systems?</h3>
-                        <p className="text-neutral-400 mb-8">Let's discuss how we can adapt these frontier technologies for your business.</p>
+                        <p className="text-neutral-400 mb-8 max-w-md mx-auto">Let's discuss how we can adapt these frontier technologies for your business scale.</p>
                         <Link href="/schedule-a-meeting">
-                            <button className="px-8 py-3 bg-white text-black rounded-full font-bold">
+                            <button className="px-10 py-4 bg-white text-black rounded-full font-bold transition-all hover:scale-105 active:scale-95">
                                 Book Architecture Review
                             </button>
                         </Link>
                     </div>
 
-                    <div className="mt-12 text-center">
+                    <div className="mt-16 text-center">
                         <Link href="/blog" className="text-blue-400 font-mono text-sm tracking-widest hover:text-blue-300 transition-colors uppercase">
                             ← Back_to_Blog
                         </Link>

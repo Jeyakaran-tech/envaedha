@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Newsreader } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const cothamSans = localFont({
   src: "../../public/fonts/CothamSans.otf",
   variable: "--font-sans",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  style: ["normal", "italic"],
 });
 
 const officeCodePro = localFont({
@@ -43,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <body
-        className={`${cothamSans.variable} ${officeCodePro.variable} antialiased font-sans bg-black text-white`}
+        className={`${cothamSans.variable} ${newsreader.variable} ${officeCodePro.variable} antialiased font-sans bg-black text-white`}
       >
         <ThemeProvider
           attribute="class"
