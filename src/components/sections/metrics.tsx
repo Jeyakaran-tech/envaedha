@@ -12,41 +12,41 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 const PRINCIPLES = [
     {
         id: "01",
-        title: "We don't sell tools. We own outcomes.",
-        body: "Most AI vendors offer APIs and dashboards. We build the full intelligence layer — fine-tuning, pipelines, evaluation, deployment — and stay accountable to the result, not the deliverable.",
+        title: "We don't solve tools. We solve problems.",
+        body: "Most AI vendors sell you a subscription and leave. We build the entire system for you—from training the models to integrating them with your team—and we're accountable for the final result.",
     },
     {
         id: "02",
-        title: "Engineering-first, not prompt-wrapper.",
-        body: "We go beneath the surface of foundation models. Our team works at the level of fine-tuning, RLHF, retrieval architecture, and inference infrastructure — not just prompt templates.",
+        title: "Real technology, not just templates.",
+        body: "We go deeper than simple chatbots. Our team works at the level of custom model training and smart knowledge engines, ensuring your AI is unique to your business and truly secure.",
     },
     {
         id: "03",
-        title: "Speed without sacrificing reliability.",
-        body: "We move fast because we have strong opinions about architecture developed through research and hands-on experimentation. We don't reinvent the wheel — we know which wheel to use.",
+        title: "Reliable results at speed.",
+        body: "We move fast because we know which AI strategies actually work in the real world. We don't experiment on your time; we implement proven architectures that deliver immediate value.",
     },
     {
         id: "04",
-        title: "We read the papers. We write the code.",
-        body: "EnVaedha sits at the intersection of applied AI research and production engineering. When a new technique ships on arXiv, we evaluate it against real workloads within days — not quarters.",
+        title: "Local experts, global standards.",
+        body: "Based in Melbourne, we bridge the gap between complex AI research and practical business application. We take the latest breakthroughs and turn them into simple, powerful tools for your team.",
     },
 ];
 
 const DIFFERENTIATORS = [
-    { label: "Every system we design is production-grade from day one", icon: "⬡" },
-    { label: "Deep expertise in LLMs, agents, RAG, and inference infra", icon: "⬡" },
-    { label: "Full-stack capability — from models to user interfaces", icon: "⬡" },
-    { label: "Built-in evaluation: we benchmark before we ship", icon: "⬡" },
-    { label: "Transparent on what AI can and can't do for your use case", icon: "⬡" },
+    { label: "Every system we build is designed for 24/7 reliability", icon: "⬡" },
+    { label: "Expertise in custom AI assistants and smart automation", icon: "⬡" },
+    { label: "Full-service approach — from strategy to the final app", icon: "⬡" },
+    { label: "Rigorous testing so your AI works correctly every time", icon: "⬡" },
+    { label: "Honest advice on what AI can (and can't) do for you", icon: "⬡" },
 ];
 
 const SECTORS = [
-    "Financial Services",
-    "Healthcare & MedTech",
-    "Legal & Compliance",
+    "Professional Services",
+    "Healthcare & Medical",
+    "Legal & Accounting",
     "Retail & E-Commerce",
-    "Enterprise SaaS",
-    "Manufacturing & IoT",
+    "Manufacturing & Trade",
+    "Small Business Operations",
 ];
 
 export default function Metrics() {
@@ -70,7 +70,7 @@ export default function Metrics() {
                 <div ref={headerRef} className="reveal mb-20 text-center">
                     <p className="font-mono text-[20px] tracking-[0.25em] mb-12" style={{ color: "#3b82f6" }}>// WHY_ENVAEDHA</p>
                     <h2 className="text-4xl sm:text-5xl font-bold tracking-tight max-w-3xl mx-auto leading-[1.1]" style={{ color: "#e2eeff" }}>
-                        The gap between AI demos<br />and production systems is where we live.
+                        We turn AI potential into<br />real business results.
                     </h2>
                 </div>
 

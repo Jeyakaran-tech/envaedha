@@ -316,78 +316,83 @@ function Cross() {
 /* ── Service rows data ───────────────────────────────────────────── */
 const SERVICES = [
     {
-        category: "FULL_STACK_AI",
-        title: "We engineer the full AI stack.",
-        desc: "Why bring multiple AI vendors into your pipeline when one deep-tech team can own your entire intelligence layer — from raw data to production inference?",
+        category: "STRATEGY_&_PLANNING",
+        title: "A clear AI roadmap for your business.",
+        desc: "We don't just build; we strategize. We identify the highest-impact AI opportunities for your Melbourne business and map a data-driven path to real ROI.",
         visual: <FullStackVisual />,
+        img: "/ai_strategy_planning_dashboard_1775199535911.png",
         items: [
-            "End-to-End Architectures",
-            "Multi-Vendor Strategy",
-            "Scalable Data Pipelines",
-            "Production GPU Serving",
-            "Performance Optimization",
-            "Security & Compliance",
-            "Continuous ML-Ops",
+            "AI Opportunity Audit",
+            "Strategy & Roadmap Design",
+            "Data Readiness Review",
+            "ROI & Feasibility Analysis",
+            "Implementation Planning",
+            "Risk & Safety Management",
+            "Team Training & Support",
         ],
     },
     {
-        category: "LANGUAGE_MODELS",
-        title: "LLM systems that know your domain.",
-        desc: "We fine-tune foundation models on your proprietary corpus, handle RLHF alignment, and build evaluation pipelines that measure what actually matters for your use case.",
+        category: "CUSTOM_MODELS",
+        title: "AI that speaks your business language.",
+        desc: "Generic AI is general. We train and fine-tune models on your unique business data, ensuring they understand your industry's specific terminology and customer needs.",
         visual: <LLMVisual />,
+        img: "/custom_ai_neural_data_ui_1775199668285.png",
         items: [
-            "Domain Fine-Tuning",
-            "RLHF & Constitutional AI",
-            "Prompt Engineering",
-            "Evaluation Benchmarking",
-            "Model Quantisation",
-            "Embedding Pipelines",
-            "Multi-Modal LLMs",
+            "Industry-Specific Tuning",
+            "Brand Voice Alignment",
+            "Secure Document Q&A",
+            "Custom Insights Engines",
+            "Privacy-First Local Models",
+            "Accurate Content Scaling",
+            "Multilingual Support",
         ],
     },
     {
-        category: "AGENTIC_SYSTEMS",
-        title: "Agents that plan, act, and reflect.",
-        desc: "We build and deploy autonomous AI agents in Melbourne to handle complex tasks. From custom tool-calling frameworks to full workflow automation in Melbourne, our agents are designed to recover from failure and reason across steps.",
+        category: "AUTONOMOUS_AGENTS",
+        title: "Digital employees that think and act.",
+        desc: "Moving beyond simple chat. We build and deploy AI agents that handle scheduling, data entry, and multi-step reasoning across your software stack with 24/7 reliability.",
         visual: <AgentVisual />,
+        img: "/autonomous_ai_agent_interface_1775199559450.png",
         items: [
-            "AI agents Melbourne",
-            "Multi-Agent Orchestration",
-            "Workflow Automation Melbourne",
-            "Autonomous Planning",
-            "RAG Architectures",
-            "Custom Tool-Calling",
-            "Agent Performance Evaluation",
+            "Self-Learning Assistants",
+            "Automated Operations",
+            "Workflow Integration",
+            "Intelligent Customer Service",
+            "Research & Reporting",
+            "Error-Free Task Execution",
+            "Scale Without Headcount",
         ],
     },
     {
-        category: "INFRASTRUCTURE_&_SAFETY",
-        title: "Infrastructure built to last at scale.",
-        desc: "GPU cluster design, inference serving with vLLM/TGI, vector databases, and constitutional safety frameworks — every layer hardened for enterprise reliability.",
+        category: "SAFETY_&_SECURITY",
+        title: "Enterprise-grade safety for peace of mind.",
+        desc: "We build rigid security layers and guardrails to ensure your AI systems are safe, reliable, and compliant with Australian business regulations and industry standards.",
         visual: <SafetyVisual />,
+        img: "/workflow_automation_pipeline_ui_1775199591770.png",
         items: [
-            "Neural Infrastructure",
-            "GPU Cluster Design",
-            "Inference Optimisation",
-            "Vector Database Setup",
-            "AI Governance",
-            "Red-Teaming",
-            "Compliance Guardrails",
+            "AI Governance & Policy",
+            "Data Privacy Hardening",
+            "Bias & Risk Mitigation",
+            "Regulatory Compliance",
+            "System Security Audits",
+            "Continuous Monitoring",
+            "Safe Output Filtering",
         ],
     },
     {
-        category: "CLOUD_SOLUTIONS",
-        title: "Cloud-native AI, built to scale globally.",
-        desc: "We design and deploy AI workloads on AWS, GCP, and Azure — serverless inference, auto-scaling pipelines, and multi-region architectures that grow with your product.",
+        category: "SCALING_&_SUPPORT",
+        title: "AI that grows with your business.",
+        desc: "We deploy and manage your AI systems in the cloud (AWS/GCP/Azure), ensuring they stay fast, reliable, and cost-effective as your company scales from Melbourne to the world.",
         visual: <CloudVisual />,
+        img: "/melbourne_smb_ai_office_1775199622059.png",
         items: [
-            "AWS / GCP / Azure",
-            "Serverless Inference",
-            "Auto-Scaling Pipelines",
-            "Multi-Region Deployments",
-            "Cost Optimisation",
-            "Cloud Security Posture",
-            "DevOps & CI/CD for AI",
+            "Cost-Effective Scaling",
+            "Reliable Cloud Hosting",
+            "Performance Monitoring",
+            "Automated Backups",
+            "Ongoing System Support",
+            "System Upgrades & Maintenance",
+            "Fractional AI Engineering",
         ],
     },
 ];
@@ -399,9 +404,9 @@ export default function Services() {
 
             {/* ── Centered Eyebrow ────────────────────────── */}
             <div className="mx-auto max-w-7xl px-6 lg:px-12 mb-20 text-center">
-                <p className="font-mono text-[20px] tracking-[0.25em]" style={{ color: "#3b82f6" }}>
+                <h2 className="font-mono text-[20px] tracking-[0.25em] h2" style={{ color: "#3b82f6" }}>
                     // CORE_CAPABILITIES
-                </p>
+                </h2>
             </div>
 
             {/* ── Unified Service grid ────────────────────────────────── */}
@@ -420,14 +425,24 @@ export default function Services() {
 
                         {/* ── Visual column ───────────────────────── */}
                         <div
-                            className="relative border-r hidden lg:block"
+                            className="relative border-r hidden lg:block overflow-hidden group/visual"
                             style={{
                                 borderColor: "rgba(59,130,246,0.1)",
                                 background: "#010c18",
                                 minHeight: 280,
                             }}
                         >
-                            {s.visual}
+                            <div className="absolute inset-0 opacity-40 group-hover/visual:opacity-20 transition-opacity duration-700">
+                                {s.visual}
+                            </div>
+                            {s.img && (
+                                <img 
+                                    src={s.img} 
+                                    alt={s.title}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/visual:opacity-90 group-hover/visual:scale-110 transition-all duration-700 mix-blend-lighten"
+                                />
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#010c18] via-transparent to-transparent opacity-60" />
                         </div>
 
                         {/* ── Title/Description column ────────────── */}

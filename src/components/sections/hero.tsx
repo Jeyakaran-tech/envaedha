@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Hero3D from "../ui/hero-3d";
 
-const WORDS = ["Automation", "AI Agents", "Efficiency", "Growth", "Insights"];
+const WORDS = ["Time", "Scale", "Profit", "Focus", "Growth"];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,11 +43,14 @@ export default function Hero() {
       id="hero-section"
       className="relative h-screen w-full overflow-hidden"
     >
-      {/*
-        ─────────────────────────────────────────────────────────
-        LAYOUT: 3D HEADLINE ZOOM (ONE-SCREEN JOURNEY)
-        ─────────────────────────────────────────────────────────
-      */}
+      <div className="absolute inset-0 z-0">
+          <img 
+            src="/envaedha_hero_bg_nebula_1775199729412.png" 
+            alt="Cosmic Nebula Background" 
+            className="w-full h-full object-cover opacity-60 mix-blend-screen"
+          />
+          <div className="absolute inset-0 bg-[#020d1a]/40" />
+      </div>
 
       <Hero3D displayed={displayed} scrollTarget={containerRef} />
 

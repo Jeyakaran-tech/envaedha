@@ -7,18 +7,18 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 const principles = [
     {
         num: "01",
-        label: "NO WRAPPERS",
-        body: "We don't sell pre-packaged AI products. Every system we build is designed from first principles for your data, your constraints, and your production environment.",
+        label: "CUSTOM BUILT",
+        body: "We don't do 'off-the-shelf'. Every system we build is tailored from the ground up for your specific business data, goals, and daily operations.",
     },
     {
         num: "02",
-        label: "RESEARCH-LED",
-        body: "Our engineers read the papers before they write the code. Every architectural decision is grounded in current academic research and real-world benchmarking.",
+        label: "RESULT DRIVEN",
+        body: "We focus on what works. Every decision is based on proven AI strategies that deliver measurable time-savings and operational efficiency for your team.",
     },
     {
         num: "03",
-        label: "PRODUCTION-FIRST",
-        body: "Demos are easy. Scaling to millions of inference calls with sub-100ms latency is not. We engineer for production from day one, never as an afterthought.",
+        label: "BUILT FOR GROWTH",
+        body: "Great ideas need to scale. We engineer systems that are reliable and fast, ensuring they perform perfectly as your business grows from trial to high-volume use.",
     },
 ];
 
@@ -73,20 +73,14 @@ export default function WhoWeAre() {
                         className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]"
                         style={{ color: "#c7dff7" }}
                     >
-                        We embed AI that thinks,{" "}
+                        AI that doesn&apos;t just chat.{" "}
                         <span style={{ color: "#93c5fd", filter: "drop-shadow(0 0 20px rgba(147,197,253,0.3))" }}>
-                            reasons
+                            It does the work.
                         </span>
-                        , and{" "}
-                        <span style={{ color: "#93c5fd", filter: "drop-shadow(0 0 20px rgba(147,197,253,0.3))" }}>
-                            executes
-                        </span>{" "}
-                        — not just responds.
                     </h2>
                     <p className="mt-8 text-lg font-sans leading-relaxed max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
                         We provide <Link href="/ai-consulting-melbourne" className="text-[#93c5fd] hover:underline underline-offset-4 decoration-blue-500/30">AI consulting in Melbourne</Link> specifically tailored for
-                        small business growth. We help you implement <span style={{ color: "#93c5fd" }}>AI automation for small business</span> efficiency,
-                        owning the technical complexity so you can focus on scale.
+                        small business growth. We help you automate time-consuming tasks so you can focus on scaling your business.
                     </p>
                 </div>
 

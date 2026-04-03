@@ -49,6 +49,7 @@ export default function Navbar() {
                         <NavLink href="/#why-us" isActive={activeLink === "#why-us"} onClick={() => handleLinkClick("#why-us")}>WHY US</NavLink>
                         <NavLink href="/blog" isActive={activeLink === "/blog"} onClick={() => handleLinkClick("/blog")}>BLOG</NavLink>
                         <NavLink href="/#who-we-are" isActive={activeLink === "#who-we-are"} onClick={() => handleLinkClick("#who-we-are")}>ABOUT</NavLink>
+                        <NavLink href="/contact" isActive={activeLink === "/contact"} onClick={() => handleLinkClick("/contact")}>CONTACT</NavLink>
                     </div>
 
                     <div className="flex items-center gap-4 pl-6 border-l border-white/10 ml-4">
@@ -78,6 +79,7 @@ export default function Navbar() {
                         <MobileNavLink href="/#why-us" isActive={activeLink === "#why-us"} onClick={() => handleLinkClick("#why-us")}>WHY US</MobileNavLink>
                         <MobileNavLink href="/blog" isActive={activeLink === "/blog"} onClick={() => handleLinkClick("/blog")}>BLOG</MobileNavLink>
                         <MobileNavLink href="/#who-we-are" isActive={activeLink === "#who-we-are"} onClick={() => handleLinkClick("#who-we-are")}>ABOUT</MobileNavLink>
+                        <MobileNavLink href="/contact" isActive={activeLink === "/contact"} onClick={() => handleLinkClick("/contact")}>CONTACT</MobileNavLink>
                         <Link href="/schedule-a-meeting" className="pt-4">
                             <Button className="w-full bg-primary text-white rounded-full py-4 text-sm font-extrabold font-sans shadow-[0_0_20px_rgba(99,102,241,0.3)]">
                                 Get Started
@@ -101,7 +103,7 @@ function NavLink({ href, isActive, onClick, children }: { href: string; isActive
             `}
         >
             {children}
-            <span className={`absolute bottom-0 left-4 right-4 h-[1px] bg-primary transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+            <span className={`absolute bottom-0 left-4 right-4 h-[1px] bg-blue-500 transition-all duration-300 transform scale-x-0 group-hover:scale-x-100 ${isActive ? "scale-x-100" : ""}`} />
         </Link>
     );
 }
@@ -111,7 +113,7 @@ function MobileNavLink({ href, isActive, onClick, children }: { href: string; is
         <Link
             href={href}
             onClick={onClick}
-            className={`block text-lg font-bold tracking-wide transition-colors ${isActive ? 'text-primary' : 'text-white'}`}
+            className={`text-xl font-bold tracking-tight transition-all ${isActive ? "text-blue-500" : "text-white/70"}`}
         >
             {children}
         </Link>

@@ -35,14 +35,14 @@ export default function CTASection() {
 
                     <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
                         <div ref={leftRef} className="reveal max-w-xl">
-                            <div className="flex items-center gap-3">
+                            {/* <div className="flex items-center gap-3">
                                 <span className="w-1 h-1 rounded-full bg-blue-500 animate-pulse" />
-                            </div>
+                            </div> */}
                             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6" style={{ color: "#e2eeff" }}>
-                                Turn Your AI Strategy into Production Reality.
+                                Turn AI potential into real business results.
                             </h2>
-                            <p className="text-base sm:text-lg mb-10 leading-relaxed font-mono" style={{ color: "#cbd5e1" }}>
-                                Book an engineering architecture review to map your model strategy, infrastructure requirements, and deployment timeline.
+                            <p className="text-base sm:text-lg mb-10 leading-relaxed" style={{ color: "#cbd5e1" }}>
+                                Book a free strategy session to see how custom AI can save your team hours every day and skip the technical guesswork.
                             </p>
                         </div>
 
@@ -57,7 +57,7 @@ export default function CTASection() {
                                     Book Free Consultation
                                 </button>
                             </Link>
-                            <Link href="mailto:admin@envaedha.com.au">
+                            {/* <Link href="mailto:admin@envaedha.com.au">
                                 <button
                                     className="w-full lg:w-auto px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all font-mono"
                                     style={{
@@ -70,11 +70,11 @@ export default function CTASection() {
                                 >
                                     ENQUIRE_VIA_EMAIL ↗
                                 </button>
-                            </Link>
+                            </Link> */}
 
-                            <p className="text-center font-mono text-[10px] tracking-widest" style={{ color: "#1e3a5f" }}>
+                            {/* <p className="text-center font-mono text-[10px] tracking-widest" style={{ color: "#1e3a5f" }}>
                                 RESPONSE_WITHIN_24H
-                            </p>
+                            </p> */}
                         </div>
                     </div>
                 </div>

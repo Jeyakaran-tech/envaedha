@@ -1,19 +1,13 @@
 "use client";
 
-/**
- * FOOTER
- * Refined to remove "filler" links and focus on the actual navigation and brand.
- * Includes edge-to-edge marquee branding for high-impact visual finish.
- */
-
 import Link from "next/link";
 import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const SOLUTIONS = [
-    { label: "LLM Systems", href: "/#services" },
-    { label: "Agentic Workflows", href: "/#services" },
-    { label: "Full-Stack AI", href: "/#services" },
-    { label: "Neural Infrastructure", href: "/#services" },
+    { label: "AI Consulting Melbourne", href: "/ai-consulting-melbourne" },
+    { label: "AI Agents Melbourne", href: "/ai-agents-melbourne" },
+    { label: "Workflow Automation", href: "/workflow-automation" },
+    { label: "LLM Fine-Tuning", href: "/llm-fine-tuning" },
     { label: "Cloud Solutions", href: "/#services" },
 ];
 
@@ -62,29 +56,36 @@ export default function Footer() {
                         <h3 className="text-[#93c5fd] text-[13px] font-mono tracking-[0.2em] mb-8 uppercase">Envaedha</h3>
                         <ul className="flex flex-col gap-4 font-sans text-base text-neutral-400">
                             <li className="hover:text-white transition-colors"><Link href="/#who-we-are">About Us</Link></li>
-                            <li className="hover:text-white transition-colors"><Link href="/ai-consulting-melbourne">AI Consulting Melbourne</Link></li>
+                            <li className="hover:text-white transition-colors"><Link href="/contact">Contact Us</Link></li>
                             <li className="hover:text-white transition-colors"><Link href="mailto:admin@envaedha.com.au">Email Inquiry</Link></li>
-                            <li className="hover:text-white transition-colors"><Link href="/schedule-a-meeting">Book Architecture Review</Link></li>
                         </ul>
                     </div>
 
-                    {/* Connection */}
-                    <div className="flex flex-col">
+                    {/* Connection / NAP */}
+                    <div className="flex flex-col" itemScope itemType="https://schema.org/LocalBusiness">
                         <h3 className="text-[#93c5fd] text-[13px] font-mono tracking-[0.2em] mb-8 uppercase">Connect</h3>
+                        <div className="space-y-4 mb-8">
+                            <div className="flex items-center gap-3 text-neutral-400 text-sm">
+                                <span className="text-blue-400">📍</span>
+                                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                                    <span itemProp="addressLocality">Melbourne</span>, <span itemProp="addressRegion">VIC</span>, Australia
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-3 text-neutral-400 text-sm">
+                                <span className="text-blue-400">✉️</span>
+                                <a href="mailto:admin@envaedha.com.au" itemProp="email" className="hover:text-white transition-colors">admin@envaedha.com.au</a>
+                            </div>
+                        </div>
                         <div className="flex items-center gap-6 text-neutral-400">
-                            <Link href="#" className="hover:text-white transition-colors flex items-center gap-2">
+                            <Link href="https://www.linkedin.com/company/envaedha" target="_blank" className="hover:text-white transition-colors flex items-center gap-2">
                                 <FaLinkedinIn size={20} />
                                 <span className="font-mono text-xs tracking-widest pt-0.5">LINKEDIN</span>
                             </Link>
-                            <Link href="#" className="hover:text-white transition-colors flex items-center gap-2">
+                            <Link href="https://twitter.com/envaedha" target="_blank" className="hover:text-white transition-colors flex items-center gap-2">
                                 <FaTwitter size={20} />
                                 <span className="font-mono text-xs tracking-widest pt-0.5">TWITTER</span>
                             </Link>
                         </div>
-                        {/* <div className="mt-10 p-6 rounded-2xl border border-blue-900/40 bg-blue-950/20">
-                            <p className="text-[11px] font-mono tracking-widest text-blue-300/60 mb-2">AVAILABILITY</p>
-                            <p className="text-sm font-sans text-neutral-300">Currently accepting strategic partnerships for Q3 2026.</p>
-                        </div> */}
                     </div>
                 </div>
             </div>
