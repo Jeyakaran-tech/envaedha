@@ -1,487 +1,172 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-/* ── tiny canvas visuals for each service ─────────────────────────── */
+/* ── Custom Light SVGs for Dark Theme ──────────────────────── */
+const ServiceSVG = ({ id }: { id: string }) => {
+    switch (id) {
+        case "S/001": // Advisory
+            return (
+                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
+                    <path d="M50 20c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 48c-9.9 0-18-8.1-18-18s8.1-18 18-18 18 8.1 18 18-8.1 18-18 18z" />
+                    <circle cx="50" cy="50" r="8" />
+                </svg>
+            );
+        case "S/002": // Product Development
+            return (
+                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
+                    <rect x="25" y="25" width="20" height="50" rx="2" />
+                    <rect x="55" y="25" width="20" height="50" rx="2" />
+                    <path d="M75 50l15-15v30l-15-15z" />
+                </svg>
+            );
+        case "S/003": // Autonomous Agents
+            return (
+                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
+                    <circle cx="35" cy="50" r="15" />
+                    <circle cx="65" cy="50" r="15" />
+                    <path d="M35 35c8.3 0 15 6.7 15 15s-6.7 15-15 15" fill="none" stroke="white" strokeOpacity="0.8" strokeWidth="8" />
+                </svg>
+            );
+        case "S/004": // Workflow Automation
+            return (
+                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
+                    <rect x="15" y="45" width="10" height="10" />
+                    <rect x="35" y="45" width="10" height="10" />
+                    <rect x="55" y="45" width="10" height="10" />
+                    <rect x="75" y="45" width="10" height="10" />
+                    <path d="M20 45v-10h50v10" fill="none" stroke="white" strokeOpacity="0.8" strokeWidth="4" />
+                </svg>
+            );
+        case "S/005": // Scaling & Support
+            return (
+                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
+                    <path d="M20 80l20-40h10l20 40H20z" />
+                    <path d="M50 20l15 30H35l15-30z" />
+                </svg>
+            );
+        default: return null;
+    }
+};
 
-function LLMVisual() {
-    const ref = useRef<HTMLCanvasElement>(null);
-    useEffect(() => {
-        const c = ref.current; if (!c) return;
-        const ctx = c.getContext("2d"); if (!ctx) return;
-        c.width = c.offsetWidth; c.height = c.offsetHeight;
-        let t = 0, id: number;
-        const draw = () => {
-            ctx.clearRect(0, 0, c.width, c.height);
-            const cx = c.width / 2, cy = c.height / 2;
-            for (let ring = 0; ring < 5; ring++) {
-                const count = 6 + ring * 4;
-                const r = 24 + ring * 28;
-                for (let i = 0; i < count; i++) {
-                    const angle = (i / count) * Math.PI * 2 + t * (ring % 2 === 0 ? 0.4 : -0.4);
-                    const x = cx + Math.cos(angle) * r;
-                    const y = cy + Math.sin(angle) * r;
-                    const alpha = 0.12 + (ring === 0 ? 0.5 : 0) * Math.abs(Math.sin(t + i));
-                    const size = ring === 0 ? 4 : 2.5 - ring * 0.25;
-                    ctx.beginPath();
-                    ctx.arc(x, y, Math.max(0.5, size), 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(147,197,253,${alpha})`;
-                    ctx.fill();
-                }
-            }
-            const pg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 20 + Math.sin(t * 2) * 5);
-            pg.addColorStop(0, "rgba(200,230,255,0.9)");
-            pg.addColorStop(1, "transparent");
-            ctx.beginPath(); ctx.arc(cx, cy, 20 + Math.sin(t * 2) * 5, 0, Math.PI * 2);
-            ctx.fillStyle = pg; ctx.fill();
-            t += 0.018; id = requestAnimationFrame(draw);
-        };
-        draw();
-        return () => cancelAnimationFrame(id);
-    }, []);
-    return <canvas ref={ref} className="w-full h-full" />;
-}
-
-function AgentVisual() {
-    const ref = useRef<HTMLCanvasElement>(null);
-    useEffect(() => {
-        const c = ref.current; if (!c) return;
-        const ctx = c.getContext("2d"); if (!ctx) return;
-        c.width = c.offsetWidth; c.height = c.offsetHeight;
-        let t = 0, id: number;
-        const nodes = Array.from({ length: 9 }, (_, i) => ({
-            x: 0.15 + Math.random() * 0.7,
-            y: 0.15 + Math.random() * 0.7,
-            r: 4 + Math.random() * 4,
-            phase: Math.random() * Math.PI * 2,
-        }));
-        const draw = () => {
-            ctx.clearRect(0, 0, c.width, c.height);
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const a = nodes[i], b = nodes[j];
-                    const dist = Math.hypot(a.x - b.x, a.y - b.y);
-                    if (dist > 0.4) continue;
-                    const alpha = (0.4 - dist) / 0.4 * 0.3;
-                    ctx.beginPath();
-                    ctx.moveTo(a.x * c.width, a.y * c.height);
-                    ctx.lineTo(b.x * c.width, b.y * c.height);
-                    ctx.strokeStyle = `rgba(96,165,250,${alpha})`;
-                    ctx.lineWidth = 1; ctx.stroke();
-                }
-            }
-            nodes.forEach((n, i) => {
-                const pulse = 0.7 + 0.3 * Math.sin(t * 1.5 + n.phase);
-                const g = ctx.createRadialGradient(n.x * c.width, n.y * c.height, 0, n.x * c.width, n.y * c.height, n.r * 3 * pulse);
-                g.addColorStop(0, "rgba(147,197,253,0.8)"); g.addColorStop(1, "transparent");
-                ctx.beginPath(); ctx.arc(n.x * c.width, n.y * c.height, n.r * 3 * pulse, 0, Math.PI * 2);
-                ctx.fillStyle = g; ctx.fill();
-                ctx.beginPath(); ctx.arc(n.x * c.width, n.y * c.height, n.r * 0.6 * pulse, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(200,225,255,${0.6 * pulse})`; ctx.fill();
-            });
-            t += 0.014; id = requestAnimationFrame(draw);
-        };
-        draw();
-        return () => cancelAnimationFrame(id);
-    }, []);
-    return <canvas ref={ref} className="w-full h-full" />;
-}
-
-function SafetyVisual() {
-    const ref = useRef<HTMLCanvasElement>(null);
-    useEffect(() => {
-        const c = ref.current; if (!c) return;
-        const ctx = c.getContext("2d"); if (!ctx) return;
-        c.width = c.offsetWidth; c.height = c.offsetHeight;
-        let t = 0, id: number;
-        const draw = () => {
-            ctx.clearRect(0, 0, c.width, c.height);
-            const cx = c.width / 2, cy = c.height / 2;
-            for (let ring = 1; ring <= 4; ring++) {
-                const r = ring * 28 + Math.sin(t + ring) * 3;
-                ctx.beginPath();
-                for (let s = 0; s <= 6; s++) {
-                    const a = (s / 6) * Math.PI * 2 - Math.PI / 6 + t * (ring % 2 === 0 ? 0.2 : -0.2);
-                    s === 0 ? ctx.moveTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r)
-                        : ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r);
-                }
-                ctx.closePath();
-                ctx.strokeStyle = `rgba(96,165,250,${0.04 + ring * 0.06})`;
-                ctx.lineWidth = 1; ctx.stroke();
-            }
-            const scan = Math.sin(t) * 80;
-            const sg = ctx.createLinearGradient(0, cy + scan - 16, 0, cy + scan + 16);
-            sg.addColorStop(0, "transparent");
-            sg.addColorStop(0.5, "rgba(59,130,246,0.12)");
-            sg.addColorStop(1, "transparent");
-            ctx.fillStyle = sg; ctx.fillRect(0, cy + scan - 16, c.width, 32);
-            const sh = 48, sw = 42;
-            ctx.beginPath();
-            ctx.moveTo(cx, cy - sh / 2);
-            ctx.lineTo(cx + sw / 2, cy - sh / 4);
-            ctx.lineTo(cx + sw / 2, cy + sh / 3);
-            ctx.quadraticCurveTo(cx, cy + sh / 2 + 6, cx, cy + sh / 2 + 6);
-            ctx.quadraticCurveTo(cx, cy + sh / 2 + 6, cx - sw / 2, cy + sh / 3);
-            ctx.lineTo(cx - sw / 2, cy - sh / 4);
-            ctx.closePath();
-            ctx.strokeStyle = `rgba(147,197,253,${0.25 + 0.1 * Math.sin(t * 2)})`;
-            ctx.lineWidth = 1.5; ctx.stroke();
-            t += 0.016; id = requestAnimationFrame(draw);
-        };
-        draw();
-        return () => cancelAnimationFrame(id);
-    }, []);
-    return <canvas ref={ref} className="w-full h-full" />;
-}
-
-/* ── CPU Chip Visual (Full-Stack AI row) ──────────────────── */
-function FullStackVisual() {
-    const ref = useRef<HTMLCanvasElement>(null);
-    useEffect(() => {
-        const c = ref.current; if (!c) return;
-        const ctx = c.getContext("2d"); if (!ctx) return;
-        c.width = c.offsetWidth; c.height = c.offsetHeight;
-        let t = 0, id: number;
-
-        const draw = () => {
-            ctx.clearRect(0, 0, c.width, c.height);
-            const cx = c.width / 2, cy = c.height / 2;
-            const chipW = 70, chipH = 70, r = 10;
-            const pulse = 0.7 + 0.3 * Math.sin(t * 1.5);
-
-            // Chip body (rounded rect)
-            ctx.beginPath();
-            ctx.roundRect(cx - chipW / 2, cy - chipH / 2, chipW, chipH, r);
-            ctx.fillStyle = `rgba(59,130,246,${0.12 * pulse})`;
-            ctx.fill();
-            ctx.strokeStyle = `rgba(147,197,253,${0.5 * pulse})`;
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-
-            // "AI" label inside chip
-            ctx.fillStyle = `rgba(147,197,253,${0.9 * pulse})`;
-            ctx.font = `bold ${14}px monospace`;
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillText("AI", cx, cy);
-
-            // Pins: 3 on each side (top, bottom, left, right)
-            const pins = [
-                // top (x offset, y offset from chip edge)
-                { x: cx - 20, y: cy - chipH / 2, dir: "top" },
-                { x: cx, y: cy - chipH / 2, dir: "top" },
-                { x: cx + 20, y: cy - chipH / 2, dir: "top" },
-                // bottom
-                { x: cx - 20, y: cy + chipH / 2, dir: "bottom" },
-                { x: cx, y: cy + chipH / 2, dir: "bottom" },
-                { x: cx + 20, y: cy + chipH / 2, dir: "bottom" },
-                // left
-                { x: cx - chipW / 2, y: cy - 20, dir: "left" },
-                { x: cx - chipW / 2, y: cy, dir: "left" },
-                { x: cx - chipW / 2, y: cy + 20, dir: "left" },
-                // right
-                { x: cx + chipW / 2, y: cy - 20, dir: "right" },
-                { x: cx + chipW / 2, y: cy, dir: "right" },
-                { x: cx + chipW / 2, y: cy + 20, dir: "right" },
-            ];
-
-            pins.forEach((pin, i) => {
-                const tracePulse = 0.4 + 0.3 * Math.sin(t * 2 + i * 0.6);
-                const traceLen = 28;
-                let ex = pin.x, ey = pin.y;
-
-                // Draw L-shaped trace
-                ctx.beginPath();
-                ctx.moveTo(pin.x, pin.y);
-                if (pin.dir === "top") { ey = pin.y - traceLen; }
-                if (pin.dir === "bottom") { ey = pin.y + traceLen; }
-                if (pin.dir === "left") { ex = pin.x - traceLen; }
-                if (pin.dir === "right") { ex = pin.x + traceLen; }
-                ctx.lineTo(ex, ey);
-                ctx.strokeStyle = `rgba(96,165,250,${tracePulse * 0.6})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-
-                // Endpoint dot (the "node" circles from the reference image)
-                ctx.beginPath();
-                ctx.arc(ex, ey, 3.5, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(147,197,253,${tracePulse})`;
-                ctx.fill();
-            });
-
-            // Outer glow ring pulsing
-            const grd = ctx.createRadialGradient(cx, cy, 30, cx, cy, 80 + Math.sin(t) * 8);
-            grd.addColorStop(0, "transparent");
-            grd.addColorStop(1, `rgba(59,130,246,${0.04 + 0.02 * Math.sin(t)})`);
-            ctx.beginPath();
-            ctx.arc(cx, cy, 80, 0, Math.PI * 2);
-            ctx.fillStyle = grd;
-            ctx.fill();
-
-            t += 0.025;
-            id = requestAnimationFrame(draw);
-        };
-        draw();
-        return () => cancelAnimationFrame(id);
-    }, []);
-    return <canvas ref={ref} className="w-full h-full" />;
-}
-
-/* ── Cloud Visual ────────────────────────────────────────────── */
-function CloudVisual() {
-    const ref = useRef<HTMLCanvasElement>(null);
-    useEffect(() => {
-        const c = ref.current; if (!c) return;
-        const ctx = c.getContext("2d"); if (!ctx) return;
-        c.width = c.offsetWidth; c.height = c.offsetHeight;
-        let t = 0, id: number;
-
-        // Floating data packets
-        const packets = Array.from({ length: 6 }, (_, i) => ({
-            x: 0.1 + (i % 3) * 0.35,
-            y: 0.2 + Math.floor(i / 3) * 0.5,
-            phase: i * 1.1,
-            speed: 0.4 + Math.random() * 0.4,
-        }));
-
-        const draw = () => {
-            ctx.clearRect(0, 0, c.width, c.height);
-            const cx = c.width / 2, cy = c.height / 2;
-
-            // Cloud shape (3 overlapping circles)
-            const cloudPulse = 0.8 + 0.2 * Math.sin(t * 0.8);
-            const cloudParts = [
-                { x: cx, y: cy - 10, r: 28 },
-                { x: cx - 22, y: cy + 6, r: 20 },
-                { x: cx + 22, y: cy + 6, r: 20 },
-                { x: cx - 8, y: cy + 2, r: 18 },
-                { x: cx + 8, y: cy + 2, r: 18 },
-            ];
-            cloudParts.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r * cloudPulse, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(59,130,246,${0.08})`;
-                ctx.fill();
-                ctx.strokeStyle = `rgba(147,197,253,${0.25 * cloudPulse})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-            });
-
-            // Ascending data packets
-            packets.forEach((p, i) => {
-                const yOff = Math.sin(t * p.speed + p.phase) * 12;
-                const px = p.x * c.width;
-                const py = (p.y + 0.1) * c.height + yOff;
-                const alpha = 0.4 + 0.4 * Math.abs(Math.sin(t * p.speed + p.phase));
-
-                // Upward arrow dashes
-                ctx.beginPath();
-                ctx.moveTo(px, py + 6);
-                ctx.lineTo(px, py - 6);
-                ctx.strokeStyle = `rgba(96,165,250,${alpha * 0.5})`;
-                ctx.lineWidth = 1;
-                ctx.stroke();
-
-                ctx.beginPath();
-                ctx.arc(px, py, 3, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(147,197,253,${alpha})`;
-                ctx.fill();
-            });
-
-            // Central glow
-            const grd = ctx.createRadialGradient(cx, cy - 5, 0, cx, cy - 5, 50);
-            grd.addColorStop(0, `rgba(59,130,246,${0.06 * cloudPulse})`);
-            grd.addColorStop(1, "transparent");
-            ctx.fillStyle = grd;
-            ctx.fillRect(0, 0, c.width, c.height);
-
-            t += 0.02;
-            id = requestAnimationFrame(draw);
-        };
-        draw();
-        return () => cancelAnimationFrame(id);
-    }, []);
-    return <canvas ref={ref} className="w-full h-full" />;
-}
-
-function Cross() {
-    return (
-        <div className="absolute w-4 h-4 flex items-center justify-center pointer-events-none" style={{ color: "rgba(59,130,246,0.25)" }}>
-            <span className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-px bg-current" />
-            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-px bg-current" />
-        </div>
-    );
-}
-
-/* ── Service rows data ───────────────────────────────────────────── */
 const SERVICES = [
     {
-        category: "STRATEGY_&_PLANNING",
-        title: "A clear AI roadmap for your business.",
-        desc: "We don't just build; we strategize. We identify the highest-impact AI opportunities for your Melbourne business and map a data-driven path to real ROI.",
-        visual: <FullStackVisual />,
-        img: "/ai_strategy_planning_dashboard_1775199535911.png",
-        items: [
-            "AI Opportunity Audit",
-            "Strategy & Roadmap Design",
-            "Data Readiness Review",
-            "ROI & Feasibility Analysis",
-            "Implementation Planning",
-            "Risk & Safety Management",
-            "Team Training & Support",
-        ],
+        id: "S/001",
+        title: "Advisory",
+        desc: "Gain strategic insights from our fractional CTOs, benefit from comprehensive technical reviews, and achieve accelerated development with expert backend, frontend, and DevOps solutions.",
+        href: "/ai-consulting-melbourne",
+        bgColor: "#020d1a",
     },
     {
-        category: "CUSTOM_MODELS",
-        title: "AI that speaks your business language.",
-        desc: "Generic AI is general. We train and fine-tune models on your unique business data, ensuring they understand your industry's specific terminology and customer needs.",
-        visual: <LLMVisual />,
-        img: "/custom_ai_neural_data_ui_1775199668285.png",
-        items: [
-            "Industry-Specific Tuning",
-            "Brand Voice Alignment",
-            "Secure Document Q&A",
-            "Custom Insights Engines",
-            "Privacy-First Local Models",
-            "Accurate Content Scaling",
-            "Multilingual Support",
-        ],
+        id: "S/002",
+        title: "Product Development",
+        desc: "Bring market-ready products to life with our product development services. Prototypes & MVPs, SaaS, web, and mobile applications, managed services from planning and design to coding, testing, and ongoing maintenance.",
+        href: "/ai-agents-melbourne",
+        bgColor: "#04152b",
     },
     {
-        category: "AUTONOMOUS_AGENTS",
-        title: "Digital employees that think and act.",
-        desc: "Moving beyond simple chat. We build and deploy AI agents that handle scheduling, data entry, and multi-step reasoning across your software stack with 24/7 reliability.",
-        visual: <AgentVisual />,
-        img: "/autonomous_ai_agent_interface_1775199559450.png",
-        items: [
-            "Self-Learning Assistants",
-            "Automated Operations",
-            "Workflow Integration",
-            "Intelligent Customer Service",
-            "Research & Reporting",
-            "Error-Free Task Execution",
-            "Scale Without Headcount",
-        ],
+        id: "S/003",
+        title: "Autonomous Agents",
+        desc: "Bring market-ready autonomous agents to life. We build self-learning assistants that plan, reason, and execute complex multi-step workflows across your software stack.",
+        href: "/ai-agents-melbourne",
+        bgColor: "#020d1a",
     },
     {
-        category: "SAFETY_&_SECURITY",
-        title: "Enterprise-grade safety for peace of mind.",
-        desc: "We build rigid security layers and guardrails to ensure your AI systems are safe, reliable, and compliant with Australian business regulations and industry standards.",
-        visual: <SafetyVisual />,
-        img: "/workflow_automation_pipeline_ui_1775199591770.png",
-        items: [
-            "AI Governance & Policy",
-            "Data Privacy Hardening",
-            "Bias & Risk Mitigation",
-            "Regulatory Compliance",
-            "System Security Audits",
-            "Continuous Monitoring",
-            "Safe Output Filtering",
-        ],
+        id: "S/004",
+        title: "Workflow Automation",
+        desc: "Automate manual bottlenecks with rigid security layers and guardrails. We ensure your AI systems are safe, reliable, and compliant with business regulations.",
+        href: "/workflow-automation",
+        bgColor: "#04152b",
     },
     {
-        category: "SCALING_&_SUPPORT",
-        title: "AI that grows with your business.",
-        desc: "We deploy and manage your AI systems in the cloud (AWS/GCP/Azure), ensuring they stay fast, reliable, and cost-effective as your company scales from Melbourne to the world.",
-        visual: <CloudVisual />,
-        img: "/melbourne_smb_ai_office_1775199622059.png",
-        items: [
-            "Cost-Effective Scaling",
-            "Reliable Cloud Hosting",
-            "Performance Monitoring",
-            "Automated Backups",
-            "Ongoing System Support",
-            "System Upgrades & Maintenance",
-            "Fractional AI Engineering",
-        ],
+        id: "S/005",
+        title: "Scaling & Support",
+        desc: "Deploy and manage your AI systems in the cloud. We ensure your systems stay fast, reliable, and cost-effective as your company scales globally.",
+        href: "/schedule-a-meeting",
+        bgColor: "#020d1a",
     },
 ];
 
-/* ── Main component ──────────────────────────────────────────────── */
 export default function Services() {
     return (
-        <section id="services" className="pt-24 lg:pt-32" style={{ background: "#020d1a" }}>
-
-            {/* ── Centered Eyebrow ────────────────────────── */}
-            <div className="mx-auto max-w-7xl px-6 lg:px-12 mb-20 text-center">
-                <h2 className="font-mono text-[20px] tracking-[0.25em] h2" style={{ color: "#3b82f6" }}>
-                    // CORE_CAPABILITIES
-                </h2>
+        <section id="services" className="relative bg-[#020d1a] border-t border-white/5">
+            {/* Introductory Header */}
+            <div className="bg-[#020d1a] py-32 sm:py-48 border-b border-white/5">
+                <div className="mx-auto max-w-7xl px-6 lg:px-12 text-center">
+                    <p className="font-mono text-[10px] tracking-[0.4em] text-blue-500 uppercase mb-8 font-bold">
+                        / SOLUTIONS_CATALOG
+                    </p>
+                    <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-[#e2eeff] leading-[1.05] max-w-4xl mx-auto">
+                        Precision engineering <br />
+                        for the autonomous era.
+                    </h2>
+                </div>
             </div>
 
-            {/* ── Unified Service grid ────────────────────────────────── */}
-            <div className="relative border-t" style={{ borderColor: "rgba(59,130,246,0.1)" }}>
-                {SERVICES.map((s, si) => (
+            {/* Stacked Services Container */}
+            {/* This div's height controls how long the stack stays 'frozen' after the last card docks */}
+            <div className="relative" style={{ height: `${SERVICES.length * 90 + 100}vh` }}>
+                {SERVICES.map((s, i) => (
                     <div
-                        key={s.category}
-                        className="relative grid grid-cols-1 lg:grid-cols-[260px_1fr_300px] border-b"
-                        style={{ borderColor: "rgba(59,130,246,0.1)" }}
+                        key={s.id}
+                        className="sticky w-full flex flex-col border-t border-dashed border-white/10 shadow-[0_-80px_100px_rgba(0,0,0,0.8)]"
+                        style={{
+                            backgroundColor: s.bgColor,
+                            zIndex: i + 10,
+                            // Increased offset to 160px for maximum title visibility
+                            top: `${(i * 144) + 16}px`,
+                            paddingTop: '2rem',
+                            paddingBottom: '4rem',
+                            minHeight: '80vh',
+                            height: 'auto'
+                        }}
                     >
-                        {/* Crosshairs */}
-                        <Cross />
-                        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2"><Cross /></div>
-                        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2"><Cross /></div>
-                        <div className="absolute bottom-0 right-0 translate-y-1/2 translate-x-1/2"><Cross /></div>
-
-                        {/* ── Visual column ───────────────────────── */}
-                        <div
-                            className="relative border-r hidden lg:block overflow-hidden group/visual"
-                            style={{
-                                borderColor: "rgba(59,130,246,0.1)",
-                                background: "#010c18",
-                                minHeight: 280,
-                            }}
-                        >
-                            <div className="absolute inset-0 opacity-40 group-hover/visual:opacity-20 transition-opacity duration-700">
-                                {s.visual}
+                        <div className="mx-auto max-w-7xl w-full px-6 lg:px-12 flex flex-col relative text-white h-full pt-6">
+                            {/* Service ID (Top Left) */}
+                            <div className="absolute top-0 left-6 lg:left-12 font-mono text-[10px] tracking-[0.2em] text-white/30 font-bold uppercase">
+                                {s.id}
                             </div>
-                            {s.img && (
-                                <img 
-                                    src={s.img} 
-                                    alt={s.title}
-                                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/visual:opacity-90 group-hover/visual:scale-110 transition-all duration-700 mix-blend-lighten"
-                                />
-                            )}
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#010c18] via-transparent to-transparent opacity-60" />
-                        </div>
 
-                        {/* ── Title/Description column ────────────── */}
-                        <div className="px-8 lg:px-12 py-16 lg:py-20 flex flex-col justify-center gap-6">
-                            <p className="font-mono text-[10px] tracking-[0.2em]" style={{ color: "#3b82f6" }}>
-                                {s.category}
-                            </p>
-                            <h3 className={`font-bold tracking-tight leading-snug text-3xl sm:text-4xl`} style={{ color: '#c7dff7' }}>
-                                {s.title}
-                            </h3>
-                            <p className="text-base font-sans leading-relaxed max-w-lg" style={{ color: "#cbd5e1" }}>
-                                {s.desc}
-                            </p>
-                        </div>
+                            <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 items-center h-full">
+                                {/* Centered Content Stack */}
+                                <div className="flex flex-col items-center text-center w-full">
+                                    <h3 className="text-3xl sm:text-5xl font-bold text-[#e2eeff] mb-12 tracking-tight">
+                                        {s.title}
+                                    </h3>
 
-                        {/* ── Third column (Items Manifest) ──── */}
-                        <div
-                            className="border-t lg:border-t-0 lg:border-l px-8 py-16 lg:py-20 flex flex-col justify-center"
-                            style={{ borderColor: "rgba(59,130,246,0.1)" }}
-                        >
-                            <ul className="flex flex-col gap-3">
-                                {s.items.map((item) => (
-                                    <li key={item} className="flex items-center gap-3 group cursor-default">
-                                        <span className="w-1 h-1 rounded-full shrink-0" style={{ background: "#1e4a7a" }} />
-                                        <span
-                                            className="font-mono text-[14px] tracking-wide transition-colors duration-200"
-                                            style={{ color: "#94a3b8" }}
-                                            onMouseEnter={(e) => (e.currentTarget.style.color = "#93c5fd")}
-                                            onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
-                                        >
-                                            {item}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
+                                    <div className="max-w-sm mx-auto flex flex-col items-center">
+                                        <p className="text-[#94a3b8] text-sm sm:text-base leading-relaxed mb-12 text-center">
+                                            {s.desc}
+                                        </p>
+
+                                        <Link href={s.href}>
+                                            <button className="px-12 py-3.5 border border-white/20 rounded-md text-[10px] font-bold tracking-[0.15em] uppercase text-white hover:bg-white hover:text-black transition-all duration-300">
+                                                SEE OUR SERVICES &nbsp; →
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                {/* Minimalist SVG Graphic (Right Side) */}
+                                <div className="hidden lg:flex w-full aspect-square bg-white/[0.01] rounded-sm flex items-center justify-center p-12 border border-white/5 group">
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 1 }}
+                                        className="w-full h-full flex items-center justify-center opacity-50 group-hover:opacity-100 transition-opacity"
+                                    >
+                                        <ServiceSVG id={s.id} />
+                                    </motion.div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
+
+            {/* Visual Spacer to let the user see the full stack complete and hold */}
+            <div className="h-[20vh] bg-[#020d1a]" />
         </section>
     );
 }
