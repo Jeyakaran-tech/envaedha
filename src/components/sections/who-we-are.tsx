@@ -62,11 +62,6 @@ export default function WhoWeAre() {
 
             <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
 
-                {/* Eyebrow */}
-                <p ref={eyebrowRef} className="reveal font-mono text-[20px] tracking-[0.25em] mb-16 text-center" style={{ color: "#3b82f6" }}>
-                    // WHO_WE_ARE
-                </p>
-
                 {/* Manifesto statement */}
                 <div ref={manifestoRef} className="reveal text-center mb-24 max-w-5xl mx-auto">
                     <h2

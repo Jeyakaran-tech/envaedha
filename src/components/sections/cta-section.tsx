@@ -5,77 +5,61 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export default function CTASection() {
     const cardRef = useScrollReveal({ threshold: 0.1 });
-    const leftRef = useScrollReveal({ threshold: 0.1 });
-    const rightRef = useScrollReveal({ threshold: 0.1 });
+    const contentRef = useScrollReveal({ threshold: 0.1 });
 
     return (
         <section
-            className="py-28 sm:py-36 relative overflow-hidden"
+            className="py-24 sm:py-32 relative overflow-hidden"
             style={{ background: "#020d1a" }}
         >
-            {/* Background glows */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(59,130,246,0.08), transparent 70%)" }} />
-                <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-80 h-80 rounded-full"
-                    style={{ background: "radial-gradient(circle, rgba(99,102,241,0.05), transparent 70%)" }} />
-            </div>
-
-            <div className="absolute top-0 left-0 right-0 h-px"
-                style={{ background: "linear-gradient(to right, transparent, rgba(59,130,246,0.2), transparent)" }} />
-
             <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
                 <div
                     ref={cardRef}
-                    className="reveal rounded-3xl p-12 sm:p-20 relative overflow-hidden"
-                    style={{ background: "#04152b", border: "1px solid rgba(59,130,246,0.12)" }}
+                    className="reveal rounded-[48px] relative overflow-hidden shadow-[0_0_80px_rgba(59,130,246,0.08)] border border-blue-900/20 aspect-[21/10] sm:aspect-[21/9] flex items-center justify-center bg-[#010a15]"
                 >
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 pointer-events-none"
-                        style={{ background: "radial-gradient(ellipse at top, rgba(59,130,246,0.08), transparent 70%)" }} />
+                    {/* Cinematic Background Image - STATIC */}
+                    <div className="absolute inset-0 z-0">
+                        <img 
+                            src="/melbourne-cta-bg.jpg" 
+                            alt="Melbourne Skyline at Sunset" 
+                            className="w-full h-full object-cover"
+                        />
+                        {/* Subtle vignette for depth */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#020d1a]/50 via-transparent to-transparent opacity-60" />
+                    </div>
 
-                    <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
-                        <div ref={leftRef} className="reveal max-w-xl">
-                            {/* <div className="flex items-center gap-3">
-                                <span className="w-1 h-1 rounded-full bg-blue-500 animate-pulse" />
-                            </div> */}
-                            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6" style={{ color: "#e2eeff" }}>
-                                Turn AI potential into real business results.
-                            </h2>
-                            <p className="text-base sm:text-lg mb-10 leading-relaxed" style={{ color: "#cbd5e1" }}>
-                                Book a free strategy session to see how custom AI can save your team hours every day and skip the technical guesswork.
-                            </p>
+                    {/* Centered Glassmorphism Card - SMALLER */}
+                    <div 
+                        ref={contentRef}
+                        className="reveal relative z-10 mx-6 sm:mx-0 w-full max-w-xl overflow-hidden rounded-[40px] border border-white/20 bg-white/5 p-10 sm:p-12 text-center backdrop-blur-xl shadow-2xl"
+                    >
+                        {/* Decorative Icon or Brand Mark */}
+                        <div className="mb-8 flex justify-center">
+                            <div className="w-12 h-1 bg-blue-500 rounded-full" />
                         </div>
 
-                        <div ref={rightRef} className="reveal reveal-delay-2 flex flex-col gap-5 shrink-0">
-                            <Link href="/schedule-a-meeting">
+                        <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white mb-5 leading-tight">
+                            Ready to enable AI <br />
+                            strategically for your business?
+                        </h2>
+                        
+                        <p className="text-[#cbd5e1] text-sm sm:text-base mb-8 max-w-sm mx-auto leading-relaxed">
+                            Turn AI potential into real business results with custom engineering tailored to your operational needs.
+                        </p>
+
+                        <div className="flex justify-center">
+                            <Link href="/schedule-a-meeting" className="w-full sm:w-auto">
                                 <button
-                                    className="w-full lg:w-auto px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all active:scale-95"
-                                    style={{ background: "#e2eeff", color: "#020d1a" }}
-                                    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#fff" }}
-                                    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#e2eeff" }}
+                                    className="w-full sm:w-auto px-10 py-4 rounded-full text-base font-bold tracking-tight transition-all active:scale-95 bg-blue-600 text-white hover:bg-blue-500 shadow-xl shadow-blue-600/20"
                                 >
-                                    Book Free Consultation
+                                    Book a call
                                 </button>
                             </Link>
-                            {/* <Link href="mailto:admin@envaedha.com.au">
-                                <button
-                                    className="w-full lg:w-auto px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all font-mono"
-                                    style={{
-                                        background: "transparent",
-                                        color: "#93c5fd",
-                                        border: "1px solid rgba(147,197,253,0.15)",
-                                    }}
-                                    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(147,197,253,0.4)" }}
-                                    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(147,197,253,0.15)" }}
-                                >
-                                    ENQUIRE_VIA_EMAIL ↗
-                                </button>
-                            </Link> */}
-
-                            {/* <p className="text-center font-mono text-[10px] tracking-widest" style={{ color: "#1e3a5f" }}>
-                                RESPONSE_WITHIN_24H
-                            </p> */}
                         </div>
+
+                        {/* Subtle Glass Glows */}
+                        <div className="absolute -top-16 -left-16 w-32 h-32 bg-blue-500/10 blur-[40px] rounded-full pointer-events-none" />
+                        <div className="absolute -bottom-16 -right-16 w-32 h-32 bg-purple-500/5 blur-[40px] rounded-full pointer-events-none" />
                     </div>
                 </div>
             </div>

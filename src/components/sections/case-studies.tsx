@@ -41,14 +41,6 @@ export default function CaseStudies() {
     return (
         <section id="case-studies" className="py-24 sm:py-32" style={{ background: "#020d1a" }}>
             <div className="mx-auto max-w-7xl px-6 lg:px-12">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-                    <div className="max-w-2xl">
-                        <p className="font-mono text-blue-500 tracking-[0.3em] mb-4 uppercase text-sm">// CASE_STUDIES</p>
-                        <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#e2eeff]">
-                            Problems we&apos;ve solved.
-                        </h2>
-                    </div>
-                </div>
 
                 {/* ── Main Slider ─────────────────────────────────── */}
                 <div className="relative rounded-[40px] overflow-hidden aspect-[16/10] sm:aspect-[21/9] bg-[#04152b] border border-blue-900/20 group">
@@ -61,20 +53,20 @@ export default function CaseStudies() {
                             transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
                             className="absolute inset-0"
                         >
-                            <img 
-                                src={STUDIES[current].img} 
+                            <img
+                                src={STUDIES[current].img}
                                 alt={STUDIES[current].industry}
                                 className="w-full h-full object-cover opacity-60"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                            
+
                             {/* Content Overlay */}
                             <div className="absolute inset-x-0 bottom-0 p-8 sm:p-16 flex flex-col md:flex-row items-end justify-between gap-12">
                                 <div className="max-w-xl">
                                     <h3 className="text-3xl sm:text-5xl font-bold text-white mb-8">
                                         {STUDIES[current].industry}
                                     </h3>
-                                    
+
                                     <div className="space-y-6">
                                         <h4 className="text-xl sm:text-2xl font-bold text-[#e2eeff] leading-snug">
                                             {STUDIES[current].hook}
@@ -82,7 +74,7 @@ export default function CaseStudies() {
                                         <p className="text-[#cbd5e1] leading-relaxed max-w-lg mb-8">
                                             {STUDIES[current].desc}
                                         </p>
-                                        <Link 
+                                        <Link
                                             href={STUDIES[current].link}
                                             className="inline-flex items-center gap-3 text-blue-400 font-bold group/link hover:text-blue-300 transition-colors"
                                         >
@@ -94,13 +86,13 @@ export default function CaseStudies() {
 
                                 {/* Controls (Mobile Hidden / Desktop Bottom Left in screen) */}
                                 <div className="flex gap-4">
-                                    <button 
+                                    <button
                                         onClick={prev}
                                         className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
                                     >
                                         <FiArrowLeft size={24} />
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={next}
                                         className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-500 transition-all border border-blue-400/20 shadow-lg shadow-blue-900/20"
                                     >
@@ -118,9 +110,8 @@ export default function CaseStudies() {
                         <button
                             key={i}
                             onClick={() => setCurrent(i)}
-                            className={`h-1 transition-all duration-500 rounded-full ${
-                                i === current ? "w-12 bg-blue-500" : "w-4 bg-white/10 hover:bg-white/20"
-                            }`}
+                            className={`h-1 transition-all duration-500 rounded-full ${i === current ? "w-12 bg-blue-500" : "w-4 bg-white/10 hover:bg-white/20"
+                                }`}
                         />
                     ))}
                 </div>
