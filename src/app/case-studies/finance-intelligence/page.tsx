@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 
 export default function FinanceCaseStudy() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#020d1a]">
+    <div className="flex min-h-screen flex-col bg-[#0c0c0c]">
       <Navbar />
       <main className="flex-1 pt-32 pb-24 px-6 lg:px-12">
         <div className="mx-auto max-w-5xl">
           {/* Back link */}
-          <Link href="/#case-studies" className="inline-flex items-center gap-2 text-blue-400 font-mono text-xs uppercase tracking-widest mb-12 hover:text-blue-300">
-             <FiChevronLeft /> // BACK_TO_CASE_STUDIES
+          <Link href="/case-studies" className="inline-flex items-center gap-2 text-white/40 font-mono text-xs uppercase tracking-widest mb-12 hover:text-white transition-colors">
+             <FiChevronLeft /> BACK_TO_CASE_STUDIES
           </Link>
 
           {/* Hero Area */}
@@ -64,7 +64,7 @@ export default function FinanceCaseStudy() {
                className="w-full h-full object-cover opacity-80" 
                alt="Case study visual" 
              />
-             <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-[#020d1a] via-transparent to-transparent opacity-60" />
+             <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent opacity-60" />
           </div>
 
           <div className="text-center">

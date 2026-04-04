@@ -123,11 +123,11 @@ const jsonLd = {
       "areaServed": "Melbourne, VIC",
     },
     {
-       "@type": "WebSite",
-       "@id": "https://envaedha.com.au/#website",
-       "url": "https://envaedha.com.au",
-       "name": "Envaedha",
-       "publisher": { "@id": "https://envaedha.com.au/#organization" }
+      "@type": "WebSite",
+      "@id": "https://envaedha.com.au/#website",
+      "url": "https://envaedha.com.au",
+      "name": "Envaedha",
+      "publisher": { "@id": "https://envaedha.com.au/#organization" }
     }
   ],
 };
@@ -146,7 +146,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${cothamSans.variable} ${newsreader.variable} ${officeCodePro.variable} antialiased font-sans bg-black text-white`}
+        className={`${cothamSans.variable} font-sans bg-black text-white antialiased`}
       >
         <ThemeProvider
           attribute="class"

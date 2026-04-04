@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-black">
+    <div className="flex min-h-screen flex-col bg-[#0c0c0c]">
       <Navbar />
       <main className="flex-1 pt-32 pb-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -63,7 +63,7 @@ export default function ContactPage() {
             </div>
 
             {/* Map Placeholder / Form Area */}
-            <div className="rounded-3xl border border-blue-900/30 bg-[#020d1a] overflow-hidden relative min-h-[400px]">
+            <div className="rounded-3xl border border-white/5 bg-[#141414] overflow-hidden relative min-h-[400px]">
               {/* Actual Google Map Embed (Filtered for Dark Mode) */}
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9631!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b8c5a24293%3A0xa1d5d5d8d5d5a1d5!2sCollins%20St%2C%20Melbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 

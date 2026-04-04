@@ -80,9 +80,9 @@ export default function Metrics() {
     const tab = TABS[active];
 
     return (
-        <section className="bg-[#f0f0f0]">
+        <section className="bg-[#141414]">
             {/* Tab bar */}
-            <div className="border-b border-black/10 px-6 lg:px-16">
+            <div className="border-b border-white/10 px-6 lg:px-16">
                 <div className="mx-auto max-w-7xl flex items-center gap-2 py-4">
                     {TABS.map((t, i) => (
                         <button
@@ -90,8 +90,8 @@ export default function Metrics() {
                             onClick={() => setActive(i)}
                             className={`px-4 py-1.5 rounded text-[11px] font-bold tracking-[0.15em] border transition-all duration-200 ${
                                 active === i
-                                    ? "bg-black text-white border-black"
-                                    : "bg-transparent text-black border-black/25 hover:border-black/50"
+                                    ? "bg-white text-black border-white"
+                                    : "bg-transparent text-white border-white/25 hover:border-white/50"
                             }`}
                         >
                             {t.label}
@@ -104,12 +104,12 @@ export default function Metrics() {
             <div className="relative mx-auto max-w-7xl px-6 lg:px-16 py-20 sm:py-28 overflow-hidden min-h-[520px]">
 
                 {/* Slash "/" marker */}
-                <span className="absolute top-20 left-6 lg:left-16 text-black/30 text-2xl font-light select-none">
+                <span className="absolute top-20 left-6 lg:left-16 text-white/30 text-2xl font-light select-none">
                     /
                 </span>
 
                 {/* Large background number */}
-                <span className="absolute bottom-0 left-2 lg:left-10 text-[20vw] font-black text-black/[0.06] leading-none select-none pointer-events-none">
+                <span className="absolute bottom-0 left-2 lg:left-10 text-[20vw] font-black text-white/[0.04] leading-none select-none pointer-events-none">
                     {tab.number}
                 </span>
 
@@ -123,24 +123,24 @@ export default function Metrics() {
                         className="relative z-10"
                     >
                         {/* Big heading */}
-                        <h2 className="text-5xl sm:text-7xl font-bold text-black tracking-tight mb-16 pl-10 lg:pl-16">
+                        <h2 className="text-5xl sm:text-7xl font-bold text-white tracking-tight mb-16 pl-10 lg:pl-16">
                             {tab.heading}
                         </h2>
 
                         {/* Numbered rows */}
-                        <div className="border-t border-dashed border-black/15">
+                        <div className="border-t border-dashed border-white/15">
                             {tab.rows.map((row) => (
                                 <div
                                     key={row.num}
-                                    className="grid grid-cols-[80px_220px_1fr] items-start py-6 border-b border-dashed border-black/15 gap-6 group hover:bg-black/[0.02] transition-colors px-2"
+                                    className="grid grid-cols-[80px_220px_1fr] items-start py-6 border-b border-dashed border-white/15 gap-6 group hover:bg-white/[0.02] transition-colors px-2"
                                 >
-                                    <span className="font-mono text-[11px] text-black/30 pt-0.5">
+                                    <span className="font-mono text-[11px] text-white/30 pt-0.5">
                                         {row.num}
                                     </span>
-                                    <span className="font-bold text-[13px] tracking-[0.12em] text-black">
+                                    <span className="font-bold text-[13px] tracking-[0.12em] text-white">
                                         {row.keyword}
                                     </span>
-                                    <p className="text-sm text-black/55 leading-relaxed">
+                                    <p className="text-sm text-white/55 leading-relaxed">
                                         {row.desc}
                                     </p>
                                 </div>

@@ -4,7 +4,8 @@ import Footer from "../components/ui/footer";
 import Hero from "../components/sections/hero";
 import WhoWeAre from "../components/sections/who-we-are";
 import Services from "../components/sections/services";
-import CaseStudies from "../components/sections/case-studies";
+
+import Industries from "../components/sections/industries";
 import Metrics from "../components/sections/metrics";
 import CTASection from "../components/sections/cta-section";
 import SolutionsStrategy from "../components/sections/solutions-strategy";
@@ -23,7 +24,7 @@ export default function HomePage() {
         <div id="who-we-are"><WhoWeAre /></div>
         <SolutionsStrategy />
         <div id="services"><Services /></div>
-        <div id="case-studies"><CaseStudies /></div>
+        <div id="industries"><Industries /></div>
         <div id="why-us"><Metrics /></div>
         <CTASection />
       </main>

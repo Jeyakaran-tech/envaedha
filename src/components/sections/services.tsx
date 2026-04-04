@@ -69,7 +69,7 @@ const SERVICES = [
         title: "Advisory",
         desc: "Gain strategic clarity from fractional CTOs and domain experts who've shipped AI systems at scale.",
         href: "/ai-consulting-melbourne",
-        bg: "#06111f",
+        bg: "#141414",
         subs: [
             "Fractional CTO Engagement",
             "AI Readiness Assessment",
@@ -83,7 +83,7 @@ const SERVICES = [
         title: "Product Development",
         desc: "From zero to production. We build SaaS products, web apps, and mobile experiences that ship fast and scale reliably.",
         href: "/ai-agents-melbourne",
-        bg: "#070e1c",
+        bg: "#1a1a1a",
         subs: [
             "MVP & Prototype Engineering",
             "Full-Stack Web Applications",
@@ -97,7 +97,7 @@ const SERVICES = [
         title: "Autonomous Agents",
         desc: "Self-operating systems that plan, reason, and execute — removing humans from the bottleneck loop.",
         href: "/ai-agents-melbourne",
-        bg: "#061019",
+        bg: "#202020",
         subs: [
             "Multi-Agent Orchestration",
             "LLM-Powered Decision Loops",
@@ -111,7 +111,7 @@ const SERVICES = [
         title: "Workflow Automation",
         desc: "Replace manual bottlenecks with intelligent pipelines. Every step auditable, every output reliable.",
         href: "/workflow-automation",
-        bg: "#050f1a",
+        bg: "#262626",
         subs: [
             "Process Mapping & Audit",
             "n8n / Make / Zapier Build-out",
@@ -125,7 +125,7 @@ const SERVICES = [
         title: "Scaling & Support",
         desc: "Deploy, maintain, and scale your AI systems with cloud-native infrastructure built for growth.",
         href: "/scaling-support",
-        bg: "#040d17",
+        bg: "#2c2c2c",
         subs: [
             "Cloud Infrastructure Setup",
             "CI/CD & DevOps Pipelines",
@@ -136,16 +136,16 @@ const SERVICES = [
     },
 ];
 
-const TAB_HEIGHT = 52;
-const NAVBAR_OFFSET = 16;
+const TAB_HEIGHT = 60;
+const NAVBAR_OFFSET = 84;
 
 export default function Services() {
     return (
-        <section id="services" className="relative bg-[#06111f]">
+        <section id="services" className="relative bg-[#141414]">
             {/* Section Header */}
             <div className="py-28 sm:py-40 border-b border-white/5">
                 <div className="mx-auto max-w-7xl px-6 lg:px-16 text-center">
-                    <p className="font-mono text-[10px] tracking-[0.45em] text-blue-500/80 uppercase mb-6 font-bold">
+                    <p className="font-mono text-[10px] tracking-[0.45em] text-blue-400 uppercase mb-6 font-bold">
                         / SOLUTIONS_CATALOG
                     </p>
                     <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-[#ddeeff] leading-[1.05] max-w-4xl mx-auto">
@@ -171,13 +171,19 @@ export default function Services() {
                             }}
                         >
                             {/* ── Compact tab header (always visible when buried) ── */}
-                            <div className="flex items-center h-[52px] px-6 lg:px-16 border-b border-white/[0.04]">
-                                <span className="font-mono text-[10px] tracking-[0.3em] text-white/20 font-bold mr-6">
-                                    {s.id}
-                                </span>
-                                <span className="text-sm font-semibold text-white/35 tracking-wide">
-                                    {s.title}
-                                </span>
+                            <div className="h-[60px] border-b border-white/[0.04]">
+                                <div className="mx-auto max-w-7xl px-6 lg:px-16 h-full flex items-center">
+                                    <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] w-full items-center">
+                                        <div className="flex items-center gap-6">
+                                            <span className="font-mono text-[10px] tracking-[0.3em] text-white/20 font-bold shrink-0">
+                                                {s.id}
+                                            </span>
+                                            <span className="text-[20px] font-bold tracking-tight text-white/80 uppercase">
+                                                / {s.title}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* ── Full card content ── */}
@@ -191,14 +197,8 @@ export default function Services() {
                             >
                                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16 items-start">
 
-                                    {/* Left: Title + Description + Sub-services */}
-                                    <div className="flex flex-col">
-                                        <div className="font-mono text-[9px] tracking-[0.35em] text-blue-500/50 mb-5">
-                                            {s.id} / {s.title.toUpperCase()}
-                                        </div>
-                                        <h3 className="text-4xl sm:text-5xl font-bold text-[#ddeeff] mb-6 tracking-tight leading-[1.08]">
-                                            {s.title}
-                                        </h3>
+                                    {/* Left: Description + Sub-services */}
+                                    <div className="flex flex-col pt-8">
                                         <p className="text-[#7a9fc0] text-base leading-relaxed mb-10 max-w-md">
                                             {s.desc}
                                         </p>
