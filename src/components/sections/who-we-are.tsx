@@ -35,7 +35,7 @@ export default function WhoWeAre() {
                 {/* Manifesto */}
                 <div ref={manifestoRef} className="reveal text-center mb-24 max-w-5xl mx-auto">
                     <p className="font-mono text-[10px] tracking-[0.45em] text-white/30 uppercase mb-8 font-bold">
-                        / WHO WE ARE
+                        / AI CONSULTING MELBOURNE
                     </p>
                     <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
                         AI that doesn&apos;t just chat.{" "}
