@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 const SOLUTIONS = [
     { label: "AI Consulting Melbourne", href: "/ai-consulting-melbourne" },
@@ -81,9 +81,9 @@ export default function Footer() {
                                 <FaLinkedinIn size={20} />
                                 <span className="font-mono text-xs tracking-widest pt-0.5">LINKEDIN</span>
                             </Link>
-                            <Link href="https://twitter.com/envaedha" target="_blank" className="hover:text-white transition-colors flex items-center gap-2">
-                                <FaTwitter size={20} />
-                                <span className="font-mono text-xs tracking-widest pt-0.5">TWITTER</span>
+                            <Link href="https://www.instagram.com/envaedha.ai?igsh=bWhmamlsYzlmcjV1&utm_source=qr" target="_blank" className="hover:text-white transition-colors flex items-center gap-2">
+                                <FaInstagram size={20} />
+                                <span className="font-mono text-xs tracking-widest pt-0.5">INSTAGRAM</span>
                             </Link>
                         </div>
                     </div>
