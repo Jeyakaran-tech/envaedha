@@ -1,131 +1,153 @@
 "use client";
 
-import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const PRINCIPLES = [
+const TABS = [
     {
-        id: "01",
-        title: "We don't solve tools. We solve problems.",
-        body: "Most AI vendors sell you a subscription and leave. We build the entire system for you — from training the models to integrating them with your team — and we're accountable for the final result.",
+        id: "expertise",
+        label: "EXPERTISE",
+        heading: "Expertise",
+        number: "1",
+        rows: [
+            {
+                num: "01",
+                keyword: "AUTONOMOUS SYSTEMS",
+                desc: "We build AI agents that plan, execute, and iterate autonomously — eliminating human bottlenecks from your critical workflows.",
+            },
+            {
+                num: "02",
+                keyword: "PRECISION ENGINEERING",
+                desc: "Every system is purpose-built from the ground up. We don't deploy templates or off-the-shelf solutions.",
+            },
+            {
+                num: "03",
+                keyword: "LOCAL INTELLIGENCE",
+                desc: "Melbourne-based engineering team. We understand Victorian business operations, tools, and compliance needs intimately.",
+            },
+        ],
     },
     {
-        id: "02",
-        title: "Real technology, not just templates.",
-        body: "We go deeper than simple chatbots. Our team works at the level of custom model training and smart knowledge engines, ensuring your AI is unique to your business and truly secure.",
+        id: "values",
+        label: "VALUES",
+        heading: "Values",
+        number: "2",
+        rows: [
+            {
+                num: "01",
+                keyword: "RESULT-FIRST",
+                desc: "We measure success by the time and money saved, not lines of code written. Every engagement has a clear, measurable outcome.",
+            },
+            {
+                num: "02",
+                keyword: "TRANSPARENT",
+                desc: "Clear communication at every stage. No black boxes, no surprise invoices, no jargon used to obscure progress.",
+            },
+            {
+                num: "03",
+                keyword: "ACCOUNTABLE",
+                desc: "We own the outcome. If a system we build doesn't perform as specified, we fix it — no questions asked.",
+            },
+        ],
     },
     {
-        id: "03",
-        title: "Reliable results at speed.",
-        body: "We move fast because we know which AI strategies actually work in the real world. We don't experiment on your time; we implement proven architectures that deliver immediate value.",
+        id: "methodology",
+        label: "METHODOLOGY",
+        heading: "Methodology",
+        number: "3",
+        rows: [
+            {
+                num: "01",
+                keyword: "DISCOVER",
+                desc: "Deep-dive into your operations. We map every manual bottleneck, data gap, and integration point before writing a single line of code.",
+            },
+            {
+                num: "02",
+                keyword: "ENGINEER",
+                desc: "Build custom AI pipelines, agents, and integrations from the ground up — tailored to your exact stack and team workflows.",
+            },
+            {
+                num: "03",
+                keyword: "DEPLOY",
+                desc: "Ship to production with full observability, SLA-backed support, and iteration loops that improve the system over time.",
+            },
+        ],
     },
-    {
-        id: "04",
-        title: "Local experts, global standards.",
-        body: "Based in Melbourne, we bridge the gap between complex AI research and practical business application. We take the latest breakthroughs and turn them into simple, powerful tools for your team.",
-    },
-];
-
-const DIFFERENTIATORS = [
-    "Every system we build is designed for 24/7 reliability",
-    "Expertise in custom AI assistants and smart automation",
-    "Full-service approach — from strategy to the final app",
-    "Rigorous testing so your AI works correctly every time",
-    "Honest advice on what AI can (and can't) do for you",
-];
-
-const SECTORS = [
-    "Professional Services",
-    "Healthcare & Medical",
-    "Legal & Accounting",
-    "Retail & E-Commerce",
-    "Manufacturing & Trade",
-    "Small Business Operations",
 ];
 
 export default function Metrics() {
-    const headerRef = useScrollReveal({ threshold: 0.1 });
-    const principlesRef = useScrollReveal<HTMLDivElement>({ threshold: 0.05 });
-    const bottomRef = useScrollReveal<HTMLDivElement>({ threshold: 0.05 });
+    const [active, setActive] = useState(0);
+    const tab = TABS[active];
 
     return (
-        /* Light section — high contrast break like webisoft */
-        <section className="py-28 sm:py-36 relative bg-[#f4f4f4]">
-            <div className="absolute top-0 inset-x-0 h-px bg-black/8" />
-
-            <div className="mx-auto max-w-7xl px-6 lg:px-12">
-
-                {/* Header */}
-                <div ref={headerRef} className="reveal mb-20">
-                    <p className="font-mono text-[10px] tracking-[0.45em] text-black/30 uppercase mb-6 font-bold">
-                        / WHY ENVAEDHA
-                    </p>
-                    <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-black leading-[1.1] max-w-2xl">
-                        We turn AI potential into<br />
-                        <span className="text-black/40">real business results.</span>
-                    </h2>
-                </div>
-
-                {/* Principles Grid */}
-                <div ref={principlesRef} className="reveal-stagger grid grid-cols-1 md:grid-cols-2 gap-px bg-black/[0.07] border border-black/[0.07] rounded-2xl overflow-hidden mb-6">
-                    {PRINCIPLES.map((p) => (
-                        <div
-                            key={p.id}
-                            className="p-8 bg-[#f4f4f4] hover:bg-white transition-colors duration-300 group"
+        <section className="bg-[#f0f0f0]">
+            {/* Tab bar */}
+            <div className="border-b border-black/10 px-6 lg:px-16">
+                <div className="mx-auto max-w-7xl flex items-center gap-2 py-4">
+                    {TABS.map((t, i) => (
+                        <button
+                            key={t.id}
+                            onClick={() => setActive(i)}
+                            className={`px-4 py-1.5 rounded text-[11px] font-bold tracking-[0.15em] border transition-all duration-200 ${
+                                active === i
+                                    ? "bg-black text-white border-black"
+                                    : "bg-transparent text-black border-black/25 hover:border-black/50"
+                            }`}
                         >
-                            <div className="flex items-start gap-4 mb-4">
-                                <span className="font-mono text-[10px] tracking-[0.2em] mt-0.5 shrink-0 text-black/25">{p.id}</span>
-                                <h3 className="text-lg font-bold tracking-tight leading-snug text-black">{p.title}</h3>
-                            </div>
-                            <p className="text-base leading-relaxed pl-8 text-black/50">{p.body}</p>
-                        </div>
+                            {t.label}
+                        </button>
                     ))}
                 </div>
+            </div>
 
-                {/* Bottom Row */}
-                <div ref={bottomRef} className="reveal grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Content */}
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-16 py-20 sm:py-28 overflow-hidden min-h-[520px]">
 
-                    {/* Differentiators */}
-                    <div className="p-8 bg-white border border-black/[0.07] rounded-2xl">
-                        <p className="font-mono text-[10px] tracking-[0.3em] mb-6 text-black/30 font-bold uppercase">
-                            What we bring
-                        </p>
-                        <div className="flex flex-col gap-4">
-                            {DIFFERENTIATORS.map((d, i) => (
-                                <div key={i} className="flex items-center gap-4">
-                                    <div className="w-1 h-1 rounded-full bg-black/40 shrink-0" />
-                                    <span className="text-base text-black/60">{d}</span>
+                {/* Slash "/" marker */}
+                <span className="absolute top-20 left-6 lg:left-16 text-black/30 text-2xl font-light select-none">
+                    /
+                </span>
+
+                {/* Large background number */}
+                <span className="absolute bottom-0 left-2 lg:left-10 text-[20vw] font-black text-black/[0.06] leading-none select-none pointer-events-none">
+                    {tab.number}
+                </span>
+
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={tab.id}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -12 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="relative z-10"
+                    >
+                        {/* Big heading */}
+                        <h2 className="text-5xl sm:text-7xl font-bold text-black tracking-tight mb-16 pl-10 lg:pl-16">
+                            {tab.heading}
+                        </h2>
+
+                        {/* Numbered rows */}
+                        <div className="border-t border-dashed border-black/15">
+                            {tab.rows.map((row) => (
+                                <div
+                                    key={row.num}
+                                    className="grid grid-cols-[80px_220px_1fr] items-start py-6 border-b border-dashed border-black/15 gap-6 group hover:bg-black/[0.02] transition-colors px-2"
+                                >
+                                    <span className="font-mono text-[11px] text-black/30 pt-0.5">
+                                        {row.num}
+                                    </span>
+                                    <span className="font-bold text-[13px] tracking-[0.12em] text-black">
+                                        {row.keyword}
+                                    </span>
+                                    <p className="text-sm text-black/55 leading-relaxed">
+                                        {row.desc}
+                                    </p>
                                 </div>
                             ))}
                         </div>
-                    </div>
-
-                    <div className="flex flex-col gap-6">
-                        {/* Sectors */}
-                        <div className="p-8 bg-white border border-black/[0.07] rounded-2xl">
-                            <p className="font-mono text-[10px] tracking-[0.3em] mb-6 text-black/30 font-bold uppercase">
-                                Sectors we focus on
-                            </p>
-                            <div className="grid grid-cols-2 gap-3">
-                                {SECTORS.map((c, i) => (
-                                    <div key={i} className="flex items-center gap-2">
-                                        <div className="w-1 h-1 rounded-full bg-black/30 shrink-0" />
-                                        <span className="text-sm text-black/50">{c}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Positioning statement */}
-                        <div className="flex-1 p-8 bg-black rounded-2xl">
-                            <p className="font-mono text-[10px] tracking-[0.3em] mb-4 text-white/30 font-bold uppercase">
-                                Our positioning
-                            </p>
-                            <p className="text-lg leading-relaxed text-white/70">
-                                We&apos;re a small, focused team that cares deeply about doing the work right. We take fewer projects so we can go deeper on each one.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </section>
     );
