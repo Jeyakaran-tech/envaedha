@@ -132,15 +132,20 @@ export default function Metrics() {
                             {tab.rows.map((row) => (
                                 <div
                                     key={row.num}
-                                    className="grid grid-cols-[80px_220px_1fr] items-start py-6 border-b border-dashed border-white/15 gap-6 group hover:bg-white/[0.02] transition-colors px-2"
+                                    className="flex flex-col sm:grid sm:grid-cols-[80px_220px_1fr] py-8 border-b border-dashed border-white/15 gap-4 sm:gap-6 group transition-colors px-2"
                                 >
-                                    <span className="font-mono text-[11px] text-white/30 pt-0.5">
-                                        {row.num}
-                                    </span>
-                                    <span className="font-bold text-[13px] tracking-[0.12em] text-white">
+                                    <div className="flex items-center gap-3 sm:block">
+                                        <span className="font-mono text-[10px] sm:text-[11px] text-white/20 sm:text-white/30 pt-0.5">
+                                            {row.num}
+                                        </span>
+                                        <span className="sm:hidden text-[10px] tracking-[0.2em] font-bold text-white/25 uppercase">
+                                            / {tab.label}
+                                        </span>
+                                    </div>
+                                    <span className="font-bold text-[15px] sm:text-[13px] tracking-[0.12em] text-white uppercase sm:normal-case">
                                         {row.keyword}
                                     </span>
-                                    <p className="text-sm text-white/55 leading-relaxed">
+                                    <p className="text-[14px] sm:text-sm text-white/50 sm:text-white/55 leading-relaxed max-w-md">
                                         {row.desc}
                                     </p>
                                 </div>

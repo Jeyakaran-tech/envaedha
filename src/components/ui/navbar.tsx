@@ -61,7 +61,10 @@ export default function Navbar() {
                 scrolled ? "bg-[#111111]/90 backdrop-blur-xl border border-white/[0.06] shadow-2xl" : "bg-transparent"
             }`}>
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group" onClick={() => setActiveLink("")}>
+                <Link href="/" className="flex items-center gap-3 group" onClick={() => setActiveLink("")}>
+                    <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 transition-colors">
+                        <img src="/favicon.ico" alt="Envaedha Logo" className="w-full h-full object-cover scale-110" />
+                    </div>
                     <span className="text-xl font-bold tracking-tighter text-white">
                         Envaedha
                     </span>

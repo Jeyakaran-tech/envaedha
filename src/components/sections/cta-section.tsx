@@ -13,7 +13,7 @@ export default function CTASection() {
             <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
                 <div
                     ref={contentRef}
-                    className="reveal relative rounded-2xl overflow-hidden aspect-[21/10] sm:aspect-[21/8] flex items-center justify-center border border-white/[0.06]"
+                    className="reveal relative rounded-2xl overflow-hidden flex flex-col items-center justify-center border border-white/[0.06] py-20 px-6 sm:py-0 sm:px-0 sm:aspect-[21/8]"
                 >
                     {/* Background Image */}
                     <div className="absolute inset-0 z-0">
