@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col" style={{ background: "#020d1a" }}>
+    <div className="flex min-h-screen flex-col" style={{ background: "#0c0c0c" }}>
       <Navbar />
       <main className="flex-1">
         <Hero />

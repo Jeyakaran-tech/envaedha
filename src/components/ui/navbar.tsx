@@ -58,14 +58,11 @@ export default function Navbar() {
             }`}
         >
             <div className={`mx-auto flex max-w-7xl items-center justify-between px-6 py-3 rounded-full transition-all duration-500 ${
-                scrolled ? "bg-[#020d1a]/80 backdrop-blur-xl border border-blue-900/40 shadow-2xl" : "bg-transparent"
+                scrolled ? "bg-[#111111]/90 backdrop-blur-xl border border-white/[0.06] shadow-2xl" : "bg-transparent"
             }`}>
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group" onClick={() => setActiveLink("")}>
-                    <div className="h-9 w-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center transition-all group-hover:scale-110 group-hover:bg-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
-                        <FiCpu className="text-blue-400 group-hover:text-blue-300 transition-colors" size={20} />
-                    </div>
-                    <span className="text-xl font-bold tracking-tighter text-white font-mono">
+                    <span className="text-xl font-bold tracking-tighter text-white">
                         Envaedha
                     </span>
                 </Link>

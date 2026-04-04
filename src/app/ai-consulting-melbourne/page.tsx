@@ -202,47 +202,16 @@ export default function MelbourneLandingPage() {
           </div>
         </section>
 
-        {/* Melbourne SMB Focus & FAQ */}
+        {/* Melbourne SMB Focus — unique content, not a FAQ duplicate */}
         <section className="py-24 sm:py-32 bg-[#020d1a] border-t border-blue-900/10">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <div className="max-w-4xl mx-auto text-center mb-24">
+            <div className="max-w-4xl mx-auto text-center">
                <h2 className="text-3xl sm:text-5xl font-bold text-[#e2eeff] mb-8">
                  Scaling Melbourne SMBs
                </h2>
                <p className="text-lg leading-relaxed text-[#94a3b8] font-sans">
                  Small and Medium Businesses are the backbone of the Victorian economy. Envaedha acts as your fractional AI engineering department, specializing in low-latency, high-impact implementations that integrate seamlessly with tools you already use. Our local presence in Melbourne means we are available for in-person consultations, architectural reviews, and ongoing support.
                </p>
-            </div>
-
-            <div className="mb-16">
-               <h2 className="text-4xl font-bold text-[#e2eeff] mb-4 text-center">Melbourne AI Strategy FAQ</h2>
-               <p className="text-blue-400 font-mono text-xs tracking-widest uppercase text-center">// VICTORIAN_AI_SECTOR_INSIGHTS</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12">
-               {[
-                  {
-                     q: "Why should a Melbourne business hire an AI consultant?",
-                     a: "Local AI consulting ensures your technology strategy is aligned with the Victorian business landscape and specific regional regulations. Envaedha provides face-to-face architecture planning, ensuring your AI systems integrate with the local software stacks and operational norms unique to Melbourne's professional services and retail sectors."
-                  },
-                  {
-                     q: "Does Envaedha offer on-site consulting in Melbourne CBD?",
-                     a: "Yes. While we build globally-relevant technology, we believe the best AI strategy is born from deep local collaboration. We offer on-site workshops and architecture reviews for firms in Melbourne CBD, Cremorne, and surrounding innovation hubs."
-                  },
-                  {
-                     q: "How does Envaedha compare to large global AI firms?",
-                     a: "Most global firms provide high-level strategy but lack the 'hands-on' engineering depth for local SMBs. Envaedha is a research-led engineering firm—we don't just 'consult' on AI; we build the custom neural engines and agentic pipelines ourselves, right here in Melbourne."
-                  },
-                  {
-                     q: "What is the typical ROI for AI consulting in Melbourne?",
-                     a: "Our clients typically see a 3x-5x return on investment within the first 12 months. This is achieved through the elimination of 'manual labor debt'—the repetitive data tasks that slow down your team—and the implementation of predictive systems that capture previously lost market opportunities."
-                  }
-               ].map((faq, i) => (
-                  <div key={i} className="space-y-4 font-sans leading-relaxed">
-                     <h3 className="text-xl font-bold text-[#e2eeff]">{faq.q}</h3>
-                     <p className="text-[#94a3b8]">{faq.a}</p>
-                  </div>
-               ))}
             </div>
           </div>
         </section>

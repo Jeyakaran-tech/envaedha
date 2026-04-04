@@ -2,9 +2,7 @@
 
 /**
  * BLOG TIMELINE
- * Transformed from a static grid to a scroll-driven timeline.
- * Center vertical line that "glows" and follows progress as the user scrolls.
- * Alternating blog cards on left and right sides.
+ * SMB-focused insights + clearly tagged tech news.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -17,92 +15,101 @@ const BLOG_POSTS = [
     {
         id: "01",
         date: "APRIL 01, 2026",
-        category: "AUTOMATION",
+        category: "SMB INSIGHTS",
         title: "How Melbourne Small Businesses Are Using AI to Save 10+ Hours a Week",
         excerpt: "Learn how Melbourne-based SMBs are leveraging custom AI automation to reclaim their workweek and focus on strategic growth.",
         source: "Envaedha Intelligence",
         url: "/blog/ai-automation-melbourne-small-business",
         isInternal: true,
+        isTechNews: false,
     },
     {
         id: "02",
         date: "MARCH 29, 2026",
-        category: "AGENTS",
+        category: "SMB INSIGHTS",
         title: "AI Chatbots for Melbourne SMBs: What to Know Before You Build",
         excerpt: "Don't build a basic chatbot. Learn what Melbourne small businesses need to know to build truly intelligent AI support systems.",
         source: "Envaedha Intelligence",
         url: "/blog/ai-chatbot-melbourne-smb",
         isInternal: true,
+        isTechNews: false,
     },
     {
         id: "03",
         date: "MARCH 20, 2026",
-        category: "RESEARCH",
+        category: "SMB INSIGHTS",
         title: "The Beginner's Guide to AI Agents for Australian Businesses",
         excerpt: "A comprehensive guide to understanding AI agents and how they are revolutionizing the Australian business landscape.",
         source: "Envaedha Intelligence",
         url: "/blog/ai-agents-australia-guide",
         isInternal: true,
+        isTechNews: false,
     },
     {
         id: "04",
         date: "MARCH 26, 2026",
-        category: "HARDWARE",
+        category: "TECH NEWS",
         title: "NVIDIA Rubin: The Trillion-Parameter Epoch",
         excerpt: "NVIDIA's Vera Rubin platform launches, promising a 10x reduction in training costs for massive models and redefining compute efficiency.",
         source: "Envaedha Intelligence",
         url: "/blog/nvidia-rubin-trillion-parameter",
         isInternal: true,
+        isTechNews: true,
     },
     {
         id: "05",
         date: "MARCH 25, 2026",
-        category: "RESEARCH",
+        category: "TECH NEWS",
         title: "TurboQuant: Google's 3-bit Breakthrough",
-        excerpt: "Google Research unveils TurboQuant—a suite of advanced quantization algorithms including PolarQuant that compress LLMs without loss.",
+        excerpt: "Google Research unveils TurboQuant — a suite of advanced quantization algorithms including PolarQuant that compress LLMs without loss.",
         source: "Envaedha Intelligence",
         url: "/blog/google-research-turboquant",
         isInternal: true,
+        isTechNews: true,
     },
     {
         id: "06",
         date: "MARCH 24, 2026",
-        category: "AGENTS",
+        category: "TECH NEWS",
         title: "The Agentic Shift: Gemini 3 & Claude 4.6",
         excerpt: "A deep dive into how Gemini 3 and Claude 4.6 are transitioning from static chat interfaces to autonomous agents with reasoning loops.",
         source: "Envaedha Intelligence",
         url: "/blog/the-agentic-shift-gemini-3-claude-4",
         isInternal: true,
+        isTechNews: true,
     },
     {
         id: "07",
         date: "MARCH 17, 2026",
-        category: "MODELS",
+        category: "TECH NEWS",
         title: "OpenAI Deploys GPT-5.4 and GPT-5.4 Pro",
         excerpt: "The latest GPT iteration focuses on advanced tool-use and autonomous software engineering, featuring a new Verification Layer for reliability.",
         source: "Envaedha Intelligence",
         url: "/blog/openai-gpt-5-4-deployment",
         isInternal: true,
+        isTechNews: true,
     },
     {
         id: "08",
         date: "MARCH 12, 2026",
-        category: "INFRASTRUCTURE",
+        category: "TECH NEWS",
         title: "Lyria 3 Pro: DeepMind's Creative Core",
         excerpt: "Google DeepMind launches Lyria 3 Pro, a multimodal model that unifies vision, audio, and reasoning in a single latent space for creative scale.",
         source: "Envaedha Intelligence",
         url: "/blog/deepmind-lyria-3-pro",
         isInternal: true,
+        isTechNews: true,
     },
     {
         id: "09",
         date: "MARCH 05, 2026",
-        category: "SECURITY",
+        category: "TECH NEWS",
         title: "Agentic SIEM: Databricks Lakewatch",
         excerpt: "Databricks introduces the first agentic security management system, leveraging autonomous agents for real-time investigation and response.",
         source: "Envaedha Intelligence",
         url: "/blog/databricks-agentic-siem",
         isInternal: true,
+        isTechNews: true,
     },
 ];
 
@@ -261,9 +268,12 @@ export default function BlogPage() {
                     <header ref={revealRef} className="reveal mb-32 border-b border-blue-500/10 pb-16 text-center">
 
                         <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-[1.05]" style={{ color: "#e2eeff" }}>
-                            Signals from the<br />
-                            <span style={{ color: "#3b82f6" }}>frontier.</span>
+                            AI insights for<br />
+                            <span style={{ color: "#3b82f6" }}>Melbourne businesses.</span>
                         </h1>
+                        <p className="mt-6 text-lg text-[#94a3b8] max-w-2xl mx-auto">
+                            Automation, agents, and strategy — practical AI insights for Melbourne SMBs, plus frontier tech news from the world of AI research.
+                        </p>
                     </header>
 
                     {/* Timeline Container */}

@@ -1,172 +1,252 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import TransitionLink from "@/components/ui/transition-link";
 
-/* ── Custom Light SVGs for Dark Theme ──────────────────────── */
+/* ── Custom SVGs ────────────────────────────────────────────── */
 const ServiceSVG = ({ id }: { id: string }) => {
     switch (id) {
-        case "S/001": // Advisory
+        case "S/001":
             return (
-                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
-                    <path d="M50 20c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 48c-9.9 0-18-8.1-18-18s8.1-18 18-18 18 8.1 18 18-8.1 18-18 18z" />
-                    <circle cx="50" cy="50" r="8" />
+                <svg viewBox="0 0 120 120" fill="none" className="w-36 h-36">
+                    <circle cx="60" cy="60" r="40" stroke="rgba(255,255,255,0.10)" strokeWidth="1" />
+                    <circle cx="60" cy="60" r="25" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+                    <circle cx="60" cy="60" r="10" fill="rgba(255,255,255,0.5)" />
+                    <line x1="60" y1="20" x2="60" y2="100" stroke="rgba(255,255,255,0.07)" strokeWidth="1" />
+                    <line x1="20" y1="60" x2="100" y2="60" stroke="rgba(255,255,255,0.07)" strokeWidth="1" />
+                    <path d="M30 60 A30 30 0 0 1 90 60" stroke="rgba(99,179,237,0.55)" strokeWidth="1.5" fill="none" />
                 </svg>
             );
-        case "S/002": // Product Development
+        case "S/002":
             return (
-                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
-                    <rect x="25" y="25" width="20" height="50" rx="2" />
-                    <rect x="55" y="25" width="20" height="50" rx="2" />
-                    <path d="M75 50l15-15v30l-15-15z" />
+                <svg viewBox="0 0 120 120" fill="none" className="w-36 h-36">
+                    <rect x="20" y="55" width="80" height="45" rx="4" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+                    <rect x="35" y="35" width="50" height="28" rx="4" stroke="rgba(255,255,255,0.20)" strokeWidth="1" />
+                    <rect x="45" y="15" width="30" height="25" rx="4" stroke="rgba(99,179,237,0.55)" strokeWidth="1.5" />
+                    <line x1="60" y1="40" x2="60" y2="55" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
                 </svg>
             );
-        case "S/003": // Autonomous Agents
+        case "S/003":
             return (
-                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
-                    <circle cx="35" cy="50" r="15" />
-                    <circle cx="65" cy="50" r="15" />
-                    <path d="M35 35c8.3 0 15 6.7 15 15s-6.7 15-15 15" fill="none" stroke="white" strokeOpacity="0.8" strokeWidth="8" />
+                <svg viewBox="0 0 120 120" fill="none" className="w-36 h-36">
+                    <circle cx="38" cy="60" r="15" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+                    <circle cx="82" cy="60" r="15" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+                    <circle cx="38" cy="60" r="5" fill="rgba(255,255,255,0.5)" />
+                    <circle cx="82" cy="60" r="5" fill="rgba(255,255,255,0.5)" />
+                    <line x1="53" y1="60" x2="67" y2="60" stroke="rgba(99,179,237,0.8)" strokeWidth="2" />
+                    <path d="M22 42 Q38 26 54 42" stroke="rgba(99,179,237,0.25)" strokeWidth="1" fill="none" />
+                    <path d="M66 42 Q82 26 98 42" stroke="rgba(99,179,237,0.25)" strokeWidth="1" fill="none" />
                 </svg>
             );
-        case "S/004": // Workflow Automation
+        case "S/004":
             return (
-                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
-                    <rect x="15" y="45" width="10" height="10" />
-                    <rect x="35" y="45" width="10" height="10" />
-                    <rect x="55" y="45" width="10" height="10" />
-                    <rect x="75" y="45" width="10" height="10" />
-                    <path d="M20 45v-10h50v10" fill="none" stroke="white" strokeOpacity="0.8" strokeWidth="4" />
+                <svg viewBox="0 0 120 120" fill="none" className="w-36 h-36">
+                    <rect x="12" y="50" width="22" height="18" rx="3" stroke="rgba(255,255,255,0.30)" strokeWidth="1.5" />
+                    <rect x="49" y="50" width="22" height="18" rx="3" stroke="rgba(255,255,255,0.30)" strokeWidth="1.5" />
+                    <rect x="86" y="50" width="22" height="18" rx="3" stroke="rgba(99,179,237,0.65)" strokeWidth="1.5" />
+                    <line x1="34" y1="59" x2="49" y2="59" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <line x1="71" y1="59" x2="86" y2="59" stroke="rgba(255,255,255,0.18)" strokeWidth="1.5" strokeDasharray="3 2" />
+                    <circle cx="97" cy="51" r="4" fill="rgba(99,179,237,0.45)" />
                 </svg>
             );
-        case "S/005": // Scaling & Support
+        case "S/005":
             return (
-                <svg viewBox="0 0 100 100" className="w-48 h-48 fill-white/80">
-                    <path d="M20 80l20-40h10l20 40H20z" />
-                    <path d="M50 20l15 30H35l15-30z" />
+                <svg viewBox="0 0 120 120" fill="none" className="w-36 h-36">
+                    <polyline points="18,92 44,54 64,70 96,28" stroke="rgba(99,179,237,0.6)" strokeWidth="2" fill="none" />
+                    <circle cx="96" cy="28" r="5" fill="rgba(99,179,237,0.75)" />
+                    <line x1="18" y1="100" x2="102" y2="100" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+                    <line x1="18" y1="100" x2="18" y2="18" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
                 </svg>
             );
         default: return null;
     }
 };
 
+/* ── Service data with sub-capabilities ─────────────────────── */
 const SERVICES = [
     {
         id: "S/001",
         title: "Advisory",
-        desc: "Gain strategic insights from our fractional CTOs, benefit from comprehensive technical reviews, and achieve accelerated development with expert backend, frontend, and DevOps solutions.",
+        desc: "Gain strategic clarity from fractional CTOs and domain experts who've shipped AI systems at scale.",
         href: "/ai-consulting-melbourne",
-        bgColor: "#020d1a",
+        bg: "#06111f",
+        subs: [
+            "Fractional CTO Engagement",
+            "AI Readiness Assessment",
+            "Technical Architecture Review",
+            "Roadmap & OKR Planning",
+            "Vendor & Model Selection",
+        ],
     },
     {
         id: "S/002",
         title: "Product Development",
-        desc: "Bring market-ready products to life with our product development services. Prototypes & MVPs, SaaS, web, and mobile applications, managed services from planning and design to coding, testing, and ongoing maintenance.",
+        desc: "From zero to production. We build SaaS products, web apps, and mobile experiences that ship fast and scale reliably.",
         href: "/ai-agents-melbourne",
-        bgColor: "#04152b",
+        bg: "#070e1c",
+        subs: [
+            "MVP & Prototype Engineering",
+            "Full-Stack Web Applications",
+            "iOS & Android Development",
+            "API Design & Integration",
+            "Ongoing Maintenance & Support",
+        ],
     },
     {
         id: "S/003",
         title: "Autonomous Agents",
-        desc: "Bring market-ready autonomous agents to life. We build self-learning assistants that plan, reason, and execute complex multi-step workflows across your software stack.",
+        desc: "Self-operating systems that plan, reason, and execute — removing humans from the bottleneck loop.",
         href: "/ai-agents-melbourne",
-        bgColor: "#020d1a",
+        bg: "#061019",
+        subs: [
+            "Multi-Agent Orchestration",
+            "LLM-Powered Decision Loops",
+            "Tool Use & API Calling",
+            "Memory & Context Management",
+            "Guardrails & Safety Layers",
+        ],
     },
     {
         id: "S/004",
         title: "Workflow Automation",
-        desc: "Automate manual bottlenecks with rigid security layers and guardrails. We ensure your AI systems are safe, reliable, and compliant with business regulations.",
+        desc: "Replace manual bottlenecks with intelligent pipelines. Every step auditable, every output reliable.",
         href: "/workflow-automation",
-        bgColor: "#04152b",
+        bg: "#050f1a",
+        subs: [
+            "Process Mapping & Audit",
+            "n8n / Make / Zapier Build-out",
+            "Document Processing Pipelines",
+            "CRM & ERP Integration",
+            "Compliance & Audit Trails",
+        ],
     },
     {
         id: "S/005",
         title: "Scaling & Support",
-        desc: "Deploy and manage your AI systems in the cloud. We ensure your systems stay fast, reliable, and cost-effective as your company scales globally.",
-        href: "/schedule-a-meeting",
-        bgColor: "#020d1a",
+        desc: "Deploy, maintain, and scale your AI systems with cloud-native infrastructure built for growth.",
+        href: "/scaling-support",
+        bg: "#040d17",
+        subs: [
+            "Cloud Infrastructure Setup",
+            "CI/CD & DevOps Pipelines",
+            "Model Monitoring & Drift Detection",
+            "Cost Optimisation Reviews",
+            "24/7 Engineering Support",
+        ],
     },
 ];
 
+const TAB_HEIGHT = 52;
+const NAVBAR_OFFSET = 16;
+
 export default function Services() {
     return (
-        <section id="services" className="relative bg-[#020d1a] border-t border-white/5">
-            {/* Introductory Header */}
-            <div className="bg-[#020d1a] py-32 sm:py-48 border-b border-white/5">
-                <div className="mx-auto max-w-7xl px-6 lg:px-12 text-center">
-                    <p className="font-mono text-[10px] tracking-[0.4em] text-blue-500 uppercase mb-8 font-bold">
+        <section id="services" className="relative bg-[#06111f]">
+            {/* Section Header */}
+            <div className="py-28 sm:py-40 border-b border-white/5">
+                <div className="mx-auto max-w-7xl px-6 lg:px-16 text-center">
+                    <p className="font-mono text-[10px] tracking-[0.45em] text-blue-500/80 uppercase mb-6 font-bold">
                         / SOLUTIONS_CATALOG
                     </p>
-                    <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-[#e2eeff] leading-[1.05] max-w-4xl mx-auto">
-                        Precision engineering <br />
+                    <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-[#ddeeff] leading-[1.05] max-w-4xl mx-auto">
+                        Precision engineering<br />
                         for the autonomous era.
                     </h2>
                 </div>
             </div>
 
-            {/* Stacked Services Container */}
-            {/* This div's height controls how long the stack stays 'frozen' after the last card docks */}
-            <div className="relative" style={{ height: `${SERVICES.length * 90 + 100}vh` }}>
-                {SERVICES.map((s, i) => (
-                    <div
-                        key={s.id}
-                        className="sticky w-full flex flex-col border-t border-dashed border-white/10 shadow-[0_-80px_100px_rgba(0,0,0,0.8)]"
-                        style={{
-                            backgroundColor: s.bgColor,
-                            zIndex: i + 10,
-                            // Increased offset to 160px for maximum title visibility
-                            top: `${(i * 144) + 16}px`,
-                            paddingTop: '2rem',
-                            paddingBottom: '4rem',
-                            minHeight: '80vh',
-                            height: 'auto'
-                        }}
-                    >
-                        <div className="mx-auto max-w-7xl w-full px-6 lg:px-12 flex flex-col relative text-white h-full pt-6">
-                            {/* Service ID (Top Left) */}
-                            <div className="absolute top-0 left-6 lg:left-12 font-mono text-[10px] tracking-[0.2em] text-white/30 font-bold uppercase">
-                                {s.id}
+            {/* Stacked Cards */}
+            <div className="relative">
+                {SERVICES.map((s, i) => {
+                    const isLast = i === SERVICES.length - 1;
+                    return (
+                        <div
+                            key={s.id}
+                            className="sticky w-full"
+                            style={{
+                                backgroundColor: s.bg,
+                                zIndex: i + 10,
+                                top: `${NAVBAR_OFFSET + i * TAB_HEIGHT}px`,
+                                borderTop: i > 0 ? "1px solid rgba(255,255,255,0.06)" : undefined,
+                            }}
+                        >
+                            {/* ── Compact tab header (always visible when buried) ── */}
+                            <div className="flex items-center h-[52px] px-6 lg:px-16 border-b border-white/[0.04]">
+                                <span className="font-mono text-[10px] tracking-[0.3em] text-white/20 font-bold mr-6">
+                                    {s.id}
+                                </span>
+                                <span className="text-sm font-semibold text-white/35 tracking-wide">
+                                    {s.title}
+                                </span>
                             </div>
 
-                            <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 items-center h-full">
-                                {/* Centered Content Stack */}
-                                <div className="flex flex-col items-center text-center w-full">
-                                    <h3 className="text-3xl sm:text-5xl font-bold text-[#e2eeff] mb-12 tracking-tight">
-                                        {s.title}
-                                    </h3>
+                            {/* ── Full card content ── */}
+                            <div
+                                className="mx-auto max-w-7xl px-6 lg:px-16"
+                                style={{
+                                    paddingTop: isLast ? "5rem" : "4rem",
+                                    paddingBottom: isLast ? "8rem" : "4rem",
+                                    minHeight: isLast ? "80vh" : "auto",
+                                }}
+                            >
+                                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-16 items-start">
 
-                                    <div className="max-w-sm mx-auto flex flex-col items-center">
-                                        <p className="text-[#94a3b8] text-sm sm:text-base leading-relaxed mb-12 text-center">
+                                    {/* Left: Title + Description + Sub-services */}
+                                    <div className="flex flex-col">
+                                        <div className="font-mono text-[9px] tracking-[0.35em] text-blue-500/50 mb-5">
+                                            {s.id} / {s.title.toUpperCase()}
+                                        </div>
+                                        <h3 className="text-4xl sm:text-5xl font-bold text-[#ddeeff] mb-6 tracking-tight leading-[1.08]">
+                                            {s.title}
+                                        </h3>
+                                        <p className="text-[#7a9fc0] text-base leading-relaxed mb-10 max-w-md">
                                             {s.desc}
                                         </p>
 
-                                        <Link href={s.href}>
-                                            <button className="px-12 py-3.5 border border-white/20 rounded-md text-[10px] font-bold tracking-[0.15em] uppercase text-white hover:bg-white hover:text-black transition-all duration-300">
-                                                SEE OUR SERVICES &nbsp; →
-                                            </button>
-                                        </Link>
-                                    </div>
-                                </div>
+                                        {/* Sub-capabilities list */}
+                                        <ul className="space-y-3 mb-12">
+                                            {s.subs.map((sub, si) => (
+                                                <motion.li
+                                                    key={sub}
+                                                    initial={{ opacity: 0, x: -10 }}
+                                                    whileInView={{ opacity: 1, x: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ delay: si * 0.07, duration: 0.4 }}
+                                                    className="flex items-center gap-3 text-sm text-white/55"
+                                                >
+                                                    <span className="w-1 h-1 rounded-full bg-blue-500/60 flex-shrink-0" />
+                                                    {sub}
+                                                </motion.li>
+                                            ))}
+                                        </ul>
 
-                                {/* Minimalist SVG Graphic (Right Side) */}
-                                <div className="hidden lg:flex w-full aspect-square bg-white/[0.01] rounded-sm flex items-center justify-center p-12 border border-white/5 group">
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 1 }}
-                                        className="w-full h-full flex items-center justify-center opacity-50 group-hover:opacity-100 transition-opacity"
-                                    >
-                                        <ServiceSVG id={s.id} />
-                                    </motion.div>
+                                        {/* CTA with transition */}
+                                        <TransitionLink href={s.href}>
+                                            <button className="group flex items-center gap-3 px-8 py-3.5 border border-white/15 rounded-full text-[11px] font-bold tracking-[0.18em] uppercase text-white/60 hover:text-white hover:border-white/35 transition-all duration-300 w-fit">
+                                                Explore Service
+                                                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                                            </button>
+                                        </TransitionLink>
+                                    </div>
+
+                                    {/* Right: SVG visual */}
+                                    <div className="hidden lg:flex items-center justify-center w-full aspect-square bg-white/[0.015] rounded-xl border border-white/[0.05]">
+                                        <motion.div
+                                            initial={{ opacity: 0, scale: 0.85 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.8, ease: "easeOut" }}
+                                            className="w-full h-full flex items-center justify-center"
+                                        >
+                                            <ServiceSVG id={s.id} />
+                                        </motion.div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
-
-            {/* Visual Spacer to let the user see the full stack complete and hold */}
-            <div className="h-[20vh] bg-[#020d1a]" />
         </section>
     );
 }

@@ -121,8 +121,8 @@ export default function Footer() {
                     </div>
 
                     <div className="flex items-center gap-8">
-                        <Link href="#" className="hover:text-neutral-400">PRIVACY_POLICY</Link>
-                        <Link href="#" className="hover:text-neutral-400">TERMS_OF_SERVICE</Link>
+                        <Link href="/privacy-policy" className="hover:text-neutral-400">PRIVACY_POLICY</Link>
+                        <Link href="/terms-of-service" className="hover:text-neutral-400">TERMS_OF_SERVICE</Link>
                         <span className="opacity-40">© 2026 ENVAEDHA AI</span>
                     </div>
                 </div>

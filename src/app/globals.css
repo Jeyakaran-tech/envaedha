@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* Light Mode Defaults */
-  --background: #ffffff;
-  --foreground: #0a0a0a;
+  /* Default to dark to prevent white flash on hydration */
+  --background: #0c0c0c;
+  --foreground: #ffffff;
 
   --primary: #3B82F6;
   --primary-foreground: #ffffff;
