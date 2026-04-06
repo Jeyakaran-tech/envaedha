@@ -68,7 +68,7 @@ export default function Footer() {
                             <div className="flex items-center gap-3 text-neutral-400 text-sm">
                                 <span className="text-blue-400">📍</span>
                                 <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                                    <span itemProp="addressLocality">Melbourne</span>, <span itemProp="addressRegion">VIC</span>, Australia
+                                    <span itemProp="addressLocality">Hampton Park</span>, <span itemProp="addressRegion">VIC</span>, Australia
                                 </span>
                             </div>
                             <div className="flex items-center gap-3 text-neutral-400 text-sm">

@@ -98,16 +98,16 @@ const jsonLd = {
       "telephone": "+61 400 000 000", // Placeholder - adjust if real number exists
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Collins Street",
-        "addressLocality": "Melbourne",
+        "streetAddress": "5a Dianna Ct",
+        "addressLocality": "Hampton Park",
         "addressRegion": "VIC",
-        "postalCode": "3000",
+        "postalCode": "3976",
         "addressCountry": "AU",
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": -37.8136,
-        "longitude": 144.9631,
+        "latitude": -38.0433,
+        "longitude": 145.2808,
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",

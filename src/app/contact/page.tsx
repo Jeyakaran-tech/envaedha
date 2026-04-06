@@ -5,7 +5,7 @@ import { FiMail, FiPhone, FiMapPin, FiClock } from "react-icons/fi";
 
 export const metadata: Metadata = {
   title: "Contact Envaedha | AI Consulting Melbourne",
-  description: "Get in touch with Melbourne's leading AI engineering firm. Visit our Collins Street office or book a digital architecture review.",
+  description: "Get in touch with Melbourne's leading AI engineering firm. Visit our Hampton Park office or book a digital architecture review.",
 };
 
 export default function ContactPage() {
@@ -36,7 +36,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-[#c7dff7] mb-1">Melbourne Office</h3>
-                    <p className="text-[#94a3b8] text-sm">Collins Street, Melbourne VIC 3000</p>
+                    <p className="text-[#94a3b8] text-sm">5a Dianna Ct, Hampton Park, VIC 3976</p>
                   </div>
                 </div>
 
@@ -66,13 +66,13 @@ export default function ContactPage() {
             <div className="rounded-3xl border border-white/5 bg-[#141414] overflow-hidden relative min-h-[400px]">
               {/* Actual Google Map Embed (Filtered for Dark Mode) */}
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9631!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b8c5a24293%3A0xa1d5d5d8d5d5a1d5!2sCollins%20St%2C%20Melbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3142.1617792308325!2d145.28082089999998!3d-38.04331659999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad610fa8476475f%3A0xddcdabaff72a4c15!2s5A%20Dianna%20Ct%2C%20Hampton%20Park%20VIC%203976!5e0!3m2!1sen!2sau!4v1775471835264!5m2!1sen!2sau" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%)' }} 
                 allowFullScreen={true} 
                 loading="lazy"
-                title="Google Maps - Envaedha Melbourne Office"
+                title="Google Maps - Envaedha Hampton Park Office"
               ></iframe>
             </div>
 
