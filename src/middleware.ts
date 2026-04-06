@@ -18,24 +18,20 @@ export function middleware(request: NextRequest) {
     changed = true
   }
 
-  // 3. WWW to Non-WWW
+  /* 
+  // 3. WWW to Non-WWW (Conflict with Vercel dashboard settings - causes redirect loop)
   if (host.startsWith('www.')) {
-    // Only redirect if it's the main domain, not subdomains (if any)
-    // Actually simpler to just replace hostname.
     const newHostname = host.replace('www.', '')
-    
-    // We cannot just set url.hostname with nextUrl.clone() sometimes, 
-    // it's safer to build a new one.
-    const newUrl = new URL(request.url.toLowerCase()) // includes lowercase fix
+    const newUrl = new URL(request.url.toLowerCase())
     newUrl.hostname = newHostname
     
-    // Manual trailing slash fix for the new URL
     if (newUrl.pathname.length > 1 && newUrl.pathname.endsWith('/')) {
         newUrl.pathname = newUrl.pathname.slice(0, -1)
     }
 
     return NextResponse.redirect(newUrl, 301)
   }
+  */
 
   if (changed) {
     return NextResponse.redirect(url, 301)
