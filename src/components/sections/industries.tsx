@@ -1,102 +1,190 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
-
-const INDUSTRIES = [
+const ENGAGEMENTS = [
     {
         num: "I/001",
-        title: "Travel & Tourism",
-        desc: "Automate booking operations, synchronize dynamic pricing, and build intelligent customer service agents that handle high-volume inquiries flawlessly.",
+        title: "Startups",
+        desc: "Empowering startups with agile development and cost-effective solutions, we excel in product thinking, rapid prototyping, MVP development, and comprehensive mobile and SaaS solutions.",
+        btnText: "BUILD WITH US",
+        image: "/startup-engagement.png",
         link: "/contact",
-        action: "Build With Us",
     },
     {
         num: "I/002",
-        title: "Retail & E-commerce",
-        desc: "Deploy AI solutions that predict inventory needs, personalize customer journeys, and automate complex order fulfillment across all your channels.",
+        title: "Small and Medium business",
+        desc: "Accelerating growth for established enterprises through intelligent automation and custom AI architectures. We specialize in scaling operations, fine-tuning proprietary models, and integrating agentic workflows into existing stacks.",
+        btnText: "SCALE WITH US",
+        image: "/smb_engagement.png",
         link: "/contact",
-        action: "Shape What's Next",
-    },
-    {
-        num: "I/003",
-        title: "Logistics & Supply Chain",
-        desc: "Optimize route mapping, automate order tracking, and leverage predictive analytics to eliminate bottlenecks in your distribution network.",
-        link: "/contact",
-        action: "Take Your Operations Further",
-    },
-    {
-        num: "I/004",
-        title: "Professional Services",
-        desc: "Streamline compliance, automate repetitive admin tasks, and unlock deeper insights from documents using secure, localized AI pipelines.",
-        link: "/contact",
-        action: "Scale Your Firm",
     },
 ];
 
 export default function Industries() {
-    return (
-        <section className="bg-[#0c0c0c] text-white py-24 sm:py-32">
-            <div className="mx-auto max-w-7xl px-6 lg:px-16">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-                    <div>
-                        <span className="text-white/30 text-[11px] font-mono tracking-[0.2em] uppercase mb-6 block">
-                            / Our Clients
-                        </span>
-                        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-                            We engage with:
-                        </h2>
-                    </div>
-                    <Link
-                        href="/case-studies"
-                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-white/50 hover:text-white transition-colors pb-2 border-b border-white/20 hover:border-white/50"
-                    >
-                        View all case studies
-                    </Link>
-                </div>
+    const [activeIndex, setActiveIndex] = useState(0);
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-                    {INDUSTRIES.map((ind, i) => (
-                        <div
-                            key={ind.num}
-                            className="group relative flex flex-col items-start pt-6 border-t border-white/10 hover:border-white/40 transition-colors duration-500"
-                        >
-                            <span className="font-mono text-[11px] text-white/30 mb-8 mt-2 block transition-colors duration-500 group-hover:text-white/70">
-                                {ind.num}
+    return (
+        <section id="industries" className="bg-[#0c0c0c] text-white border-t border-white/10 overflow-hidden font-sans relative group/sec">
+            <CustomCursor />
+            <div className="w-full">
+                {/* Header Section */}
+                <div className="px-6 lg:px-16 py-16 border-b border-white/10">
+                    <div className="mx-auto flex items-start justify-between">
+                        <div className="flex flex-col gap-6">
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase">
+                                / OUR CLIENTS
                             </span>
-                            
-                            <h3 className="text-2xl font-semibold mb-4 tracking-tight">
-                                {ind.title}
-                            </h3>
-                            
-                            <p className="text-[14px] text-white/50 leading-relaxed mb-10 flex-grow">
-                                {ind.desc}
-                            </p>
-                            
+                            <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-white">
+                                We engage with:
+                            </h2>
+                        </div>
+                        <div className="hidden sm:flex flex-col items-end gap-6 h-full justify-between">
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase">
+                                /00{ENGAGEMENTS.length}
+                            </span>
                             <Link
-                                href={ind.link}
-                                className="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.15em] text-white group-hover:text-[#a0a0a0] transition-colors mt-auto"
+                                href="/contact"
+                                className="text-[11px] font-bold tracking-[0.2em] text-[#ff4d4d] uppercase flex items-center gap-2 hover:opacity-70 transition-opacity"
                             >
-                                <span>{ind.action}</span>
-                                <svg
-                                    width="10"
-                                    height="10"
-                                    viewBox="0 0 12 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                                >
-                                    <path
-                                        d="M1 11L11 1M11 1H3.5M11 1V8.5"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
+                                VIEW ALL <span className="text-[16px]">→</span>
                             </Link>
                         </div>
-                    ))}
+                    </div>
+                </div>
+
+                {/* Main Content Area - Draggable Layout */}
+                <div id="drag-zone" className="relative h-[700px] overflow-hidden group/dragger cursor-none">
+                    <motion.div
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        onDragEnd={(e, { offset }) => {
+                            const swipe = offset.x;
+                            if (swipe < -100 && activeIndex < ENGAGEMENTS.length - 1) {
+                                setActiveIndex(prev => prev + 1);
+                            } else if (swipe > 100 && activeIndex > 0) {
+                                setActiveIndex(prev => prev - 1);
+                            }
+                        }}
+                        className="h-full w-full active:cursor-grabbing"
+                    >
+                        <AnimatePresence initial={false}>
+                            <motion.div
+                                key={activeIndex}
+                                initial={{ x: "100%", opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                exit={{ x: "-30%", opacity: 0, scale: 0.95 }}
+                                transition={{
+                                    duration: 0.8,
+                                    ease: [0.32, 0.72, 0, 1]
+                                }}
+                                className="absolute inset-0 flex flex-col lg:flex-row w-full h-full items-stretch"
+                            >
+                                {/* Image Container - Full Half */}
+                                <div className="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-full overflow-hidden group select-none pointer-events-none">
+                                    <div className="absolute inset-0 grayscale brightness-50 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000">
+                                        <img
+                                            src={ENGAGEMENTS[activeIndex].image}
+                                            alt={ENGAGEMENTS[activeIndex].title}
+                                            className="w-full h-full object-cover"
+                                            draggable={false}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent lg:hidden" />
+                                    </div>
+                                    <span className="absolute top-12 left-6 lg:left-16 font-mono text-[11px] font-bold tracking-[0.1em] text-white/50 z-20">
+                                        {ENGAGEMENTS[activeIndex].num}
+                                    </span>
+                                </div>
+
+                                {/* Text Content Area - Other Half */}
+                                <div className="w-full lg:w-1/2 bg-[#111111] flex flex-col justify-center px-6 lg:px-24 py-20 relative select-none">
+                                    <h3 className="text-[60px] font-bold tracking-tight text-white mb-10 leading-[0.95]">
+                                        {ENGAGEMENTS[activeIndex].title}
+                                    </h3>
+
+                                    <p className="text-[16px] lg:text-[18px] text-white/50 font-light leading-relaxed mb-12 max-w-xl">
+                                        {ENGAGEMENTS[activeIndex].desc}
+                                    </p>
+
+                                    <div className="flex justify-start pointer-events-auto">
+                                        <Link href={ENGAGEMENTS[activeIndex].link}>
+                                            <button className="px-10 py-4 border border-white/20 rounded-[2px] text-[11px] font-bold tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-300 uppercase flex items-center gap-4 group">
+                                                {ENGAGEMENTS[activeIndex].btnText} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
+                    </motion.div>
+
+                    {/* Pagination Controls - Fixed outside the transition container to avoid overlap/z-index issues */}
+                    <div className="absolute bottom-12 right-6 lg:right-16 flex items-center gap-8 z-30 pointer-events-auto">
+                        <div className="flex gap-2">
+                            {ENGAGEMENTS.map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setActiveIndex(i)}
+                                    className={`w-12 h-[1px] transition-all duration-500 ${activeIndex === i ? "bg-white" : "bg-white/10"}`}
+                                />
+                            ))}
+                        </div>
+                        <span className="font-mono text-[11px] text-white/30 tracking-widest">
+                            {activeIndex + 1} / {ENGAGEMENTS.length}
+                        </span>
+                    </div>
                 </div>
             </div>
         </section>
+    );
+}
+
+function CustomCursor() {
+    const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            setMousePos({ x: e.clientX, y: e.clientY });
+        };
+
+        const handleEnter = () => setIsVisible(true);
+        const handleLeave = () => setIsVisible(false);
+
+        const target = document.getElementById("drag-zone");
+        if (target) {
+            target.addEventListener("mousemove", handleMouseMove);
+            target.addEventListener("mouseenter", handleEnter);
+            target.addEventListener("mouseleave", handleLeave);
+        }
+
+        return () => {
+            if (target) {
+                target.removeEventListener("mousemove", handleMouseMove);
+                target.removeEventListener("mouseenter", handleEnter);
+                target.removeEventListener("mouseleave", handleLeave);
+            }
+        };
+    }, []);
+
+    return (
+        <motion.div
+            className="fixed top-0 left-0 pointer-events-none z-[100] hidden lg:flex"
+            animate={{
+                x: mousePos.x - 60,
+                y: mousePos.y - 25,
+                opacity: isVisible ? 1 : 0,
+                scale: isVisible ? 1 : 0,
+            }}
+            transition={{ type: "spring", damping: 35, stiffness: 400, mass: 0.2 }}
+        >
+            <div className="bg-black/80 border border-white/20 text-white px-5 py-2 rounded-full flex items-center gap-3 shadow-2xl backdrop-blur-md">
+                <span className="text-[10px] font-bold tracking-[0.2em] whitespace-nowrap uppercase">
+                    ← DRAG →
+                </span>
+            </div>
+        </motion.div>
     );
 }
