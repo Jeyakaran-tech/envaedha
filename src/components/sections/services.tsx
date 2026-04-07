@@ -179,7 +179,7 @@ export default function Services() {
                                                 {s.id}
                                             </span>
                                             <span className="text-[20px] font-bold tracking-tight text-white/80 uppercase">
-                                                / {s.title}
+                                                {s.title}
                                             </span>
                                         </div>
                                     </div>

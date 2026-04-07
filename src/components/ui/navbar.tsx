@@ -25,7 +25,7 @@ export default function Navbar() {
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            
+
             // Check if we've scrolled past a threshold to change the styling
             setScrolled(currentScrollY > 20);
 
@@ -37,10 +37,10 @@ export default function Navbar() {
                 // Scrolling up - show
                 setVisible(true);
             }
-            
+
             setLastScrollY(currentScrollY);
         };
-        
+
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, [lastScrollY]);
@@ -53,16 +53,14 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed left-0 right-0 z-50 w-full px-4 py-6 sm:px-6 lg:px-8 transition-all duration-700 ease-in-out ${
-                visible ? "opacity-100 translate-y-0" : "opacity-0 pointer-events-none translate-y-[-20px]"
-            }`}
+            className={`fixed left-0 right-0 z-50 w-full px-4 py-6 sm:px-6 lg:px-8 transition-all duration-700 ease-in-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 pointer-events-none translate-y-[-20px]"
+                }`}
         >
-            <div className={`mx-auto flex max-w-7xl items-center justify-between px-6 py-3 rounded-full transition-all duration-500 ${
-                scrolled ? "bg-[#111111]/90 backdrop-blur-xl border border-white/[0.06] shadow-2xl" : "bg-transparent"
-            }`}>
+            <div className={`mx-auto flex max-w-7xl items-center justify-between px-6 py-3 rounded-full transition-all duration-500 ${scrolled ? "bg-[#111111]/90 backdrop-blur-xl border border-white/[0.06] shadow-2xl" : "bg-transparent"
+                }`}>
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3 group" onClick={() => setActiveLink("")}>
-                    <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 transition-colors">
+                    <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 group-hover:border-white/30 transition-colors">
                         <img src="/favicon.ico" alt="Envaedha Logo" className="w-full h-full object-cover scale-110" />
                     </div>
                     <span className="text-xl font-bold tracking-tighter text-white">
@@ -73,19 +71,19 @@ export default function Navbar() {
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-center gap-2">
                     <div className="flex items-center gap-1 font-mono text-[14px] tracking-widest text-neutral-400">
-                        
+
                         {/* Solutions Dropdown */}
-                        <div 
+                        <div
                             className="relative"
                             onMouseEnter={() => setIsSolutionsOpen(true)}
                             onMouseLeave={() => setIsSolutionsOpen(false)}
                         >
-                            <button 
+                            <button
                                 className={`flex items-center gap-2 px-4 py-2 transition-all duration-300 hover:text-white uppercase ${isSolutionsOpen || SOLUTIONS.some(s => s.href === activeLink) ? "text-white" : "text-white/50"}`}
                             >
                                 SOLUTIONS <FiChevronDown className={`transition-transform duration-300 ${isSolutionsOpen ? "rotate-180" : ""}`} />
                             </button>
-                            
+
                             <AnimatePresence>
                                 {isSolutionsOpen && (
                                     <motion.div
@@ -146,9 +144,9 @@ export default function Navbar() {
                     <div className="flex flex-col gap-4">
                         <p className="font-mono text-[10px] tracking-[0.3em] text-blue-500 mb-2">// SOLUTIONS</p>
                         {SOLUTIONS.map((s) => (
-                            <Link 
-                                key={s.href} 
-                                href={s.href} 
+                            <Link
+                                key={s.href}
+                                href={s.href}
                                 onClick={() => handleLinkClick(s.href)}
                                 className={`text-lg font-bold tracking-tight transition-all ${activeLink === s.href ? "text-blue-500" : "text-white/70"}`}
                             >

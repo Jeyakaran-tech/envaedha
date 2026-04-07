@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Newsreader } from "next/font/google";
+import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const cothamSans = localFont({
-  src: "../../public/fonts/CothamSans.otf",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
   variable: "--font-sans",
 });
 
@@ -151,7 +151,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${cothamSans.variable} font-sans bg-black text-white antialiased`}
+        className={`${plusJakartaSans.variable} font-sans bg-black text-white antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -165,3 +165,4 @@ export default function RootLayout({
     </html>
   );
 }
+
