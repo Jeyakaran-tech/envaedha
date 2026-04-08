@@ -80,19 +80,32 @@ export default function Metrics() {
     const tab = TABS[active];
 
     return (
-        <section className="bg-[#141414]">
+        <section id="why-us" className="bg-[#0c0c0c] border-t border-white/10">
+            {/* Section Header */}
+            <div className="px-6 lg:px-16 py-16 border-b border-white/10">
+                <div className="mx-auto max-w-7xl">
+                    <div className="flex flex-col gap-6">
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase">
+                            / OUR VALUES
+                        </span>
+                        {/* <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-white">
+                            The way we work:
+                        </h2> */}
+                    </div>
+                </div>
+            </div>
+
             {/* Tab bar */}
-            <div className="border-b border-white/10 px-6 lg:px-16">
+            <div className="border-b border-white/10 px-6 lg:px-16 bg-[#141414]">
                 <div className="mx-auto max-w-7xl flex items-center gap-2 py-4">
                     {TABS.map((t, i) => (
                         <button
                             key={t.id}
                             onClick={() => setActive(i)}
-                            className={`px-4 py-1.5 rounded text-[11px] font-bold tracking-[0.15em] border transition-all duration-200 ${
-                                active === i
+                            className={`px-4 py-1.5 rounded text-[11px] font-bold tracking-[0.15em] border transition-all duration-200 ${active === i
                                     ? "bg-white text-black border-white"
                                     : "bg-transparent text-white border-white/25 hover:border-white/50"
-                            }`}
+                                }`}
                         >
                             {t.label}
                         </button>
