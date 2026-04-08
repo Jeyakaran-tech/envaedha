@@ -1,191 +1,38 @@
 import { Metadata } from "next";
-import Navbar from "@/components/ui/navbar";
-import Footer from "@/components/ui/footer";
-import CTASection from "@/components/sections/cta-section";
-import Link from "next/link";
-
-import SolutionsStrategy from "@/components/sections/solutions-strategy";
+import ServicePageLayout from "@/components/ui/service-page-layout";
 
 export const metadata: Metadata = {
-  title: "AI Consulting Melbourne",
-  description: "Specialized AI consulting for Melbourne small and medium businesses. We build autonomous AI agents, intelligent workflow automation, and predictive data solutions.",
+  title: "AI Consulting Melbourne | Strategy & Fractional CTO | Envaedha",
+  description: "Specialized AI consulting for Melbourne small and medium businesses. From strategy and fractional CTO advisory to custom autonomous architectures.",
 };
 
-export default function MelbourneLandingPage() {
+const CAPABILITIES = [
+    { num: "01", title: "STRATEGIC AUDIT", desc: "Analyzing your current infrastructure to identify high-impact AI opportunities and operational bottlenecks." },
+    { num: "02", title: "FRACTIONAL CTO", desc: "Access to elite engineering leadership without the full-time overhead, guiding your technical roadmap." },
+    { num: "03", title: "ARCHITECTURE DESIGN", desc: "Engineering deterministic, scalable, and secure neural architectures tailored to your unique data stacks." },
+    { num: "04", title: "FEASIBILITY ANALYSIS", desc: "Deep-dive technical validation of AI concepts before significant capital investment and development." },
+    { num: "05", title: "GOVERNANCE & SAFETY", desc: "Establishing strict data privacy, model guardrails, and regulatory compliance for your AI integration." },
+];
+
+export default function AiConsultingPage() {
   return (
-    <div className="flex min-h-screen flex-col" style={{ background: "#020d1a" }}>
-      <Navbar />
-
-      {/* 
-        ─────────────────────────────────────────────────────────
-        JSON-LD SCHEMA (SEO)
-        ─────────────────────────────────────────────────────────
-      */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Envaedha - AI Consulting Melbourne",
-            "image": "https://envaedha.com.au/melbourne_smb_ai_office_1775199622059.png",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Melbourne",
-              "addressRegion": "VIC",
-              "addressCountry": "AU"
-            },
-            "description": "Premier AI consulting for Melbourne small and medium businesses. Specialized in autonomous agents, LLM fine-tuning, and intelligent workflow automation designed for the Victorian business ecosystem.",
-            "url": "https://envaedha.com.au/ai-consulting-melbourne",
-            "telephone": "+61 400 000 000",
-            "priceRange": "$$",
-            "areaServed": "Melbourne",
-            "hasOfferCatalog": {
-              "@type": "OfferCatalog",
-              "name": "Local AI Services",
-              "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "AI Strategy & Consultation"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Local AI Agent Deployment"
-                  }
-                }
-              ]
-            }
-          }),
-        }}
-      />
-
-      <main className="flex-1">
-        {/* Simple Hero Section */}
-        <section className="relative pt-32 pb-20 overflow-hidden border-b border-blue-900/10">
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full" />
-          </div>
-
-          <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10 text-center">
-            <p className="font-mono text-[13px] tracking-[0.3em] text-blue-400 mb-8 uppercase">
-              // FRONTIER.TECHNOLOGY.MELBOURNE
-            </p>
-            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-[#e2eeff] leading-tight mb-8">
-              AI Consulting for <span className="text-blue-500">Melbourne SMBs</span>
-            </h1>
-            <p className="max-w-2xl mx-auto text-lg sm:text-xl text-[#94a3b8] leading-relaxed mb-12">
-              Transforming Melbourne SMBs through custom neural architectures, autonomous agents, and intelligent workflow automation. Engineering local growth with global-scale technology.
-            </p>
-            <div className="flex justify-center">
-              <Link href="/schedule-a-meeting">
-                <button className="px-10 py-4 bg-white text-black rounded-full font-bold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-blue-900/10">
-                  Initialize Free Consultation
-                </button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Introduction Visual */}
-        <section className="py-24 sm:py-32 border-b border-blue-900/10">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12 mb-20 text-center">
-            <div className="relative aspect-[21/9] rounded-[40px] overflow-hidden border border-blue-900/20 shadow-[0_0_50px_rgba(59,130,246,0.15)]">
-              <img
-                src="/melbourne_smb_ai_office_1775199622059.png"
-                alt="Melbourne AI Consulting for SMBs"
-                className="w-full h-full object-cover opacity-90 transition-transform duration-1000 hover:scale-105"
-              />
-              <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-[#020d1a] via-transparent to-transparent opacity-80" />
-              <div className="absolute bottom-12 left-12 text-left">
-                <h2 className="text-3xl sm:text-5xl font-bold text-[#e2eeff] mb-4">Empowering the <br />Victorian Ecosystem</h2>
-                <p className="text-blue-400 font-mono tracking-widest text-xs">// LOCAL_FOCUS_GLOBAL_TECH</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Humatic-type Strategy Section */}
-        <SolutionsStrategy />
-
-        {/* The Three Pillars */}
-        <section className="py-24 sm:py-32 relative overflow-hidden bg-[#010c18]">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <div className="mb-24 text-center">
-              <h2 className="text-4xl sm:text-5xl font-bold text-[#e2eeff] mb-6">
-                Our Core Pillars of Efficiency
-              </h2>
-              <p className="text-[#94a3b8] max-w-xl mx-auto">Scaling Melbourne firms through research-driven deployment of frontier AI architectures.</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">
-              {/* Pillar 1: Automation */}
-              <div className="p-8 rounded-3xl border border-blue-900/20 bg-blue-950/10 hover:border-blue-500/30 transition-all group">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 font-mono font-bold mb-6 group-hover:scale-110 transition-transform">
-                  01
-                </div>
-                <h3 className="text-2xl font-bold text-[#e2eeff] mb-4">Intelligent Automation</h3>
-                <p className="text-[#94a3b8] leading-relaxed mb-6">
-                  AI workflow automation in Melbourne isn&apos;t just about saving time—it&apos;s about reallocating your most valuable resources to high-impact strategy. We map your current manual processes and replace them with custom neural pipelines.
-                </p>
-                <Link href="/workflow-automation" className="text-blue-400 font-mono text-sm tracking-widest hover:text-blue-300 transition-colors uppercase">
-                  Explore_Automation ↗
-                </Link>
-              </div>
-
-              {/* Pillar 2: AI Agents */}
-              <div className="p-8 rounded-3xl border border-blue-900/20 bg-blue-950/10 hover:border-blue-500/30 transition-all group">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 font-mono font-bold mb-6 group-hover:scale-110 transition-transform">
-                  02
-                </div>
-                <h3 className="text-2xl font-bold text-[#e2eeff] mb-4">Autonomous AI Agents</h3>
-                <p className="text-[#94a3b8] leading-relaxed mb-6">
-                  We build AI agents for Melbourne businesses that don&apos;t just chat—they execute. These agents act as digital employees capable of handling scheduling, research, and multi-step reasoning across your entire software stack.
-                </p>
-                <Link href="/ai-agents-melbourne" className="text-blue-400 font-mono text-sm tracking-widest hover:text-blue-300 transition-colors uppercase">
-                  See_Agentic_Systems ↗
-                </Link>
-              </div>
-
-              {/* Pillar 3: LLMs */}
-              <div className="p-8 rounded-3xl border border-blue-900/20 bg-blue-950/10 hover:border-blue-500/30 transition-all group">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500 font-mono font-bold mb-6 group-hover:scale-110 transition-transform">
-                  03
-                </div>
-                <h3 className="text-2xl font-bold text-[#e2eeff] mb-4">LLM Fine-Tuning</h3>
-                <p className="text-[#94a3b8] leading-relaxed mb-6">
-                  Models aligned to your domain. We fine-tune high-performance language models on your proprietary data, ensuring your AI systems adhere to your unique technical and regulatory requirements.
-                </p>
-                <Link href="/llm-fine-tuning" className="text-blue-400 font-mono text-sm tracking-widest hover:text-blue-300 transition-colors uppercase">
-                  Fine_Tuning_Models ↗
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Melbourne SMB Focus — unique content, not a FAQ duplicate */}
-        <section className="py-24 sm:py-32 bg-[#020d1a] border-t border-blue-900/10">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl sm:text-5xl font-bold text-[#e2eeff] mb-8">
-                Scaling Melbourne SMBs
-              </h2>
-              <p className="text-lg leading-relaxed text-[#94a3b8] font-sans">
-                Small and Medium Businesses are the backbone of the Victorian economy. Envaedha acts as your fractional AI engineering department, specializing in low-latency, high-impact implementations that integrate seamlessly with tools you already use. Our local presence in Melbourne means we are available for in-person consultations, architectural reviews, and ongoing support.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <CTASection />
-      </main>
-
-      <Footer />
-    </div>
+    <ServicePageLayout
+      id="001"
+      title="Advisory"
+      subtitle="Strategic guidance for autonomous growth."
+      description="Gain clarity in the noise of the AI revolution. We provide battle-tested strategy and fractional CTO leadership to ensure your technical investments drive measurable business outcomes."
+      capabilities={CAPABILITIES}
+      heroVisual={
+        <svg viewBox="0 0 120 120" fill="none" className="w-64 h-64">
+            <circle cx="60" cy="60" r="40" stroke="black" strokeWidth="1" opacity="0.1" />
+            <circle cx="60" cy="60" r="25" stroke="black" strokeWidth="1" opacity="0.2" />
+            <circle cx="60" cy="60" r="10" fill="black" opacity="0.5" />
+            <line x1="60" y1="20" x2="60" y2="100" stroke="black" strokeWidth="1" opacity="0.1" />
+            <line x1="20" y1="60" x2="100" y2="60" stroke="black" strokeWidth="1" opacity="0.1" />
+            <path d="M30 60 A30 30 0 0 1 90 60" stroke="black" strokeWidth="2" fill="none" opacity="0.6" />
+        </svg>
+      }
+      ctaTitle="Ready to define your AI roadmap?"
+    />
   );
 }

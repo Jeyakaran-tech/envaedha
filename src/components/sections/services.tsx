@@ -20,10 +20,11 @@ const ServiceSVG = ({ id }: { id: string }) => {
         case "S/002":
             return (
                 <svg viewBox="0 0 120 120" fill="none" className="w-36 h-36">
-                    <rect x="20" y="55" width="80" height="45" rx="4" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-                    <rect x="35" y="35" width="50" height="28" rx="4" stroke="rgba(255,255,255,0.20)" strokeWidth="1" />
-                    <rect x="45" y="15" width="30" height="25" rx="4" stroke="rgba(99,179,237,0.55)" strokeWidth="1.5" />
-                    <line x1="60" y1="40" x2="60" y2="55" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+                    <rect x="10" y="10" width="100" height="100" rx="10" fill="white" />
+                    <path d="M40 40 L55 35 V85 L40 80 Z" fill="black" opacity="0.8" />
+                    <path d="M50 40 L65 35 V85 L50 80 Z" fill="black" opacity="0.6" />
+                    <path d="M60 40 L75 35 V85 L60 80 Z" fill="black" opacity="0.4" />
+                    <path d="M70 40 L85 35 V85 L70 80 Z" fill="black" opacity="0.2" />
                 </svg>
             );
         case "S/003":
@@ -82,7 +83,7 @@ const SERVICES = [
         id: "S/002",
         title: "Product Development",
         desc: "From zero to production. We build SaaS products, web apps, and mobile experiences that ship fast and scale reliably.",
-        href: "/ai-agents-melbourne",
+        href: "/product-development",
         bg: "#1a1a1a",
         subs: [
             "MVP & Prototype Engineering",

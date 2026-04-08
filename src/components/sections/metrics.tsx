@@ -103,8 +103,8 @@ export default function Metrics() {
                             key={t.id}
                             onClick={() => setActive(i)}
                             className={`px-4 py-1.5 rounded text-[11px] font-bold tracking-[0.15em] border transition-all duration-200 ${active === i
-                                    ? "bg-white text-black border-white"
-                                    : "bg-transparent text-white border-white/25 hover:border-white/50"
+                                ? "bg-white text-black border-white"
+                                : "bg-transparent text-white border-white/25 hover:border-white/50"
                                 }`}
                         >
                             {t.label}
