@@ -1,16 +1,21 @@
-"use client";
-
 import React from "react";
 import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
+import SubServicesStack from "@/components/sections/sub-services-stack";
 
 interface Capability {
     num: string;
     title: string;
     desc: string;
+}
+
+interface SubService {
+    label: string;
+    title: string;
+    description: string;
 }
 
 interface ServicePageLayoutProps {
@@ -19,6 +24,7 @@ interface ServicePageLayoutProps {
     subtitle: string;
     description: string;
     capabilities: Capability[];
+    subServices?: SubService[];
     heroVisual: React.ReactNode;
     ctaTitle?: string;
     ctaHref?: string;
@@ -30,6 +36,7 @@ export default function ServicePageLayout({
     subtitle,
     description,
     capabilities,
+    subServices = [],
     heroVisual,
     ctaTitle = "Ready to build your next digital breakthrough?",
     ctaHref = "/contact"
@@ -61,7 +68,7 @@ export default function ServicePageLayout({
                     <div className="h-px w-full bg-white/10 mb-32" />
 
                     {/* Capabilities List */}
-                    <div className="max-w-4xl ml-auto">
+                    <div className="max-w-4xl ml-auto mb-32">
                         <div className="border-t border-dashed border-white/20">
                             {capabilities.map((s) => (
                                 <div key={s.num} className="group py-12 border-b border-dashed border-white/20 flex flex-col sm:grid sm:grid-cols-[100px_1fr_1.5fr] gap-8 items-start hover:bg-white/[0.01] px-4 transition-all">
@@ -77,8 +84,18 @@ export default function ServicePageLayout({
                         </div>
                     </div>
 
+                </div>
+
+                {/* Sub-Services Stacking Section */}
+                {subServices.length > 0 && (
+                    <div className="mt-32">
+                        <SubServicesStack services={subServices} />
+                    </div>
+                )}
+
+                <div className="mx-auto max-w-7xl px-6 lg:px-16 mt-32">
                     {/* CTA Area */}
-                    <div className="mt-48 text-center bg-blue-600/5 border border-blue-500/10 rounded-[60px] py-24 px-12 relative overflow-hidden">
+                    <div className="text-center bg-blue-600/5 border border-blue-500/10 rounded-[60px] py-24 px-12 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] -mr-48 -mt-48" />
                         <h2 className="text-4xl sm:text-6xl font-bold text-white mb-12 tracking-tight">
                             {ctaTitle.split('\n').map((line, i) => (
@@ -89,7 +106,6 @@ export default function ServicePageLayout({
                             Let&apos;s Build Together <FiArrowRight />
                         </Link>
                     </div>
-
                 </div>
             </main>
 

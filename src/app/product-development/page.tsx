@@ -14,6 +14,16 @@ const CAPABILITIES = [
   { num: "05", title: "PRODUCT TRANSITION", desc: "Ensuring smooth handovers, scaling, and ongoing evolution as your product matures for the global market." },
 ];
 
+const SUB_SERVICES = [
+    { label: "PRDEV 001", title: "Fractional CTO", description: "Expert tech leadership without full-time commitment, tailored to your budget and needs." },
+    { label: "PRDEV 002", title: "Technical Review", description: "We offer a comprehensive assessment of your tech stack, crafting a technical roadmap that aligns with your business goals." },
+    { label: "PRDEV 003", title: "Team Extension", description: "Extend your team's capabilities with our experienced professionals, tackling project challenges without the hiring hassles." },
+    { label: "PRDEV 004", title: "Frontend Development", description: "Our team crafts engaging, functional, and visually appealing UIs, enhancing user experience across devices." },
+    { label: "PRDEV 005", title: "Backend Development", description: "Robust and scalable server-side solutions that power your applications with security and performance." },
+    { label: "PRDEV 006", title: "Fullstack Specialists", description: "End-to-end development expertise covering everything from interface design to complex database architecture." },
+    { label: "PRDEV 007", title: "Devops & Best Practices", description: "Streamlining development cycles and ensuring high availability with modern CI/CD and infrastructure-as-code." },
+];
+
 export default function ProductDevelopmentPage() {
   return (
     <ServicePageLayout
@@ -22,6 +32,7 @@ export default function ProductDevelopmentPage() {
       subtitle="Guiding your product vision."
       description="Our team transcends traditional coding capabilities. We're a dynamic collective of product development experts committed to nurturing your project at every phase. Let us empower your vision with unparalleled support and innovation."
       capabilities={CAPABILITIES}
+      subServices={SUB_SERVICES}
       heroVisual={
         <svg viewBox="0 0 120 120" fill="none" className="w-64 h-64">
           <path d="M40 40 L55 35 V85 L40 80 Z" fill="black" opacity="0.8" />

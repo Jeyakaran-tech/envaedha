@@ -115,7 +115,7 @@ const SERVICES = [
         bg: "#262626",
         subs: [
             "Process Mapping & Audit",
-            "n8n / Make / Zapier Build-out",
+            "n8n / See / Zapier Build-out",
             "Document Processing Pipelines",
             "CRM & ERP Integration",
             "Compliance & Audit Trails",

@@ -14,6 +14,14 @@ const CAPABILITIES = [
     { num: "05", title: "GOVERNANCE & SAFETY", desc: "Establishing strict data privacy, model guardrails, and regulatory compliance for your AI integration." },
 ];
 
+const SUB_SERVICES = [
+    { label: "ADVISR 001", title: "AI Strategy", description: "Comprehensive roadmap design to align your AI investments with core business objectives." },
+    { label: "ADVISR 002", title: "Data Readiness", description: "Evaluating your data infrastructure to ensure it's prepared for high-performance AI integration." },
+    { label: "ADVISR 003", title: "Model Selection", description: "Expert guidance on choosing the right foundation models for your specific use cases." },
+    { label: "ADVISR 004", title: "Ethical Guardrails", description: "Defining safety policies and model constraints to ensure responsible AI deployment." },
+    { label: "ADVISR 005", title: "ROI Modeling", description: "Financial forecasting and performance metrics to track the business value of your AI transformation." },
+];
+
 export default function AiConsultingPage() {
   return (
     <ServicePageLayout
@@ -22,6 +30,7 @@ export default function AiConsultingPage() {
       subtitle="Strategic guidance for autonomous growth."
       description="Gain clarity in the noise of the AI revolution. We provide battle-tested strategy and fractional CTO leadership to ensure your technical investments drive measurable business outcomes."
       capabilities={CAPABILITIES}
+      subServices={SUB_SERVICES}
       heroVisual={
         <svg viewBox="0 0 120 120" fill="none" className="w-64 h-64">
             <circle cx="60" cy="60" r="40" stroke="black" strokeWidth="1" opacity="0.1" />
