@@ -4,6 +4,9 @@ import ServicePageLayout from "@/components/ui/service-page-layout";
 export const metadata: Metadata = {
   title: "AI Scaling & Cloud Support Melbourne | Infrastructure & DevOps | Envaedha",
   description: "Deploy, scale, and maintain your AI systems with cloud-native infrastructure. Melbourne-based engineering support for AI-powered businesses.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/scaling-support",
+  },
 };
 
 const CAPABILITIES = [

@@ -4,6 +4,9 @@ import ServicePageLayout from "@/components/ui/service-page-layout";
 export const metadata: Metadata = {
   title: "LLM Fine-Tuning Melbourne | Custom Neural Architectures | Envaedha",
   description: "Specialized LLM fine-tuning and retrieval-augmented generation (RAG) for Melbourne enterprise. Models aligned to your unique domain and regulatory constraints.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/llm-fine-tuning",
+  },
 };
 
 const CAPABILITIES = [

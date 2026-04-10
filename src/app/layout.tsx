@@ -37,7 +37,7 @@ const officeCodePro = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://envaedha.com.au"),
+  metadataBase: new URL("https://www.envaedha.com.au"),
   title: {
     default: "Envaedha | AI Consulting Melbourne | Agentic Workflows & LLMs",
     template: "%s | Envaedha",

@@ -4,6 +4,9 @@ import ServicePageLayout from "@/components/ui/service-page-layout";
 export const metadata: Metadata = {
   title: "Product Development | SaaS, MVPs & Digital Transformation | Envaedha",
   description: "Envaedha's product development team nurtures your vision from prototype to high-scale SaaS production. Expert engineering for modern digital products.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/product-development",
+  },
 };
 
 const CAPABILITIES = [

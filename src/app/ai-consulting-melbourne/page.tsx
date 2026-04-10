@@ -4,6 +4,9 @@ import ServicePageLayout from "@/components/ui/service-page-layout";
 export const metadata: Metadata = {
   title: "AI Consulting Melbourne | Strategy & Fractional CTO | Envaedha",
   description: "Specialized AI consulting for Melbourne small and medium businesses. From strategy and fractional CTO advisory to custom autonomous architectures.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/ai-consulting-melbourne",
+  },
 };
 
 const CAPABILITIES = [

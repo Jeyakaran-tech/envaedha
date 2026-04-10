@@ -6,6 +6,9 @@ import { FiMail, FiPhone, FiMapPin, FiClock } from "react-icons/fi";
 export const metadata: Metadata = {
   title: "Contact Envaedha | AI Consulting Melbourne",
   description: "Get in touch with Melbourne's leading AI engineering firm. Visit our Hampton Park office or book a digital architecture review.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/contact",
+  },
 };
 
 export default function ContactPage() {

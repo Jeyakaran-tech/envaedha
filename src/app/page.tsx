@@ -12,6 +12,9 @@ import CTASection from "../components/sections/cta-section";
 export const metadata: Metadata = {
   title: "AI Consulting Melbourne | Automation & AI Agents for SMBs | Envaedha",
   description: "Envaedha helps Melbourne small and medium businesses automate workflows, build AI agents, and unlock data insights. Book a free consultation.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au",
+  },
 };
 
 export default function HomePage() {

@@ -4,6 +4,9 @@ import ServicePageLayout from "@/components/ui/service-page-layout";
 export const metadata: Metadata = {
   title: "AI Agents Melbourne | Autonomous Agentic Workflows | Envaedha",
   description: "Deploy autonomous AI agents that plan, reason, and execute across your enterprise software stack. Melbourne-based engineering for production-ready agents.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/ai-agents-melbourne",
+  },
 };
 
 const CAPABILITIES = [

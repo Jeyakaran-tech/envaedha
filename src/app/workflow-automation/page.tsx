@@ -4,6 +4,9 @@ import ServicePageLayout from "@/components/ui/service-page-layout";
 export const metadata: Metadata = {
   title: "AI Workflow Automation Melbourne | Intelligent Process Pipelines | Envaedha",
   description: "Eliminate manual operational bottlenecks with intelligent AI pipelines. Melbourne-based engineering for automating document processing and data workflows.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/workflow-automation",
+  },
 };
 
 const CAPABILITIES = [
