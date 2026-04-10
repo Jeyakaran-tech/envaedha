@@ -13,9 +13,7 @@ const SOLUTIONS = [
 
 const RESOURCES = [
     { label: "Technical Blog", href: "/blog" },
-    { label: "Case Studies", href: "/#case-studies" },
-    { label: "Architecture Review", href: "/schedule-a-meeting" },
-    { label: "Why Envaedha", href: "/#why-us" },
+    { label: "Case Studies", href: "/case-studies" },
 ];
 
 export default function Footer() {
@@ -55,7 +53,7 @@ export default function Footer() {
                     <div>
                         <h3 className="text-[#93c5fd] text-[13px] font-mono tracking-[0.2em] mb-8 uppercase">Envaedha</h3>
                         <ul className="flex flex-col gap-4 font-sans text-base text-neutral-400">
-                            <li className="hover:text-white transition-colors"><Link href="/#who-we-are">About Us</Link></li>
+                            <li className="hover:text-white transition-colors"><Link href="/about">About Us</Link></li>
                             <li className="hover:text-white transition-colors"><Link href="/contact">Contact Us</Link></li>
                             <li className="hover:text-white transition-colors"><Link href="mailto:admin@envaedha.com.au">Email Inquiry</Link></li>
                         </ul>
