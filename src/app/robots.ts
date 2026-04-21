@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://envaedha.com.au/sitemap.xml',
+    sitemap: 'https://www.envaedha.com.au/sitemap.xml',
   }
 }
