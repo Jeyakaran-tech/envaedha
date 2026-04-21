@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import TestimonialSection from "../sections/testimonial";
 
 const SOLUTIONS = [
     { label: "AI Consulting Melbourne", href: "/ai-consulting-melbourne" },
@@ -16,10 +17,12 @@ const RESOURCES = [
     { label: "Case Studies", href: "/case-studies" },
 ];
 
-export default function Footer() {
+export default function Footer({ showTestimonial = true }: { showTestimonial?: boolean }) {
     return (
-        <footer className="pt-24 pb-12 text-white overflow-hidden" aria-labelledby="footer-heading"
-            style={{ background: "#020d1a", borderTop: "1px solid rgba(59,130,246,0.1)" }}>
+        <>
+            {showTestimonial && <TestimonialSection />}
+            <footer className="pt-24 pb-12 text-white overflow-hidden" aria-labelledby="footer-heading"
+                style={{ background: "#020d1a", borderTop: "1px solid rgba(59,130,246,0.1)" }}>
             <h2 id="footer-heading" className="sr-only">Footer</h2>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -126,5 +129,6 @@ export default function Footer() {
                 </div>
             </div>
         </footer>
+        </>
     );
 }

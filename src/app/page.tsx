@@ -27,7 +27,7 @@ export default function HomePage() {
         <div id="services"><Services /></div>
         <div id="industries"><Industries /></div>
         <div id="why-us"><Metrics /></div>
-        <CTASection />
+        {/* <CTASection /> */}
       </main>
       <Footer />
     </div>

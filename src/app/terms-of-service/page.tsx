@@ -88,7 +88,7 @@ export default function TermsOfServicePage() {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer showTestimonial={false} />
     </div>
   );
 }

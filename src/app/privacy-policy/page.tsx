@@ -94,7 +94,7 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </main>
-      <Footer />
+      <Footer showTestimonial={false} />
     </div>
   );
 }
