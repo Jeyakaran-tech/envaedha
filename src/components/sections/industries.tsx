@@ -24,7 +24,30 @@ const ENGAGEMENTS = [
 ];
 
 export default function Industries() {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [[activeIndex, direction], setActiveStep] = useState([0, 0]);
+
+    const paginate = (newDirection: number) => {
+        const nextIndex = activeIndex + newDirection;
+        if (nextIndex >= 0 && nextIndex < ENGAGEMENTS.length) {
+            setActiveStep([nextIndex, newDirection]);
+        }
+    };
+
+    const variants = {
+        enter: (d: number) => ({
+            x: d > 0 ? "100%" : d < 0 ? "-100%" : 0,
+            opacity: 0
+        }),
+        center: {
+            x: 0,
+            opacity: 1
+        },
+        exit: (d: number) => ({
+            x: d > 0 ? "-30%" : d < 0 ? "30%" : 0,
+            opacity: 0,
+            scale: 0.95
+        })
+    };
 
     return (
         <section id="industries" className="bg-[#0c0c0c] text-white border-t border-white/10 overflow-hidden font-sans relative group/sec">
@@ -56,26 +79,28 @@ export default function Industries() {
                 </div>
 
                 {/* Main Content Area - Draggable Layout */}
-                <div id="drag-zone" className="relative h-[700px] overflow-hidden group/dragger cursor-none">
+                <div id="drag-zone" className="relative h-[720px] lg:h-[700px] overflow-hidden group/dragger cursor-none">
                     <motion.div
                         drag="x"
                         dragConstraints={{ left: 0, right: 0 }}
                         onDragEnd={(e, { offset }) => {
                             const swipe = offset.x;
-                            if (swipe < -100 && activeIndex < ENGAGEMENTS.length - 1) {
-                                setActiveIndex(prev => prev + 1);
-                            } else if (swipe > 100 && activeIndex > 0) {
-                                setActiveIndex(prev => prev - 1);
+                            if (swipe < -100) {
+                                paginate(1);
+                            } else if (swipe > 100) {
+                                paginate(-1);
                             }
                         }}
                         className="h-full w-full active:cursor-grabbing"
                     >
-                        <AnimatePresence initial={false}>
+                        <AnimatePresence initial={false} custom={direction}>
                             <motion.div
                                 key={activeIndex}
-                                initial={{ x: "100%", opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                exit={{ x: "-30%", opacity: 0, scale: 0.95 }}
+                                custom={direction}
+                                variants={variants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
                                 transition={{
                                     duration: 0.8,
                                     ease: [0.32, 0.72, 0, 1]
@@ -126,7 +151,10 @@ export default function Industries() {
                             {ENGAGEMENTS.map((_, i) => (
                                 <button
                                     key={i}
-                                    onClick={() => setActiveIndex(i)}
+                                    onClick={() => {
+                                        const dir = i > activeIndex ? 1 : -1;
+                                        setActiveStep([i, dir]);
+                                    }}
                                     className={`w-12 h-[1px] transition-all duration-500 ${activeIndex === i ? "bg-white" : "bg-white/10"}`}
                                 />
                             ))}
