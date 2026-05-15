@@ -29,7 +29,7 @@ export default function HomePage() {
         <div id="why-us"><Metrics /></div>
         {/* <CTASection /> */}
       </main>
-      <Footer />
+      <Footer showTestimonial={true} />
     </div>
   );
 }

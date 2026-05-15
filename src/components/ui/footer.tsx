@@ -17,7 +17,7 @@ const RESOURCES = [
     { label: "Case Studies", href: "/case-studies" },
 ];
 
-export default function Footer({ showTestimonial = true }: { showTestimonial?: boolean }) {
+export default function Footer({ showTestimonial = false }: { showTestimonial?: boolean }) {
     return (
         <>
             {showTestimonial && <TestimonialSection />}
