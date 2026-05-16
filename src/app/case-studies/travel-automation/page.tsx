@@ -7,6 +7,9 @@ import { FiChevronLeft, FiCheckCircle } from "react-icons/fi";
 export const metadata: Metadata = {
   title: "Travel + Tourism AI | Case Study | Envaedha",
   description: "How AI transformed guest experiences and booking efficiency for a boutique Melbourne hotel group.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/case-studies/travel-automation",
+  },
 };
 
 export default function TravelCaseStudy() {

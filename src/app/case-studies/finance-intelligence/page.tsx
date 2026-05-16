@@ -7,6 +7,9 @@ import { FiChevronLeft, FiCheckCircle } from "react-icons/fi";
 export const metadata: Metadata = {
   title: "Finance + Strategy AI | Case Study | Envaedha",
   description: "How custom AI data engines provided real-time market signals for a Melbourne financial firm.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/case-studies/finance-intelligence",
+  },
 };
 
 export default function FinanceCaseStudy() {

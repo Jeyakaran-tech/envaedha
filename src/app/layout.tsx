@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_AU",
-    url: "https://envaedha.com.au",
+    url: "https://www.envaedha.com.au",
     siteName: "Envaedha",
     title: "Envaedha | AI Consulting Melbourne",
     description: "Production-grade AI engineering. From model fine-tuning to autonomous agentic workflows.",
@@ -91,10 +91,10 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "LocalBusiness",
-      "@id": "https://envaedha.com.au/#organization",
+      "@id": "https://www.envaedha.com.au/#organization",
       "name": "Envaedha",
-      "image": "https://envaedha.com.au/logo.png",
-      "url": "https://envaedha.com.au",
+      "image": "https://www.envaedha.com.au/logo.png",
+      "url": "https://www.envaedha.com.au",
       "telephone": "+61 400 000 000", // Placeholder - adjust if real number exists
       "address": {
         "@type": "PostalAddress",
@@ -123,16 +123,16 @@ const jsonLd = {
     {
       "@type": "Service",
       "name": "AI Consulting Melbourne",
-      "provider": { "@id": "https://envaedha.com.au/#organization" },
+      "provider": { "@id": "https://www.envaedha.com.au/#organization" },
       "description": "Strategic AI consulting and architecture for Melbourne businesses.",
       "areaServed": "Melbourne, VIC",
     },
     {
       "@type": "WebSite",
-      "@id": "https://envaedha.com.au/#website",
-      "url": "https://envaedha.com.au",
+      "@id": "https://www.envaedha.com.au/#website",
+      "url": "https://www.envaedha.com.au",
       "name": "Envaedha",
-      "publisher": { "@id": "https://envaedha.com.au/#organization" }
+      "publisher": { "@id": "https://www.envaedha.com.au/#organization" }
     }
   ],
 };

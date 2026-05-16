@@ -7,6 +7,9 @@ import { FiArrowUpRight } from "react-icons/fi";
 export const metadata: Metadata = {
     title: "Case Studies | AI Automation Success Stories | Envaedha",
     description: "Explore how Envaedha helped Melbourne businesses automate workflows and deploy AI agents to achieve measurable growth.",
+    alternates: {
+        canonical: "https://www.envaedha.com.au/case-studies",
+    },
 };
 
 const STUDIES = [

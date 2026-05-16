@@ -7,6 +7,9 @@ import { FiChevronLeft, FiCheckCircle } from "react-icons/fi";
 export const metadata: Metadata = {
   title: "Retail + Logistics AI | Case Study | Envaedha",
   description: "How AI predictive technology optimized inventory and delivery logistics for a local Melbourne retailer.",
+  alternates: {
+    canonical: "https://www.envaedha.com.au/case-studies/retail-automation",
+  },
 };
 
 export default function RetailCaseStudy() {
